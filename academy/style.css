@@ -1,0 +1,24 @@
+/*
+Theme Name: Academy by Total Therapy
+Theme URI: https://totaltherapy.pe/academy
+Author: Total Therapy
+Author URI: https://totaltherapy.pe
+Description: Block Theme moderno y editable para Academy by Total Therapy, la unidad de formación en fisioterapia invasiva (punción seca). Compatible con el Site Editor y Gutenberg. Sin dependencias de page builders.
+Requires at least: 6.5
+Tested up to: 6.7
+Requires PHP: 7.4
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: academy
+Tags: block-theme, full-site-editing, education, blog, custom-colors, custom-logo, custom-menu, editor-style, featured-images, threaded-comments, translation-ready, accessibility-ready
+
+Academy by Total Therapy WordPress Theme, (C) 2026 Total Therapy.
+Academy by Total Therapy is distributed under the terms of the GNU GPL.
+*/
+
+/*
+ * Casi todo el estilo del tema vive en theme.json y en /assets/css.
+ * Este archivo solo es obligatorio para la cabecera del tema y para
+ * pequeños ajustes que WordPress espera encontrar aquí.
+ */

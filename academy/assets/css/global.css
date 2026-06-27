@@ -1,0 +1,56 @@
+/*
+ * Academy — global.css
+ * Base que complementa theme.json. Mantener mínimo.
+ */
+
+html {
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+}
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Foco visible y accesible. */
+:where(a, button, input, select, textarea, .wp-block-button__link):focus-visible {
+	outline: 3px solid var(--wp--preset--color--blue);
+	outline-offset: 2px;
+}
+
+/* Header fijo con sombra al hacer scroll. */
+.site-header {
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	transition: box-shadow 0.25s ease;
+}
+
+.site-header__inner {
+	width: 100%;
+}
+
+.site-header.is-scrolled {
+	box-shadow: 0 6px 24px rgba(5, 0, 57, 0.18);
+}
+
+/* Secciones: títulos centrados con buen ritmo vertical. */
+.section h2 {
+	letter-spacing: -0.01em;
+}
+
+/* Botón outline. */
+.wp-block-button.is-style-outline .wp-block-button__link {
+	border-width: 2px;
+}
+
+/* Avatares redondeados. */
+.is-style-rounded img {
+	border-radius: 9999px;
+}

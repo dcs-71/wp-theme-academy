@@ -1,0 +1,710 @@
+/*
+ * Academy — components.css
+ * Estilos de componentes/patrones reproduciendo el diseño PSD.
+ */
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+.site-header__brand a,
+.site-header__brand {
+	color: #fff;
+	font-weight: 700;
+	font-size: 1.5rem;
+	letter-spacing: -0.01em;
+	text-decoration: none;
+}
+
+.site-header__nav a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.site-header__nav a:hover {
+	color: #ffe2d8;
+}
+
+.site-header__actions {
+	gap: 1.25rem;
+}
+
+.site-header__login {
+	margin: 0;
+	white-space: nowrap;
+	color: #fff;
+}
+
+.site-header__login a {
+	color: #fff;
+	text-decoration: none;
+}
+
+.site-header__login a:hover {
+	text-decoration: underline;
+}
+
+/* Search reducido a icono blanco */
+.site-header__search .wp-block-search__inside-wrapper {
+	border: none;
+	background: transparent;
+}
+
+.site-header__search button.wp-block-search__button {
+	background: transparent;
+	color: #fff;
+	padding: 0;
+	min-width: 0;
+}
+
+.site-header__search button.wp-block-search__button svg {
+	fill: #fff;
+}
+
+/* =====================================================
+   HERO
+   ===================================================== */
+.section--hero,
+.academy-hero-slider .academy-slide {
+	background: #e7eaf1;
+}
+
+.hero__content {
+	padding-block: 2rem;
+}
+
+.hero__content h1 {
+	letter-spacing: -0.01em;
+}
+
+/* =====================================================
+   CATEGORÍAS (grid 4×2)
+   ===================================================== */
+.category-grid {
+	gap: 1.5rem;
+}
+
+.category-card {
+	border-radius: 14px;
+	overflow: hidden;
+}
+
+.category-card p {
+	margin: 0;
+	line-height: 1.3;
+}
+
+/* =====================================================
+   PROMO BANNER
+   ===================================================== */
+.section--promo .wp-block-cover__inner-container {
+	max-width: 760px;
+}
+
+.section--promo h2 {
+	letter-spacing: -0.01em;
+}
+
+/* =====================================================
+   TABS DE CURSOS
+   ===================================================== */
+.course-tabs {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 2.5rem;
+	justify-content: center;
+	margin-top: 2rem;
+}
+
+.course-tabs__tab {
+	border: none;
+	background: none;
+	font-family: inherit;
+	font-size: 1rem;
+	font-weight: 500;
+	color: var(--wp--preset--color--muted);
+	padding: 0 0 0.5rem;
+	cursor: pointer;
+	position: relative;
+}
+
+.course-tabs__tab.is-active {
+	color: var(--wp--preset--color--navy);
+	font-weight: 600;
+}
+
+.course-tabs__tab.is-active::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: -2px;
+	height: 3px;
+	border-radius: 3px;
+	background: var(--wp--preset--color--navy);
+}
+
+.course-tabs__tab:focus-visible {
+	outline: 3px solid var(--wp--preset--color--blue);
+	outline-offset: 3px;
+}
+
+/* =====================================================
+   CARDS DE CURSO
+   ===================================================== */
+.courses-grid {
+	gap: 1.75rem;
+}
+
+.card {
+	overflow: hidden;
+	height: 100%;
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card--course:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 18px 45px rgba(40, 48, 120, 0.16);
+}
+
+.card__media {
+	position: relative;
+	line-height: 0;
+}
+
+.card__media img {
+	width: 100%;
+	height: 190px;
+	object-fit: cover;
+	display: block;
+}
+
+.card__badge {
+	position: absolute;
+	top: 12px;
+	left: 12px;
+	width: 40px;
+	height: 40px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: rgba(40, 48, 120, 0.55);
+	border-radius: 10px;
+	backdrop-filter: blur(2px);
+}
+
+.card__body h3 {
+	line-height: 1.35;
+	margin: 0;
+}
+
+.rating-stars {
+	color: #ff8a3d;
+	letter-spacing: 0.15em;
+	margin: 0;
+}
+
+.card__meta {
+	display: flex;
+	align-items: center;
+	gap: 0.75rem;
+	padding-top: 0.85rem;
+	margin-top: 0.4rem;
+	border-top: 1px solid #ececf3;
+	color: var(--wp--preset--color--muted);
+	font-size: 0.8125rem;
+}
+
+.card__meta-item {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.3rem;
+	white-space: nowrap;
+}
+
+.card__meta-item svg {
+	color: var(--wp--preset--color--blue);
+	flex: 0 0 auto;
+}
+
+.card__price {
+	margin-left: auto;
+	color: var(--wp--preset--color--navy);
+	font-weight: 700;
+	font-size: 1.25rem;
+}
+
+/* =====================================================
+   TESTIMONIOS
+   ===================================================== */
+.testimonials-avatars {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1.5rem;
+	margin-top: 2rem;
+}
+
+.testimonials-avatars img {
+	border-radius: 50%;
+	object-fit: cover;
+	background: #fff;
+	box-shadow: 0 8px 24px rgba(5, 0, 57, 0.12);
+}
+
+.testimonials-avatars__main {
+	width: 84px;
+	height: 84px;
+}
+
+.testimonials-avatars__side {
+	width: 60px;
+	height: 60px;
+	opacity: 0.6;
+}
+
+.section--testimonials h3 {
+	margin-bottom: 0.5rem;
+}
+
+/* =====================================================
+   BLOG / EVENTOS
+   ===================================================== */
+.blog-layout {
+	gap: 1.75rem;
+}
+
+.blog-featured {
+	position: relative;
+	border-radius: 16px;
+	overflow: hidden;
+	height: 100%;
+	min-height: 320px;
+}
+
+.blog-featured__img {
+	width: 100%;
+	height: 100%;
+	min-height: 320px;
+	object-fit: cover;
+	display: block;
+}
+
+.blog-featured__overlay {
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(180deg, rgba(40, 48, 120, 0.15) 0%, rgba(40, 48, 120, 0.85) 100%);
+}
+
+.date-badge {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background: #fff;
+	border-radius: 10px;
+	padding: 0.5rem 0.85rem;
+	line-height: 1.1;
+	box-shadow: 0 6px 18px rgba(5, 0, 57, 0.2);
+}
+
+.date-badge__day {
+	font-size: 1.4rem;
+	font-weight: 700;
+	color: var(--wp--preset--color--navy);
+}
+
+.date-badge__month {
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: var(--wp--preset--color--navy);
+}
+
+.blog-featured__content {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 1.5rem;
+	color: #fff;
+}
+
+.blog-featured__title {
+	font-size: 1.15rem;
+	font-weight: 600;
+	margin: 0 0 0.75rem;
+}
+
+.blog-featured__meta {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1.25rem;
+	font-size: 0.8125rem;
+	color: #dfe3ff;
+}
+
+.blog-mini {
+	display: flex;
+	gap: 1rem;
+	align-items: stretch;
+	margin-bottom: 1.25rem;
+}
+
+.blog-mini:last-child {
+	margin-bottom: 0;
+}
+
+.blog-mini__img {
+	width: 120px;
+	height: 110px;
+	object-fit: cover;
+	border-radius: 12px;
+	flex: 0 0 auto;
+}
+
+.blog-mini__body {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.blog-mini__date {
+	font-size: 0.75rem;
+	color: var(--wp--preset--color--muted);
+}
+
+.blog-mini__cat {
+	font-size: 0.8rem;
+	font-weight: 600;
+	color: var(--wp--preset--color--blue);
+	margin: 0.25rem 0 0.15rem;
+}
+
+.blog-mini__text {
+	margin: 0;
+	font-size: 0.95rem;
+	color: var(--wp--preset--color--navy);
+}
+
+.blog-more a {
+	color: var(--wp--preset--color--navy);
+	text-decoration: none;
+}
+
+.blog-more a:hover {
+	color: var(--wp--preset--color--orange);
+}
+
+/* =====================================================
+   APP DOWNLOAD
+   ===================================================== */
+.section--app {
+	overflow: hidden;
+}
+
+.app-mockup {
+	margin-bottom: -4rem;
+}
+
+.app-mockup img {
+	max-width: 280px;
+	height: auto;
+}
+
+.app-badges {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	margin-top: 1.75rem;
+}
+
+/* =====================================================
+   STORE BADGES (App Store / Google Play)
+   ===================================================== */
+.store-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.65rem;
+	padding: 0.6rem 1.1rem;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	border-radius: 10px;
+	color: #fff;
+	text-decoration: none;
+	background: rgba(255, 255, 255, 0.04);
+	transition: background 0.2s ease;
+}
+
+.store-badge:hover {
+	background: rgba(255, 255, 255, 0.12);
+	color: #fff;
+}
+
+.store-badge__icon {
+	width: 24px;
+	height: 24px;
+	flex: 0 0 auto;
+	background: #fff;
+	-webkit-mask: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16.4 12.7c0-2 1.6-3 1.7-3-1-1.4-2.4-1.6-2.9-1.6-1.2-.1-2.4.7-3 .7s-1.6-.7-2.6-.7c-1.3 0-2.6.8-3.2 2-1.4 2.4-.4 6 1 8 .7 1 1.4 2 2.4 2s1.3-.6 2.5-.6 1.5.6 2.6.6 1.7-1 2.3-2c.7-1.1 1-2.2 1-2.3-.1 0-2.3-.9-2.3-3.4zM14.6 6c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.2 1.2-.5.6-.9 1.5-.8 2.4.9 0 1.8-.5 2.2-1.1z'/%3E%3C/svg%3E");
+	mask: center / contain no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M16.4 12.7c0-2 1.6-3 1.7-3-1-1.4-2.4-1.6-2.9-1.6-1.2-.1-2.4.7-3 .7s-1.6-.7-2.6-.7c-1.3 0-2.6.8-3.2 2-1.4 2.4-.4 6 1 8 .7 1 1.4 2 2.4 2s1.3-.6 2.5-.6 1.5.6 2.6.6 1.7-1 2.3-2c.7-1.1 1-2.2 1-2.3-.1 0-2.3-.9-2.3-3.4zM14.6 6c.5-.7.9-1.6.8-2.5-.8 0-1.7.5-2.2 1.2-.5.6-.9 1.5-.8 2.4.9 0 1.8-.5 2.2-1.1z'/%3E%3C/svg%3E");
+}
+
+.store-badge__icon--play {
+	-webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 3.5v17c0 .5.5.8.9.5l13-8.5c.4-.3.4-.8 0-1.1L4.9 3C4.5 2.7 4 3 4 3.5z'/%3E%3C/svg%3E");
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M4 3.5v17c0 .5.5.8.9.5l13-8.5c.4-.3.4-.8 0-1.1L4.9 3C4.5 2.7 4 3 4 3.5z'/%3E%3C/svg%3E");
+}
+
+.store-badge__text {
+	display: flex;
+	flex-direction: column;
+	line-height: 1.15;
+}
+
+.store-badge__text small {
+	font-size: 0.6rem;
+	opacity: 0.8;
+}
+
+.store-badge__text strong {
+	font-size: 1rem;
+	font-weight: 700;
+}
+
+/* =====================================================
+   EVENTOS (página)
+   ===================================================== */
+.events-list {
+	max-width: 1000px;
+	margin: 0 auto;
+	display: flex;
+	flex-direction: column;
+	gap: 1.75rem;
+}
+
+.event-row {
+	display: flex;
+	gap: 1.75rem;
+	align-items: center;
+}
+
+.event-row__media {
+	position: relative;
+	flex: 0 0 300px;
+	line-height: 0;
+}
+
+.event-row__media img {
+	width: 300px;
+	height: 180px;
+	object-fit: cover;
+	border-radius: 14px;
+	display: block;
+}
+
+.event-row__body {
+	color: #fff;
+}
+
+.event-row__title {
+	color: #fff;
+	font-size: 1.4rem;
+	font-weight: 700;
+	margin: 0 0 0.5rem;
+}
+
+.event-row__desc {
+	color: #c7cbe8;
+	font-size: 0.9rem;
+	margin: 0 0 1rem;
+	max-width: 460px;
+}
+
+.event-row__meta {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+
+.event-row__meta li {
+	display: flex;
+	align-items: center;
+	gap: 0.55rem;
+	color: #fff;
+	font-size: 0.85rem;
+}
+
+.event-row__meta svg {
+	color: var(--wp--preset--color--blue);
+	flex: 0 0 auto;
+}
+
+.events-pagination {
+	display: flex;
+	gap: 0.6rem;
+	justify-content: center;
+	margin-top: 1.5rem;
+}
+
+.events-pagination__dot {
+	width: 36px;
+	height: 36px;
+	border-radius: 50%;
+	border: none;
+	background: rgba(255, 255, 255, 0.12);
+	color: #fff;
+	font-family: inherit;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.2s ease;
+}
+
+.events-pagination__dot.is-active,
+.events-pagination__dot:hover {
+	background: var(--wp--preset--color--orange);
+}
+
+.events-pagination__dot:focus-visible {
+	outline: 3px solid #fff;
+	outline-offset: 2px;
+}
+
+@media (max-width: 781px) {
+	.event-row {
+		flex-direction: column;
+		align-items: stretch;
+	}
+	.event-row__media,
+	.event-row__media img {
+		flex-basis: auto;
+		width: 100%;
+	}
+}
+
+/* =====================================================
+   PARTNERS
+   ===================================================== */
+.partners-row {
+	align-items: center;
+}
+
+.partner-logo {
+	opacity: 0.35;
+	filter: grayscale(1);
+	transition: opacity 0.2s ease;
+	margin: 0;
+}
+
+.partner-logo:hover {
+	opacity: 0.7;
+}
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+.site-footer__brand a,
+.site-footer__brand {
+	color: #fff;
+	font-weight: 700;
+	font-size: 1.35rem;
+	text-decoration: none;
+}
+
+.site-footer__about {
+	max-width: 280px;
+}
+
+.site-footer__col h4 {
+	margin: 0 0 0.5rem;
+}
+
+.site-footer__col a,
+.site-footer__col .wp-block-navigation-item__content {
+	color: var(--wp--preset--color--muted);
+	text-decoration: none;
+}
+
+.site-footer__col a:hover,
+.site-footer__col .wp-block-navigation-item__content:hover {
+	color: #fff;
+}
+
+.site-footer__apps {
+	min-width: 200px;
+}
+
+.site-footer__bottom {
+	gap: 1.5rem;
+}
+
+.site-footer__bottom .wp-block-navigation a {
+	color: #d8d8de;
+	text-decoration: none;
+}
+
+.site-footer__bottom .wp-block-navigation a:hover {
+	color: #fff;
+}
+
+.site-footer__social .wp-social-link {
+	background: rgba(255, 255, 255, 0.12);
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+@media (max-width: 1024px) {
+	.courses-grid {
+		grid-template-columns: repeat(2, 1fr) !important;
+	}
+	.category-grid {
+		grid-template-columns: repeat(4, 1fr) !important;
+	}
+}
+
+@media (max-width: 781px) {
+	.category-grid {
+		grid-template-columns: repeat(2, 1fr) !important;
+	}
+	.courses-grid {
+		grid-template-columns: 1fr !important;
+	}
+	.blog-layout {
+		flex-direction: column;
+	}
+	.blog-layout .wp-block-column {
+		flex-basis: 100% !important;
+	}
+	.app-mockup {
+		margin-bottom: 0;
+	}
+	.app-mockup img {
+		max-width: 220px;
+	}
+	.site-header__login {
+		display: none;
+	}
+}
+
+@media (max-width: 600px) {
+	.category-grid {
+		grid-template-columns: 1fr 1fr !important;
+	}
+	.course-tabs {
+		gap: 1.25rem;
+	}
+	.blog-mini__img {
+		width: 90px;
+		height: 90px;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.card,
+	.card--course:hover {
+		transform: none;
+		transition: none;
+	}
+}

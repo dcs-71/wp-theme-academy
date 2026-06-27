@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 80" role="img" aria-label="Logo aliado">
+  <circle cx="40" cy="32" r="20" fill="#283078"/>
+  <circle cx="46" cy="28" r="6" fill="#fff"/>
+  <rect x="70" y="24" width="110" height="14" rx="7" fill="#283078"/>
+  <rect x="70" y="46" width="80" height="8" rx="4" fill="#283078" opacity="0.5"/>
+</svg>

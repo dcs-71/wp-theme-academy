@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320" role="img" aria-label="Foto de persona">
+  <rect width="320" height="320" fill="#CFD6FF"/>
+  <circle cx="160" cy="128" r="56" fill="#283078" opacity="0.55"/>
+  <path d="M64 296c0-53 43-88 96-88s96 35 96 88z" fill="#283078" opacity="0.55"/>
+</svg>

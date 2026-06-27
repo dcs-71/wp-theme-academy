@@ -1,0 +1,113 @@
+/* Academy · Hero Slider — estilos compartidos (frontend + editor) */
+
+.academy-hero-slider {
+	position: relative;
+	overflow: hidden;
+}
+
+.academy-hero-slider__viewport {
+	overflow: hidden;
+	width: 100%;
+}
+
+.academy-hero-slider__track {
+	display: flex;
+	transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+	will-change: transform;
+}
+
+.academy-hero-slider__slide,
+.academy-hero-slider__track > * {
+	flex: 0 0 100%;
+	min-width: 100%;
+}
+
+/* Sin JS o reduce-motion: las diapositivas no se desplazan bruscamente. */
+@media (prefers-reduced-motion: reduce) {
+	.academy-hero-slider__track {
+		transition: none;
+	}
+}
+
+/* Flechas */
+.academy-hero-slider__arrows {
+	pointer-events: none;
+}
+
+.academy-hero-slider__arrow {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	z-index: 2;
+	pointer-events: auto;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	border: none;
+	border-radius: 9999px;
+	background: rgba(255, 255, 255, 0.9);
+	color: var(--wp--preset--color--navy, #283078);
+	font-size: 1.75rem;
+	line-height: 1;
+	cursor: pointer;
+	box-shadow: 0 4px 16px rgba(5, 0, 57, 0.18);
+	transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.academy-hero-slider__arrow:hover {
+	background: var(--wp--preset--color--orange, #ff4f26);
+	color: #fff;
+}
+
+.academy-hero-slider__arrow:focus-visible {
+	outline: 3px solid var(--wp--preset--color--yellow, #ffe888);
+	outline-offset: 2px;
+}
+
+.academy-hero-slider__arrow--prev { left: 1.25rem; }
+.academy-hero-slider__arrow--next { right: 1.25rem; }
+
+/* Puntos */
+.academy-hero-slider__dots {
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 1.25rem;
+	z-index: 2;
+	display: flex;
+	gap: 0.5rem;
+	justify-content: center;
+}
+
+.academy-hero-slider__dot {
+	width: 12px;
+	height: 12px;
+	padding: 0;
+	border: none;
+	border-radius: 9999px;
+	background: rgba(255, 255, 255, 0.5);
+	cursor: pointer;
+	transition: background 0.2s ease, width 0.2s ease;
+}
+
+.academy-hero-slider__dot.is-active {
+	width: 28px;
+	background: var(--wp--preset--color--orange, #ff4f26);
+}
+
+.academy-hero-slider__dot:focus-visible {
+	outline: 3px solid var(--wp--preset--color--yellow, #ffe888);
+	outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+	.academy-hero-slider__arrow {
+		width: 40px;
+		height: 40px;
+		font-size: 1.4rem;
+	}
+	.academy-hero-slider__arrow--prev { left: 0.5rem; }
+	.academy-hero-slider__arrow--next { right: 0.5rem; }
+}
