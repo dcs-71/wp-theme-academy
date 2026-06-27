@@ -1,18 +1,16 @@
-# WordPress Themes — Academy by Total Therapy
+# Academy by Total Therapy — WordPress Block Theme
 
-Block Themes (Full Site Editing) para Academy by Total Therapy. Compatibles con el Site
+Block Theme (Full Site Editing) para Academy by Total Therapy. Compatible con el Site
 Editor y Gutenberg, sin page builders ni librerías pesadas. Tipografía Poppins auto-alojada.
 
-## Temas incluidos
+## Tema
 
 | Carpeta | Descripción |
 |---------|-------------|
-| [`academy/`](academy/) | Landing principal de Academy by Total Therapy (cursos, eventos, testimonios, app). |
-| [`academy-puncion-seca/`](academy-puncion-seca/) | Landing de la *Formación Internacional en Punción Seca* (basada en el brochure 2026, dirigida por Mg. Chantal Páucar). |
+| [`academy/`](academy/) | Landing principal de Academy by Total Therapy (hero slider, cursos, eventos, testimonios, app). |
 
-Cada carpeta es un tema instalable independiente. Para instalar: comprime la carpeta del
-tema en un `.zip` y súbelo en **Apariencia → Temas → Añadir nuevo → Subir tema**, o copia
-la carpeta dentro de `wp-content/themes/`.
+Para instalar: comprime la carpeta `academy/` en un `.zip` y súbelo en **Apariencia →
+Temas → Añadir nuevo → Subir tema**, o copia la carpeta dentro de `wp-content/themes/`.
 
-Consulta el `README.md`, `DESIGN_IMPLEMENTATION.md` y `QA.md` dentro de cada tema para
-detalles de instalación, edición y validación.
+Consulta el `README.md`, `DESIGN_IMPLEMENTATION.md` y `QA.md` dentro del tema para detalles
+de instalación, edición y validación.
