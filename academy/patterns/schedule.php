@@ -35,7 +35,7 @@ $schedule = array(
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","style":{"color":{"text":"#c7cbe8"},"spacing":{"margin":{"bottom":"var:preset|spacing|50"}}}} -->
-<p class="has-text-align-center has-text-color" style="color:#c7cbe8;margin-bottom:var(--wp--preset--spacing--50)">Av. Juan Pablo Fernandini N.° 1550, Pueblo Libre — Lima, Perú.</p>
+<p class="has-text-align-center has-text-color" style="color:#c7cbe8;margin-bottom:var(--wp--preset--spacing--50)">Ocho jornadas presenciales en nuestra sede de Lima, Perú.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:html -->

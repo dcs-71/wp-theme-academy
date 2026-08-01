@@ -84,7 +84,7 @@ Testimonios, Así se vive la formación, Aliados o Eventos·Lista.
 | Avanzado   | 29 de agosto, 03 y 10 de octubre    | 30 h  | 60 – 101 |
 
 Horario: 9:00 a. m. a 8:00 p. m. · Almuerzo: 1:00 p. m. a 2:00 p. m.
-Sede: Av. Juan Pablo Fernandini N.° 1550, Pueblo Libre — Lima.
+Sede: Lima, Perú (la dirección exacta no se publica en la web; se comunica al inscribirse).
 
 Para una nueva edición basta con editar los arrays al inicio de
 `patterns/levels-grid.php`, `patterns/schedule.php`, `patterns/program-content.php` y

@@ -32,7 +32,7 @@ $travell = esc_url( get_theme_file_uri( 'assets/images/logo-travell-simons.jpg' 
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"textColor":"muted","fontSize":"small"} -->
-<p class="has-muted-color has-text-color has-small-font-size">Unidad de formación en fisioterapia invasiva de los centros Total Therapy, con sede en Pueblo Libre, Lima.</p>
+<p class="has-muted-color has-text-color has-small-font-size">Unidad de formación en fisioterapia invasiva de los centros Total Therapy, en Lima, Perú.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group --></section>

@@ -51,7 +51,7 @@ $ic_body  = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke=
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","textColor":"muted","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|50"}}}} -->
-<p class="has-text-align-center has-muted-color has-text-color" style="margin-bottom:var(--wp--preset--spacing--50)">Clases 100% presenciales de 9:00 a. m. a 8:00 p. m. en nuestra sede de Pueblo Libre, Lima.</p>
+<p class="has-text-align-center has-muted-color has-text-color" style="margin-bottom:var(--wp--preset--spacing--50)">Clases 100% presenciales de 9:00 a. m. a 8:00 p. m. en nuestra sede de Lima, Perú.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"className":"levels-grid","layout":{"type":"grid","columnCount":3}} -->

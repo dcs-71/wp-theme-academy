@@ -14,7 +14,7 @@ $ic_cal   = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke=
 $ic_clock = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>';
 $ic_pin   = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s7-5.5 7-11a7 7 0 1 0-14 0c0 5.5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
 
-$sede = 'Av. Juan Pablo Fernandini N.° 1550, Pueblo Libre — Lima';
+$sede = 'Clases presenciales en Lima, Perú';
 
 $events = array(
 	array(

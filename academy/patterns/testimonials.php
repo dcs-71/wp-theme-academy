@@ -11,9 +11,9 @@
  */
 
 $avatares = array(
-	array( 'img' => 'assets/images/alumno-1.jpg', 'alt' => 'Participante de la Formación Internacional en Punción Seca', 'class' => 'testimonials-avatars__side' ),
-	array( 'img' => 'assets/images/alumno-2.jpg', 'alt' => 'Participante durante una práctica supervisada',            'class' => 'testimonials-avatars__main' ),
-	array( 'img' => 'assets/images/alumno-3.jpg', 'alt' => 'Participante tomando apuntes en clase',                    'class' => 'testimonials-avatars__side' ),
+	array( 'img' => 'assets/images/alumno-1.jpg', 'alt' => 'Participantes tomando apuntes durante la clase teórica', 'class' => 'testimonials-avatars__side' ),
+	array( 'img' => 'assets/images/alumno-2.jpg', 'alt' => 'Participante revisando el manual de estudio',           'class' => 'testimonials-avatars__main' ),
+	array( 'img' => 'assets/images/alumno-3.jpg', 'alt' => 'Participante realizando el marcaje anatómico',          'class' => 'testimonials-avatars__side' ),
 );
 ?>
 <!-- wp:group {"tagName":"section","className":"section section--testimonials","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"backgroundColor":"gray","layout":{"type":"constrained","contentSize":"760px"}} -->

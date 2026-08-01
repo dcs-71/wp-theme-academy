@@ -32,7 +32,7 @@ $slides = array(
 		'img'     => 'assets/images/hero-3.jpg',
 		'eyebrow' => 'Excelencia clínica',
 		'title'   => 'Formación que transforma, impacto que perdura',
-		'text'    => 'Material de práctica completo, manual impreso a color por módulo y grupos reducidos en nuestra sede de Pueblo Libre.',
+		'text'    => 'Material de práctica completo, manual impreso a color por módulo y grupos reducidos en nuestra sede de Lima.',
 		'cta'     => 'Conoce el programa',
 		'url'     => '#programa',
 	),

@@ -49,7 +49,7 @@ $minis = array(
 		<p class="blog-featured__title">Arranca el Nivel Básico: síndrome de dolor miofascial, diagnóstico y seguridad</p>
 		<div class="blog-featured__meta">
 			<span>9:00 a. m. – 8:00 p. m.</span>
-			<span>Pueblo Libre, Lima</span>
+			<span>Lima, Perú</span>
 		</div>
 	</div>
 </article>
