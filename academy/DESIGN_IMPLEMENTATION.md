@@ -37,41 +37,45 @@ Escala 20→70 (0.5rem → 5.5rem) para paddings de sección y gaps.
 
 ## 2. Mapeo sección → archivo (Landing, desktop_1)
 
-| Sección del PSD                         | Implementación |
-|-----------------------------------------|----------------|
-| Header azul (logo, nav, login, búsqueda)| `parts/header.html` |
-| Hero (foto clara + título navy + CTA)   | `patterns/hero-slider.php` → bloque `academy/hero-slider` |
-| Grid de categorías 4×2 + botón navy     | `patterns/category-grid.php` |
-| Banner promo azul (overlay + CTA)       | `patterns/cta-banner.php` |
-| Cursos: tabs + tarjetas                 | `patterns/courses-grid.php` |
-| Testimonios (avatares + cita)           | `patterns/testimonials.php` |
-| Blog/Eventos (destacado + 2 mini)       | `patterns/blog-events-cards.php` |
-| App (gradiente + badges + mockup)       | `patterns/app-download-banner.php` |
-| Partners (logos atenuados)              | `patterns/partners-logos.php` |
-| Footer negro (4 cols + badges + social) | `parts/footer.html` |
+| Sección del PSD                          | Implementación | Contenido |
+|------------------------------------------|----------------|-----------|
+| Header azul (logo, nav, CTA, búsqueda)   | `parts/header.html` | Logo Academy blanco + botón *Inscríbete* |
+| Hero (foto clara + título navy + CTA)    | `patterns/hero-slider.php` → bloque `academy/hero-slider` | 3 slides con fotos reales del Grupo II |
+| Grid de tarjetas + botón navy            | `patterns/levels-grid.php` | Ruta de formación: Básico / Intermedio / Avanzado |
+| Banner promo azul (overlay + CTA)        | `patterns/cta-banner.php` | «Formación que transforma. Impacto que perdura.» |
+| Bloque navy de datos                     | `patterns/schedule.php` | Fechas, horario y almuerzo de cada nivel |
+| Sección de contenidos                    | `patterns/program-content.php` | Temario completo (acordeón nativo) |
+| Bloque a dos columnas                    | `patterns/instructor.php` | Mg. Chantal Páucar, directora académica |
+| Banner con gradiente                     | `patterns/materials-banner.php` | Material académico y de práctica incluido |
+| Testimonios (avatares + cita)            | `patterns/testimonials.php` | Cita de respaldo científico (Travell) |
+| Blog/Eventos (destacado + 2 mini)        | `patterns/blog-events-cards.php` | «Así se vive la formación» |
+| Partners (logos)                         | `patterns/partners-logos.php` | Seminarios Travell &amp; Simons |
+| Footer negro (4 cols + CTA + social)     | `parts/footer.html` | Dirección de la sede, teléfono y web |
 
-`templates/front-page.html` compone los patrones en el orden del PSD.
+`templates/front-page.html` compone los patrones en el orden de la landing.
 
 ### Página Eventos (desktop_2 / mobile)
 | Elemento                                | Implementación |
 |-----------------------------------------|----------------|
 | Hero interior (foto clara + breadcrumb) | `parts/hero-internal.html` |
-| Lista de eventos sobre fondo navy       | `templates/page-eventos.html` + `patterns/events-list.php` |
+| Lista de fechas sobre fondo navy        | `templates/page-eventos.html` + `patterns/events-list.php` (una fila por nivel) |
 
 ---
 
 ## 3. Componentes a medida (CSS en `assets/css/components.css`)
 
-- **Tarjeta de curso** (`.card--course`): media con badge superpuesto, profesor, título,
-  estrellas, divisor y fila de meta (alumnos, duración con iconos SVG) + precio.
-- **Tabs de cursos** (`.course-tabs`): pestaña activa con subrayado navy.
-- **Tarjeta de categoría** (`.category-card`): cover con overlay navy y texto centrado.
+- **Tarjeta de nivel** (`.card--level`): media con etiqueta de horas superpuesta, antetítulo,
+  título del nivel, descripción y meta con iconos SVG (fechas, horario, rango de músculos).
+- **Cifras resumen** (`.stat`): 80 horas · 101 músculos · 8 jornadas · 3 niveles.
+- **Tarjeta de programación** (`.schedule-card`): bloques Fechas / Horario / Almuerzo sobre navy.
+- **Acordeón de temario** (`.program-item`): `<details>/<summary>` nativos, sin JS, con chevron
+  animado y foco visible.
+- **Credenciales de la docente** (`.credential`): rejilla 2×2 con barra lateral naranja.
+- **Lista de material** (`.materials-list`): checks en CSS puro (SVG enmascarado, sin imágenes).
 - **Blog destacado** (`.blog-featured`): imagen + overlay degradado + badge de fecha
   flotante + contenido inferior; mini-cards (`.blog-mini`) imagen+texto.
-- **Store badges** (`.store-badge`): App Store / Google Play con iconos enmascarados en CSS
-  (sin imágenes), reutilizados en footer y sección App.
-- **Lista de eventos** (`.event-row`): imagen con badge + cuerpo blanco sobre navy + meta
-  con iconos + paginación.
+- **Lista de fechas** (`.event-row`): imagen con badge + cuerpo blanco sobre navy + meta
+  con iconos.
 
 ---
 
@@ -94,12 +98,15 @@ Escala 20→70 (0.5rem → 5.5rem) para paddings de sección y gaps.
 
 ## 5. Diferencias intencionales respecto al PSD
 
-- Se mantienen los textos *Lorem ipsum* del PSD como contenido de demostración; son
-  totalmente editables desde WordPress.
-- Las **imágenes son placeholders SVG** neutros; deben reemplazarse por la fotografía real
-  (la portada del PSD usa foto clínica con overlay claro).
-- El **logo** usa el bloque *Título del sitio* como marca de texto; sustitúyelo por el
-  bloque *Logotipo del sitio* subiendo el logo real (no se incluyen assets de marca).
+- Los textos *Lorem ipsum* del PSD se sustituyeron por el **contenido real** de la Formación
+  Internacional en Punción Seca (brochure 2026); todo sigue siendo editable desde WordPress.
+- Las estructuras del PSD orientadas a catálogo (grid de categorías 4×2, tabs de cursos,
+  precios/valoraciones y la sección de app móvil) se **reconvirtieron** a las secciones que
+  la formación necesita: ruta de niveles, programación, temario y material incluido.
+- Las **imágenes son fotografías reales** del Grupo II (día 1), optimizadas a medidas web en
+  `assets/images/`. Ya no hay placeholders SVG.
+- El **logo** se inserta como bloque *Imagen* con el archivo `logo-academy-blanco.png`
+  incluido en el tema; puede cambiarse por el bloque *Logotipo del sitio* si se prefiere.
 
 ---
 
@@ -114,6 +121,6 @@ Escala 20→70 (0.5rem → 5.5rem) para paddings de sección y gaps.
 
 ## 7. Cómo se validó el diseño
 
-Se renderizó el frontend con Chrome headless usando el CSS real del tema y se comparó
-visualmente contra los tres PSD (header, hero, categorías, promo, cursos, testimonios,
-blog, app, partners, footer y página de eventos).
+Se renderizó el frontend con el CSS real del tema y se revisaron a 1440 px las secciones
+nuevas (ruta de niveles, programación, temario, docente, material y testimonios), además de
+la comparación original contra los tres PSD.

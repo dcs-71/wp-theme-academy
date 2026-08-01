@@ -86,6 +86,12 @@ Lista de verificación para validar el tema en un WordPress real (6.5+). Marca c
 
 ## Notas
 
-- Reemplazar placeholders SVG por fotografía real de marca (recorte circular).
-- Subir el logo real en el bloque *Logotipo del sitio* del header.
+- Las imágenes son fotografías reales de la formación (Grupo II, día 1) ya optimizadas en
+  `assets/images/`. Para cambiarlas, sustituye el archivo o edita el bloque desde WordPress.
+- El logo (`logo-academy-blanco.png`) va como bloque *Imagen* en header y footer; si prefieres
+  gestionarlo desde **Ajustes → Identidad del sitio**, cámbialo por *Logotipo del sitio*.
+- Revisar antes de publicar: enlaces de redes sociales del footer (aún en `#`) y las URLs
+  `/contacto` y `/eventos`, que deben existir como páginas.
+- Actualizar fechas y niveles al lanzar una nueva edición: `patterns/levels-grid.php`,
+  `patterns/schedule.php`, `patterns/program-content.php` y `patterns/events-list.php`.
 - Para eventos dinámicos, ver `README.md` §7 (plugin `academy-core` + Query Loop).

@@ -7,5 +7,10 @@
 # Archivos de diseño fuente (PSD pesados)
 Diseños/
 
+# Material fuente de la formación (fotografía original y brochure, ~1 GB)
+# Las versiones optimizadas para web viven en academy/assets/images/
+IMAGENES-RECURSOS/
+*.pdf
+
 # Segundo tema (no se versiona en este repo)
 academy-puncion-seca/

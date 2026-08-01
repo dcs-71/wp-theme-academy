@@ -1,38 +1,55 @@
 <?php
 /**
- * Title: Blog y eventos · Destacado + cards
+ * Title: Así se vive la formación · Destacado + cards
  * Slug: academy/blog-events-cards
  * Categories: academy, posts
- * Description: Una entrada destacada con badge de fecha y dos tarjetas secundarias. Editable.
- * Keywords: blog, eventos, noticias, cards
+ * Description: Momento destacado de la formación con badge de fecha y dos tarjetas secundarias. Editable.
+ * Keywords: galeria, momentos, clases, eventos, cards
  * Viewport Width: 1400
  *
  * @package Academy
  */
 
-$img = esc_url( get_theme_file_uri( 'assets/images/placeholder-course.svg' ) );
+$featured = esc_url( get_theme_file_uri( 'assets/images/clase-teoria.jpg' ) );
+
+$minis = array(
+	array(
+		'img'   => 'assets/images/practica-supervisada.jpg',
+		'alt'   => 'Práctica supervisada en camilla durante la formación',
+		'fecha' => 'Nivel Básico · 31 de julio',
+		'cat'   => 'Práctica supervisada',
+		'texto' => 'Cada participante practica sobre camilla con acompañamiento docente permanente.',
+	),
+	array(
+		'img'   => 'assets/images/material-marcaje.jpg',
+		'alt'   => 'Marcaje anatómico previo a la punción seca',
+		'fecha' => 'Todos los niveles',
+		'cat'   => 'Marcaje anatómico',
+		'texto' => 'Localización de puntos gatillo y referencias de seguridad antes de cada técnica.',
+	),
+);
 ?>
 <!-- wp:group {"tagName":"section","className":"section section--blog","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"backgroundColor":"base","layout":{"type":"constrained","contentSize":"1180px"}} -->
 <section class="wp-block-group section section--blog has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)"><!-- wp:heading {"textAlign":"center","level":2} -->
-<h2 class="wp-block-heading has-text-align-center">Lorem ipsum is simply dummy text</h2>
+<h2 class="wp-block-heading has-text-align-center">Así se vive la formación</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","textColor":"muted","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|50"}}}} -->
-<p class="has-text-align-center has-muted-color has-text-color" style="margin-bottom:var(--wp--preset--spacing--50)">Lorem ipsum is simply</p>
+<p class="has-text-align-center has-muted-color has-text-color" style="margin-bottom:var(--wp--preset--spacing--50)">Teoría, demostración y práctica en cada jornada de 9:00 a. m. a 8:00 p. m.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:columns {"className":"blog-layout"} -->
 <div class="wp-block-columns blog-layout"><!-- wp:column {"width":"58%"} -->
 <div class="wp-block-column" style="flex-basis:58%"><!-- wp:html -->
 <article class="blog-featured">
-	<img class="blog-featured__img" src="<?php echo $img; ?>" alt="Entrada destacada" loading="lazy" />
+	<img class="blog-featured__img" src="<?php echo $featured; ?>" alt="Clase teórica de la Formación Internacional en Punción Seca" loading="lazy" />
 	<span class="blog-featured__overlay"></span>
-	<div class="date-badge"><span class="date-badge__day">28</span><span class="date-badge__month">Marzo</span></div>
+	<div class="date-badge"><span class="date-badge__day">31</span><span class="date-badge__month">Julio</span></div>
 	<div class="blog-featured__content">
-		<p class="blog-featured__title">is simply dummy text of the printing and typesetting industry</p>
+		<p class="blog-featured__title">Arranca el Nivel Básico: síndrome de dolor miofascial, diagnóstico y seguridad</p>
 		<div class="blog-featured__meta">
-			<span>8:00 am – 5:00 pm</span>
-			<span>Texto locación: Lima, Perú</span>
+			<span>9:00 a. m. – 8:00 p. m.</span>
+			<span>Pueblo Libre, Lima</span>
 		</div>
 	</div>
 </article>
@@ -41,27 +58,21 @@ $img = esc_url( get_theme_file_uri( 'assets/images/placeholder-course.svg' ) );
 
 <!-- wp:column {"width":"42%"} -->
 <div class="wp-block-column" style="flex-basis:42%"><!-- wp:html -->
+<?php foreach ( $minis as $m ) : ?>
 <article class="blog-mini">
-	<img class="blog-mini__img" src="<?php echo $img; ?>" alt="Entrada" loading="lazy" />
+	<img class="blog-mini__img" src="<?php echo esc_url( get_theme_file_uri( $m['img'] ) ); ?>" alt="<?php echo esc_attr( $m['alt'] ); ?>" loading="lazy" />
 	<div class="blog-mini__body">
-		<span class="blog-mini__date">28 Marzo, 2021</span>
-		<p class="blog-mini__cat">Categoría</p>
-		<p class="blog-mini__text">is simply dummy text of and typesetting</p>
+		<span class="blog-mini__date"><?php echo esc_html( $m['fecha'] ); ?></span>
+		<p class="blog-mini__cat"><?php echo esc_html( $m['cat'] ); ?></p>
+		<p class="blog-mini__text"><?php echo esc_html( $m['texto'] ); ?></p>
 	</div>
 </article>
-<article class="blog-mini">
-	<img class="blog-mini__img" src="<?php echo $img; ?>" alt="Entrada" loading="lazy" />
-	<div class="blog-mini__body">
-		<span class="blog-mini__date">28 Marzo, 2021</span>
-		<p class="blog-mini__cat">Categoría</p>
-		<p class="blog-mini__text">is simply dummy text of and typesetting</p>
-	</div>
-</article>
+<?php endforeach; ?>
 <!-- /wp:html --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
 
 <!-- wp:paragraph {"align":"center","className":"blog-more","style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}},"typography":{"fontWeight":"500"}}} -->
-<p class="has-text-align-center blog-more" style="margin-top:var(--wp--preset--spacing--40);font-weight:500"><a href="#">has been the industry's standard →</a></p>
+<p class="has-text-align-center blog-more" style="margin-top:var(--wp--preset--spacing--40);font-weight:500"><a href="/eventos">Ver todas las fechas de la formación →</a></p>
 <!-- /wp:paragraph --></section>
 <!-- /wp:group -->

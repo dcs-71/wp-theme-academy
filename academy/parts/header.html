@@ -1,18 +1,24 @@
 <!-- wp:group {"tagName":"header","className":"site-header","backgroundColor":"blue","textColor":"base","layout":{"type":"constrained","contentSize":"1280px"}} -->
 <header class="wp-block-group site-header has-base-color has-blue-background-color has-text-color has-background"><!-- wp:group {"className":"site-header__inner","style":{"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30"}}},"layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
-<div class="wp-block-group site-header__inner" style="padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30)"><!-- wp:site-title {"level":0,"className":"site-header__brand"} /-->
+<div class="wp-block-group site-header__inner" style="padding-top:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30)"><!-- wp:image {"width":"180px","sizeSlug":"large","linkDestination":"custom","className":"site-header__brand"} -->
+<figure class="wp-block-image size-large is-resized site-header__brand"><a href="/"><img src="/wp-content/themes/academy/assets/images/logo-academy-blanco.png" alt="Academy by Total Therapy" style="width:180px"/></a></figure>
+<!-- /wp:image -->
 
 <!-- wp:navigation {"textColor":"base","className":"site-header__nav","layout":{"type":"flex","justifyContent":"center","orientation":"horizontal"},"style":{"spacing":{"blockGap":"var:preset|spacing|50"},"typography":{"fontWeight":"500"}}} -->
-<!-- wp:navigation-link {"label":"Home","url":"/","kind":"custom"} /-->
-<!-- wp:navigation-link {"label":"Cursos","url":"/cursos","kind":"custom"} /-->
-<!-- wp:navigation-link {"label":"Eventos","url":"/eventos","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Inicio","url":"/","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"La formación","url":"/#ruta","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Programa","url":"/#programa","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Docente","url":"/#docente","kind":"custom"} /-->
+<!-- wp:navigation-link {"label":"Fechas","url":"/eventos","kind":"custom"} /-->
 <!-- wp:navigation-link {"label":"Contacto","url":"/contacto","kind":"custom"} /-->
 <!-- /wp:navigation -->
 
 <!-- wp:group {"className":"site-header__actions","layout":{"type":"flex","flexWrap":"nowrap","verticalAlignment":"center"},"style":{"spacing":{"blockGap":"var:preset|spacing|40"}}} -->
-<div class="wp-block-group site-header__actions"><!-- wp:paragraph {"className":"site-header__login","style":{"typography":{"fontWeight":"500"}}} -->
-<p class="site-header__login" style="font-weight:500"><a href="/login">Login</a> / <a href="/registro">Register</a></p>
-<!-- /wp:paragraph -->
+<div class="wp-block-group site-header__actions"><!-- wp:buttons {"className":"site-header__cta"} -->
+<div class="wp-block-buttons site-header__cta"><!-- wp:button {"backgroundColor":"orange","textColor":"base","style":{"spacing":{"padding":{"top":"0.6rem","bottom":"0.6rem","left":"1.4rem","right":"1.4rem"}},"typography":{"fontSize":"0.9rem"}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link has-base-color has-orange-background-color has-text-color has-background wp-element-button" href="/contacto" style="padding-top:0.6rem;padding-right:1.4rem;padding-bottom:0.6rem;padding-left:1.4rem;font-size:0.9rem">Inscríbete</a></div>
+<!-- /wp:button --></div>
+<!-- /wp:buttons -->
 
 <!-- wp:search {"label":"Buscar","showLabel":false,"buttonText":"Buscar","buttonPosition":"button-only","buttonUseIcon":true,"className":"site-header__search"} /--></div>
 <!-- /wp:group --></div>

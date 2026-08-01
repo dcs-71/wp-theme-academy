@@ -8,6 +8,8 @@ formación en fisioterapia invasiva (punción seca). Compatible con el **Site Ed
 - **Paleta:** colores oficiales Academy (Navy, Indigo, Orange, Yellow…).
 - **Patrones editables** para todas las secciones de la landing.
 - **Un bloque propio** (`Academy · Hero Slider`) ligero y accesible.
+- **Contenido y fotografía reales** de la *Formación Internacional en Punción Seca*
+  (edición dirigida por la Mg. Chantal Páucar), incluidos en el tema.
 
 ---
 
@@ -38,17 +40,20 @@ No requiere plugins para funcionar. Ver la sección 7 para integraciones opciona
 
 ## 3. Primeros pasos tras activar
 
-1. **Logo:** ve a **Apariencia → Editor → Patrones / Encabezado**, selecciona el bloque
-   *Logotipo del sitio* y sube `assets/images/logo-color.svg` (o tu logo).
+1. **Logo:** ya viene puesto (`assets/images/logo-academy-blanco.png`) como bloque *Imagen*
+   en el encabezado y el pie. Para cambiarlo: **Apariencia → Editor → Patrones → Encabezado**.
 2. **Página de inicio:**
    - Crea una página "Inicio" (puede quedar vacía).
    - En **Ajustes → Lectura → Tu página de inicio muestra → Una página estática**,
      elige "Inicio". El tema usa `front-page.html` automáticamente con todas las
      secciones de la landing.
-3. **Página de Eventos:**
-   - Crea una página "Eventos".
+3. **Página de Eventos (fechas):**
+   - Crea una página "Eventos" con el slug `eventos` (el menú y el footer enlazan ahí).
    - En el panel de la página, en **Plantilla**, elige **"Página de Eventos"**.
-4. **Menús:** edita el bloque *Navegación* en el encabezado desde el Site Editor.
+4. **Página de Contacto:** crea una página con el slug `contacto`; los botones
+   *Inscríbete* / *Solicita información* apuntan a ella.
+5. **Menús:** edita el bloque *Navegación* en el encabezado desde el Site Editor.
+6. **Redes sociales:** en el pie, sustituye los enlaces `#` por los perfiles reales.
 
 ---
 
@@ -63,11 +68,27 @@ Todo el contenido relevante es editable desde WordPress:
 | Secciones de la landing      | Son **patrones**: insértalos con el botón **+ → Patrones → Academy** |
 | Colores y tipografía global  | **Apariencia → Editor → Estilos** |
 | Slides del hero              | Selecciona el bloque *Academy · Hero Slider* y edita cada *Cover* |
+| Fechas de la edición         | Patrones *Ruta de formación*, *Programación*, *Temario* y *Eventos·Lista* |
 
 ### Insertar un patrón
-En cualquier página: botón **+** → pestaña **Patrones** → categoría **Academy** →
-elige Hero, Categorías, Promo, Cursos, Testimonios, Blog/Eventos, App, Partners o
-Eventos·Lista.
+En cualquier página: botón **+** → pestaña **Patrones** → categoría **Academy** → elige
+Hero, Ruta de formación, Promo, Programación, Temario, Docente, Material académico,
+Testimonios, Así se vive la formación, Aliados o Eventos·Lista.
+
+### Contenido de la edición actual
+
+| Nivel      | Fechas                              | Horas | Músculos |
+|------------|-------------------------------------|-------|----------|
+| Básico     | 31 de julio y 01 de agosto          | 20 h  | 1 – 17   |
+| Intermedio | 08, 15 y 22 de agosto               | 30 h  | 18 – 59  |
+| Avanzado   | 29 de agosto, 03 y 10 de octubre    | 30 h  | 60 – 101 |
+
+Horario: 9:00 a. m. a 8:00 p. m. · Almuerzo: 1:00 p. m. a 2:00 p. m.
+Sede: Av. Juan Pablo Fernandini N.° 1550, Pueblo Libre — Lima.
+
+Para una nueva edición basta con editar los arrays al inicio de
+`patterns/levels-grid.php`, `patterns/schedule.php`, `patterns/program-content.php` y
+`patterns/events-list.php` (o los bloques equivalentes desde el editor).
 
 ---
 
@@ -98,7 +119,7 @@ academy/
     ├── css/                  global, components, editor
     ├── js/                   navigation
     ├── fonts/                Poppins (woff2)
-    └── images/               logo, isotipo y placeholders
+    └── images/               logos, fotografía de la formación y retratos
 ```
 
 ---
