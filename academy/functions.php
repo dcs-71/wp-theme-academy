@@ -18,7 +18,21 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ACADEMY_VERSION' ) ) {
-	define( 'ACADEMY_VERSION', '1.1.0' );
+	define( 'ACADEMY_VERSION', '1.1.1' );
+}
+
+/**
+ * URL de una imagen del tema con la versión como query string.
+ *
+ * Las imágenes de los patrones conservan el mismo nombre entre versiones
+ * (p. ej. `alumno-1.jpg`), así que al actualizar el tema el navegador seguiría
+ * sirviendo la copia cacheada. Añadir `?ver=` fuerza la recarga.
+ *
+ * @param string $path Ruta relativa dentro del tema.
+ * @return string URL escapada lista para usar en un atributo `src`/`url`.
+ */
+function academy_image_uri( $path ) {
+	return esc_url( add_query_arg( 'ver', ACADEMY_VERSION, get_theme_file_uri( $path ) ) );
 }
 
 /**

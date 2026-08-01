@@ -10,7 +10,7 @@
  * @package Academy
  */
 
-$foto = esc_url( get_theme_file_uri( 'assets/images/docente-chantal.jpg' ) );
+$foto = academy_image_uri( 'assets/images/docente-chantal.jpg' );
 
 $credenciales = array(
 	array(

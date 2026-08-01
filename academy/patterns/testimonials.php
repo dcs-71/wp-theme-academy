@@ -28,7 +28,7 @@ $avatares = array(
 <!-- wp:html -->
 <div class="testimonials-avatars">
 <?php foreach ( $avatares as $a ) : ?>
-	<img class="<?php echo esc_attr( $a['class'] ); ?>" src="<?php echo esc_url( get_theme_file_uri( $a['img'] ) ); ?>" alt="<?php echo esc_attr( $a['alt'] ); ?>" loading="lazy" />
+	<img class="<?php echo esc_attr( $a['class'] ); ?>" src="<?php echo academy_image_uri( $a['img'] ); ?>" alt="<?php echo esc_attr( $a['alt'] ); ?>" loading="lazy" />
 <?php endforeach; ?>
 </div>
 <!-- /wp:html -->

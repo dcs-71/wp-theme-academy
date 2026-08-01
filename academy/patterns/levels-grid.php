@@ -57,7 +57,7 @@ $ic_body  = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke=
 <!-- wp:group {"className":"levels-grid","layout":{"type":"grid","columnCount":3}} -->
 <div class="wp-block-group levels-grid">
 <?php foreach ( $levels as $l ) : ?>
-<?php $img = esc_url( get_theme_file_uri( $l['img'] ) ); ?>
+<?php $img = academy_image_uri( $l['img'] ); ?>
 <!-- wp:group {"className":"card card--level","style":{"border":{"radius":"16px"},"spacing":{"blockGap":"0"},"shadow":"var:preset|shadow|card"},"backgroundColor":"base","layout":{"type":"default"}} -->
 <div class="wp-block-group card card--level has-base-background-color has-background" style="border-radius:16px;box-shadow:var(--wp--preset--shadow--card)"><!-- wp:html -->
 <div class="card__media">

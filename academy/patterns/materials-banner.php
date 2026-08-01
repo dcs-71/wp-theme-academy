@@ -10,7 +10,7 @@
  * @package Academy
  */
 
-$foto = esc_url( get_theme_file_uri( 'assets/images/material-aguja.jpg' ) );
+$foto = academy_image_uri( 'assets/images/material-aguja.jpg' );
 
 $materiales = array(
 	'Agujas en todas las medidas necesarias',

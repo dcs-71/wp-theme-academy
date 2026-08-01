@@ -48,7 +48,7 @@ $events = array(
 <?php foreach ( $events as $e ) : ?>
 	<article class="event-row">
 		<div class="event-row__media">
-			<img src="<?php echo esc_url( get_theme_file_uri( $e['img'] ) ); ?>" alt="<?php echo esc_attr( $e['title'] ); ?>" loading="lazy" />
+			<img src="<?php echo academy_image_uri( $e['img'] ); ?>" alt="<?php echo esc_attr( $e['title'] ); ?>" loading="lazy" />
 			<div class="date-badge"><span class="date-badge__day"><?php echo esc_html( $e['day'] ); ?></span><span class="date-badge__month"><?php echo esc_html( $e['month'] ); ?></span></div>
 		</div>
 		<div class="event-row__body">

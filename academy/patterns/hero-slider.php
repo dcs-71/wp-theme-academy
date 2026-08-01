@@ -40,7 +40,7 @@ $slides = array(
 ?>
 <!-- wp:academy/hero-slider {"autoplay":true,"loop":true,"delay":6500,"align":"full"} -->
 <?php foreach ( $slides as $s ) : ?>
-<?php $bg = esc_url( get_theme_file_uri( $s['img'] ) ); ?>
+<?php $bg = academy_image_uri( $s['img'] ); ?>
 <!-- wp:cover {"url":"<?php echo $bg; ?>","dimRatio":60,"overlayColor":"base","minHeight":620,"className":"academy-slide","align":"full"} -->
 <div class="wp-block-cover alignfull academy-slide" style="min-height:620px"><span aria-hidden="true" class="wp-block-cover__background has-base-background-color has-background-dim-60 has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo $bg; ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:group {"className":"hero__content","layout":{"type":"constrained","contentSize":"820px"}} -->
 <div class="wp-block-group hero__content"><!-- wp:paragraph {"align":"center","className":"hero__eyebrow","textColor":"orange","fontSize":"small","style":{"typography":{"fontWeight":"600","textTransform":"uppercase","letterSpacing":"0.14em"}}} -->

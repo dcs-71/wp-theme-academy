@@ -10,7 +10,7 @@
  * @package Academy
  */
 
-$travell = esc_url( get_theme_file_uri( 'assets/images/logo-travell-simons.jpg' ) );
+$travell = academy_image_uri( 'assets/images/logo-travell-simons.jpg' );
 ?>
 <!-- wp:group {"tagName":"section","className":"section section--partners","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"backgroundColor":"base","layout":{"type":"constrained","contentSize":"1180px"}} -->
 <section class="wp-block-group section section--partners has-base-background-color has-background" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)"><!-- wp:heading {"textAlign":"center","level":2} -->

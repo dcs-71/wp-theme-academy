@@ -10,7 +10,7 @@
  * @package Academy
  */
 
-$featured = esc_url( get_theme_file_uri( 'assets/images/clase-teoria.jpg' ) );
+$featured = academy_image_uri( 'assets/images/clase-teoria.jpg' );
 
 $minis = array(
 	array(
@@ -60,7 +60,7 @@ $minis = array(
 <div class="wp-block-column" style="flex-basis:42%"><!-- wp:html -->
 <?php foreach ( $minis as $m ) : ?>
 <article class="blog-mini">
-	<img class="blog-mini__img" src="<?php echo esc_url( get_theme_file_uri( $m['img'] ) ); ?>" alt="<?php echo esc_attr( $m['alt'] ); ?>" loading="lazy" />
+	<img class="blog-mini__img" src="<?php echo academy_image_uri( $m['img'] ); ?>" alt="<?php echo esc_attr( $m['alt'] ); ?>" loading="lazy" />
 	<div class="blog-mini__body">
 		<span class="blog-mini__date"><?php echo esc_html( $m['fecha'] ); ?></span>
 		<p class="blog-mini__cat"><?php echo esc_html( $m['cat'] ); ?></p>
