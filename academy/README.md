@@ -47,13 +47,20 @@ No requiere plugins para funcionar. Ver la sección 7 para integraciones opciona
    - En **Ajustes → Lectura → Tu página de inicio muestra → Una página estática**,
      elige "Inicio". El tema usa `front-page.html` automáticamente con todas las
      secciones de la landing.
-3. **Página de Eventos (fechas):**
-   - Crea una página "Eventos" con el slug `eventos` (el menú y el footer enlazan ahí).
-   - En el panel de la página, en **Plantilla**, elige **"Página de Eventos"**.
-4. **Página de Contacto:** crea una página con el slug `contacto`; los botones
-   *Inscríbete* / *Solicita información* apuntan a ella.
-5. **Menús:** edita el bloque *Navegación* en el encabezado desde el Site Editor.
-6. **Redes sociales:** en el pie, sustituye los enlaces `#` por los perfiles reales.
+3. **Número de WhatsApp:** todos los CTA abren una conversación de WhatsApp con un
+   mensaje ya escrito, así que funcionan sin crear ninguna página. El número está en
+   **tres** sitios y debe coincidir en los tres:
+   - `functions.php` → constante `ACADEMY_WHATSAPP` (la usan los patrones).
+   - `parts/header.html` → botón *Inscríbete* y enlace *Contacto*.
+   - `parts/footer.html` → teléfono, *Contacto por WhatsApp* y *Escríbenos por WhatsApp*.
+
+   Formato: código de país + número, solo dígitos (`51993582936` = +51 993 582 936).
+4. **Menús:** edita el bloque *Navegación* en el encabezado desde el Site Editor.
+5. **Redes sociales:** en el pie, sustituye los enlaces `#` por los perfiles reales.
+6. **Página de Eventos (opcional):** el tema incluye la plantilla *Página de Eventos*
+   con el detalle de fechas por nivel. Ningún enlace apunta ahí todavía para no generar
+   404; si la quieres, crea una página con el slug `eventos`, asígnale esa plantilla y
+   enlázala desde el menú.
 
 ---
 

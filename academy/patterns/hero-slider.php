@@ -18,7 +18,7 @@ $slides = array(
 		'title'   => 'Formación Internacional en Punción Seca',
 		'text'    => 'Dirigida por la Mg. Chantal Páucar. Tres niveles presenciales en Lima, del 31 de julio al 10 de octubre.',
 		'cta'     => 'Reserva tu vacante',
-		'url'     => '#inscripcion',
+		'url'     => academy_whatsapp_url( 'Hola, quiero reservar mi vacante en la Formación Internacional en Punción Seca. ¿Me pueden dar más información?' ),
 	),
 	array(
 		'img'     => 'assets/images/hero-2.jpg',

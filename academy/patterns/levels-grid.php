@@ -14,7 +14,7 @@ $levels = array(
 	array(
 		'img'      => 'assets/images/nivel-basico.jpg',
 		'nivel'    => 'Nivel Básico',
-		'fechas'   => '31 de julio y 01 de agosto',
+		'jornadas' => '2 jornadas presenciales',
 		'horas'    => '20 horas académicas',
 		'musculos' => 'Músculos 1 al 17',
 		'text'     => 'Fundamentos del síndrome de dolor miofascial, diagnóstico, seguridad y primeras técnicas de punción.',
@@ -22,7 +22,7 @@ $levels = array(
 	array(
 		'img'      => 'assets/images/nivel-intermedio.jpg',
 		'nivel'    => 'Nivel Intermedio',
-		'fechas'   => '08, 15 y 22 de agosto',
+		'jornadas' => '3 jornadas presenciales',
 		'horas'    => '30 horas académicas',
 		'musculos' => 'Músculos 18 al 59',
 		'text'     => 'Miembro inferior y superior completos: cadera, muslo, pierna, pie, hombro, brazo y antebrazo.',
@@ -30,7 +30,7 @@ $levels = array(
 	array(
 		'img'      => 'assets/images/nivel-avanzado.jpg',
 		'nivel'    => 'Nivel Avanzado',
-		'fechas'   => '29 de agosto, 03 y 10 de octubre',
+		'jornadas' => '3 jornadas presenciales',
 		'horas'    => '30 horas académicas',
 		'musculos' => 'Músculos 60 al 101',
 		'text'     => 'Punción seca torácica, musculatura paravertebral profunda, cráneo-cervical, mano y tronco.',
@@ -38,7 +38,6 @@ $levels = array(
 );
 
 $ic_cal   = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/></svg>';
-$ic_clock = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>';
 $ic_body  = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="2"/><path d="M12 7v8m0 0-3 5m3-5 3 5M6 10l6-2 6 2"/></svg>';
 ?>
 <!-- wp:group {"tagName":"section","className":"section section--levels","anchor":"ruta","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"backgroundColor":"base","layout":{"type":"constrained","contentSize":"1180px"}} -->
@@ -51,7 +50,7 @@ $ic_body  = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke=
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","textColor":"muted","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|50"}}}} -->
-<p class="has-text-align-center has-muted-color has-text-color" style="margin-bottom:var(--wp--preset--spacing--50)">Clases 100% presenciales de 9:00 a. m. a 8:00 p. m. en nuestra sede de Lima, Perú.</p>
+<p class="has-text-align-center has-muted-color has-text-color" style="margin-bottom:var(--wp--preset--spacing--50)">Clases 100% presenciales en grupos reducidos, con práctica supervisada en cada sesión.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"className":"levels-grid","layout":{"type":"grid","columnCount":3}} -->
@@ -81,8 +80,7 @@ $ic_body  = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke=
 
 <!-- wp:html -->
 <ul class="level-meta">
-	<li><?php echo $ic_cal; ?> <span><?php echo esc_html( $l['fechas'] ); ?></span></li>
-	<li><?php echo $ic_clock; ?> <span>9:00 a. m. a 8:00 p. m.</span></li>
+	<li><?php echo $ic_cal; ?> <span><?php echo esc_html( $l['jornadas'] ); ?></span></li>
 	<li><?php echo $ic_body; ?> <span><?php echo esc_html( $l['musculos'] ); ?></span></li>
 </ul>
 <!-- /wp:html --></div>

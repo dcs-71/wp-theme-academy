@@ -18,7 +18,38 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ACADEMY_VERSION' ) ) {
-	define( 'ACADEMY_VERSION', '1.1.1' );
+	define( 'ACADEMY_VERSION', '1.2.0' );
+}
+
+/**
+ * Número de WhatsApp de Academy, en formato internacional y solo dígitos
+ * (código de país + número, sin «+», espacios ni guiones).
+ *
+ * Es el único punto donde se declara el número para los patrones. Si cambia,
+ * actualízalo aquí y también en `parts/header.html` y `parts/footer.html`,
+ * que son HTML estático y no pueden llamar a PHP.
+ */
+if ( ! defined( 'ACADEMY_WHATSAPP' ) ) {
+	define( 'ACADEMY_WHATSAPP', '51993582936' );
+}
+
+/**
+ * Enlace de WhatsApp con un mensaje inicial ya escrito.
+ *
+ * Se usa en los CTA en lugar de páginas internas: así los botones funcionan
+ * desde el primer momento, sin depender de que existan `/contacto` o similares.
+ *
+ * @param string $mensaje Texto con el que se abre la conversación.
+ * @return string URL escapada lista para un atributo `href`.
+ */
+function academy_whatsapp_url( $mensaje = '' ) {
+	$url = 'https://wa.me/' . ACADEMY_WHATSAPP;
+
+	if ( '' !== $mensaje ) {
+		$url = add_query_arg( 'text', rawurlencode( $mensaje ), $url );
+	}
+
+	return esc_url( $url );
 }
 
 /**
