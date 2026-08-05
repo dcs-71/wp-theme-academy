@@ -232,6 +232,19 @@
 	padding: 0;
 }
 
+.schedule-card--soon {
+	background: rgba(255, 255, 255, 0.04);
+	border-style: dashed;
+}
+
+.schedule-card__soon {
+	margin: 0;
+	color: var(--wp--preset--color--orange);
+	font-size: 1.05rem;
+	font-weight: 600;
+	line-height: 1.6;
+}
+
 .schedule-card__dates li,
 .schedule-card__value {
 	margin: 0;

@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ACADEMY_VERSION' ) ) {
-	define( 'ACADEMY_VERSION', '1.2.0' );
+	define( 'ACADEMY_VERSION', '1.2.1' );
 }
 
 /**

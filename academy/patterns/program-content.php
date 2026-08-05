@@ -13,7 +13,7 @@
 $program = array(
 	array(
 		'nivel'    => 'Nivel Básico',
-		'meta'     => '20 horas académicas · 31 de julio y 01 de agosto',
+		'meta'     => '20 horas académicas',
 		'open'     => true,
 		'bloques'  => array(
 			array(
@@ -58,7 +58,7 @@ $program = array(
 	),
 	array(
 		'nivel'    => 'Nivel Intermedio',
-		'meta'     => '30 horas académicas · 08, 15 y 22 de agosto',
+		'meta'     => '30 horas académicas',
 		'open'     => false,
 		'bloques'  => array(
 			array(
@@ -87,7 +87,7 @@ $program = array(
 	),
 	array(
 		'nivel'    => 'Nivel Avanzado',
-		'meta'     => '30 horas académicas · 29 de agosto, 03 y 10 de octubre',
+		'meta'     => '30 horas académicas',
 		'open'     => false,
 		'bloques'  => array(
 			array(

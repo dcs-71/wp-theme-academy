@@ -10,6 +10,11 @@
  * @package Academy
  */
 
+/*
+ * Solo se publican las fechas ya confirmadas. Para abrir la convocatoria de un
+ * nivel, rellena su array `fechas`: la tarjeta pasa sola de «Próximamente» al
+ * listado de fechas.
+ */
 $schedule = array(
 	array(
 		'nivel'  => 'Básico',
@@ -17,11 +22,11 @@ $schedule = array(
 	),
 	array(
 		'nivel'  => 'Intermedio',
-		'fechas' => array( '08 de agosto', '15 de agosto', '22 de agosto' ),
+		'fechas' => array(),
 	),
 	array(
 		'nivel'  => 'Avanzado',
-		'fechas' => array( '29 de agosto', '03 de octubre', '10 de octubre' ),
+		'fechas' => array(),
 	),
 );
 ?>
@@ -35,21 +40,25 @@ $schedule = array(
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","style":{"color":{"text":"#c7cbe8"},"spacing":{"margin":{"bottom":"var:preset|spacing|50"}}}} -->
-<p class="has-text-align-center has-text-color" style="color:#c7cbe8;margin-bottom:var(--wp--preset--spacing--50)">Ocho jornadas presenciales en nuestra sede de Lima, Perú.</p>
+<p class="has-text-align-center has-text-color" style="color:#c7cbe8;margin-bottom:var(--wp--preset--spacing--50)">El Nivel Básico ya tiene fechas confirmadas. Los siguientes niveles se anuncian próximamente.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:html -->
 <div class="schedule-grid">
 <?php foreach ( $schedule as $s ) : ?>
-	<article class="schedule-card">
+	<article class="schedule-card<?php echo $s['fechas'] ? '' : ' schedule-card--soon'; ?>">
 		<h3 class="schedule-card__level"><?php echo esc_html( $s['nivel'] ); ?></h3>
 		<div class="schedule-card__block">
 			<span class="schedule-card__label">Fechas</span>
+			<?php if ( $s['fechas'] ) : ?>
 			<ul class="schedule-card__dates">
 			<?php foreach ( $s['fechas'] as $f ) : ?>
 				<li><?php echo esc_html( $f ); ?></li>
 			<?php endforeach; ?>
 			</ul>
+			<?php else : ?>
+			<p class="schedule-card__soon">Próximamente</p>
+			<?php endif; ?>
 		</div>
 		<div class="schedule-card__block">
 			<span class="schedule-card__label">Horario de clases</span>
