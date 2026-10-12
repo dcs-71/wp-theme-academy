@@ -24,7 +24,7 @@ $slides = array(
 		'title'     => 'Formación Internacional en Punción Seca',
 		'text'      => 'Dirigida por la Mg. Chantal Páucar en alianza con Seminarios Travell &amp; Simons. Tres niveles presenciales con práctica supervisada en grupos reducidos.',
 		'cta'       => 'Reserva tu vacante',
-		'url'       => academy_whatsapp_url( 'Hola, quiero reservar mi vacante en la Formación Internacional en Punción Seca. ¿Me pueden dar más información?' ),
+		'url'       => academy_whatsapp_url( academy_whatsapp_message( 'reserva' ) ),
 		'secondary' => array( 'Ver la ruta de formación', '#ruta' ),
 	),
 	array(
@@ -47,7 +47,7 @@ $slides = array(
 		'text'      => 'Acompañamiento docente en cada sesión, material de práctica completo y manual impreso a color por módulo, en nuestra sede de Lima.',
 		'cta'       => 'Conoce el programa',
 		'url'       => '#programa',
-		'secondary' => array( 'Escríbenos', academy_whatsapp_url( 'Hola, solicito más información sobre la Formación Internacional en Punción Seca.' ) ),
+		'secondary' => array( 'Escríbenos', academy_whatsapp_url( academy_whatsapp_message( 'info' ) ) ),
 	),
 );
 ?>

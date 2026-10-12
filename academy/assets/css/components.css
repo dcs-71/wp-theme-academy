@@ -15,6 +15,7 @@
 .site-header__brand img {
 	display: block;
 	height: auto;
+	aspect-ratio: 400.88 / 118.89; /* logo SVG: evita saltos al cargar */
 }
 
 .site-header__nav {
@@ -1300,7 +1301,7 @@
 		gap: 0.75rem;
 	}
 	.site-header__brand img {
-		width: 132px !important;
+		width: 140px !important;
 	}
 	.site-header__actions {
 		margin-left: auto;

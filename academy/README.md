@@ -75,7 +75,7 @@ Todo el contenido relevante es editable desde WordPress:
 | Secciones de la landing      | Son **patrones**: insértalos con el botón **+ → Patrones → Academy** |
 | Colores y tipografía global  | **Apariencia → Editor → Estilos** |
 | Slides del hero              | Selecciona el bloque *Academy · Hero Slider* y edita cada *Cover* |
-| Fechas de la edición         | Patrones *Ruta de formación* (fechas en cada tarjeta), *Temario* y *Eventos·Lista* |
+| Fechas de cada nivel         | Plugin **Academy · Programación** (menú *Programación*). Sin plugin: `academy_schedule_defaults()` en `functions.php` |
 
 ### Insertar un patrón
 En cualquier página: botón **+** → pestaña **Patrones** → categoría **Academy** → elige
@@ -93,9 +93,18 @@ Testimonios, Así se vive la formación, Preguntas frecuentes, Aliados o Eventos
 Horario: 9:00 a. m. a 8:00 p. m. · Almuerzo: 1:00 p. m. a 2:00 p. m.
 Sede: Lima, Perú (la dirección exacta no se publica en la web; se comunica al inscribirse).
 
-Para una nueva edición basta con editar los arrays al inicio de
-`patterns/levels-grid.php` (array `fechas` de cada nivel), `patterns/program-content.php` y
-`patterns/events-list.php` (o los bloques equivalentes desde el editor).
+Las fechas de cada nivel se cambian desde el plugin **Academy · Programación** (menú
+*Programación* del escritorio); el tema las pinta en las tarjetas de *Ruta de formación*,
+en *Así se vive la formación*, en *Eventos·Lista* y en los datos estructurados del curso.
+Cuando la última fecha de un nivel pasa, vuelve solo a «Próximamente».
+
+Shortcodes disponibles (también dentro de bloques HTML de los patrones):
+`[academy_fechas nivel=basico]`, `[academy_fechas nivel=basico mostrar=primera]`,
+`[academy_fechas_tarjeta nivel=basico]` y `[academy_fecha_insignia nivel=basico]`.
+
+Los mensajes de WhatsApp se definen en `academy_whatsapp_message()` (functions.php) y todos
+indican que el contacto llega desde la web. Los enlaces de `parts/header.html` y
+`parts/footer.html` llevan los mismos textos ya codificados.
 
 ---
 

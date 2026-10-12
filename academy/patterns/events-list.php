@@ -19,27 +19,24 @@ $sede = 'Clases presenciales en Lima, Perú';
 $events = array(
 	array(
 		'img'   => 'assets/images/nivel-basico.webp',
-		'day'   => '30',
-		'month' => 'Octubre',
+		'slug'  => 'basico',
 		'title' => 'Nivel Básico · Seminario presencial',
 		'desc'  => 'Síndrome de dolor miofascial, criterios de diagnóstico, principios de la fisioterapia invasiva y seguridad. Músculos 1 al 17.',
-		'date'  => '30 y 31 de octubre · 20 horas académicas',
+		'hours' => '20 horas académicas',
 	),
 	array(
 		'img'   => 'assets/images/nivel-intermedio.webp',
-		'day'   => '',
-		'month' => '',
+		'slug'  => 'intermedio',
 		'title' => 'Nivel Intermedio · Seminario presencial',
 		'desc'  => 'Abordaje completo de miembro inferior y superior con práctica supervisada en camilla. Músculos 18 al 59.',
-		'date'  => 'Fechas próximamente · 30 horas académicas',
+		'hours' => '30 horas académicas',
 	),
 	array(
 		'img'   => 'assets/images/nivel-avanzado.webp',
-		'day'   => '',
-		'month' => '',
+		'slug'  => 'avanzado',
 		'title' => 'Nivel Avanzado · Seminario presencial',
 		'desc'  => 'Punción seca torácica, musculatura paravertebral profunda, región cráneo-cervical, mano y tronco. Músculos 60 al 101.',
-		'date'  => 'Fechas próximamente · 30 horas académicas',
+		'hours' => '30 horas académicas',
 	),
 );
 ?>
@@ -49,17 +46,13 @@ $events = array(
 	<article class="event-row">
 		<div class="event-row__media">
 			<img src="<?php echo academy_image_uri( $e['img'] ); ?>" alt="<?php echo esc_attr( $e['title'] . ' de la Formación Internacional en Punción Seca' ); ?>" width="900" height="675" loading="lazy" decoding="async" />
-			<?php if ( $e['day'] ) : ?>
-			<div class="date-badge"><span class="date-badge__day"><?php echo esc_html( $e['day'] ); ?></span><span class="date-badge__month"><?php echo esc_html( $e['month'] ); ?></span></div>
-			<?php else : ?>
-			<div class="date-badge date-badge--soon"><span class="date-badge__month">Próximamente</span></div>
-			<?php endif; ?>
+			[academy_fecha_insignia nivel=<?php echo esc_attr( $e['slug'] ); ?>]
 		</div>
 		<div class="event-row__body">
 			<h3 class="event-row__title"><?php echo esc_html( $e['title'] ); ?></h3>
 			<p class="event-row__desc"><?php echo esc_html( $e['desc'] ); ?></p>
 			<ul class="event-row__meta">
-				<li><?php echo $ic_cal; ?> <span><?php echo esc_html( $e['date'] ); ?></span></li>
+				<li><?php echo $ic_cal; ?> <span>[academy_fechas nivel=<?php echo esc_attr( $e['slug'] ); ?>] · <?php echo esc_html( $e['hours'] ); ?></span></li>
 				<li><?php echo $ic_clock; ?> <span>9:00 a. m. a 8:00 p. m. · Almuerzo 1:00 p. m. a 2:00 p. m.</span></li>
 				<li><?php echo $ic_pin; ?> <span><?php echo esc_html( $sede ); ?></span></li>
 			</ul>

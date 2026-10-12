@@ -11,16 +11,16 @@
  */
 
 /*
- * Solo se publican las fechas ya confirmadas. Para abrir la convocatoria de un
- * nivel, rellena su array `fechas`: la tarjeta pasa sola de «Próximamente» a
- * mostrar las fechas.
+ * Las fechas no se escriben aquí: las pinta el shortcode [academy_fechas_tarjeta]
+ * a partir de la programación (plugin «Academy · Programación» o, sin él,
+ * academy_schedule_defaults() en functions.php).
  */
 $levels = array(
 	array(
 		'img'      => 'assets/images/nivel-basico.webp',
 		'alt'      => 'Docente dictando la clase teórica del Nivel Básico de punción seca',
 		'nivel'    => 'Nivel Básico',
-		'fechas'   => array( '30', '31 de octubre' ),
+		'slug'     => 'basico',
 		'jornadas' => '2 jornadas presenciales',
 		'horas'    => '20 horas académicas',
 		'musculos' => 'Músculos 1 al 17',
@@ -30,7 +30,7 @@ $levels = array(
 		'img'      => 'assets/images/nivel-intermedio.webp',
 		'alt'      => 'Docente guiando la punción seca de miembro inferior en el Nivel Intermedio',
 		'nivel'    => 'Nivel Intermedio',
-		'fechas'   => array(),
+		'slug'     => 'intermedio',
 		'jornadas' => '3 jornadas presenciales',
 		'horas'    => '30 horas académicas',
 		'musculos' => 'Músculos 18 al 59',
@@ -40,7 +40,7 @@ $levels = array(
 		'img'      => 'assets/images/nivel-avanzado.webp',
 		'alt'      => 'Demostración de punción seca en camilla ante el grupo del Nivel Avanzado',
 		'nivel'    => 'Nivel Avanzado',
-		'fechas'   => array(),
+		'slug'     => 'avanzado',
 		'jornadas' => '3 jornadas presenciales',
 		'horas'    => '30 horas académicas',
 		'musculos' => 'Músculos 60 al 101',
@@ -95,11 +95,7 @@ $ic_body  = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke=
 	<li><?php echo $ic_clock; ?> <span><?php echo esc_html( $l['jornadas'] ); ?></span></li>
 	<li><?php echo $ic_body; ?> <span><?php echo esc_html( $l['musculos'] ); ?></span></li>
 </ul>
-<div class="level-dates<?php echo $l['fechas'] ? '' : ' level-dates--soon'; ?>">
-	<?php echo $ic_cal; ?>
-	<span class="level-dates__label">Fechas</span>
-	<span class="level-dates__value"><?php echo $l['fechas'] ? esc_html( implode( ' y ', $l['fechas'] ) ) : 'Próximamente'; ?></span>
-</div>
+[academy_fechas_tarjeta nivel=<?php echo esc_attr( $l['slug'] ); ?>]
 <!-- /wp:html --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

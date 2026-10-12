@@ -1,0 +1,120 @@
+/* Academy · Programación — pantalla de edición. */
+.acp {
+	max-width: 1100px;
+}
+
+.acp-intro {
+	max-width: 760px;
+	font-size: 14px;
+}
+
+.acp-levels {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+	gap: 16px;
+	margin: 20px 0;
+}
+
+.acp-level {
+	margin: 0;
+	padding: 18px 20px 20px;
+	border: 1px solid #dcdcde;
+	border-top: 4px solid #5667ff;
+	border-radius: 8px;
+	background: #fff;
+}
+
+.acp-level__title {
+	float: left; /* Saca la leyenda del borde del fieldset. */
+	width: 100%;
+	margin: 0 0 12px;
+	padding: 0;
+	color: #283078;
+	font-size: 16px;
+	font-weight: 600;
+}
+
+.acp-mode {
+	clear: both;
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	margin-bottom: 14px;
+}
+
+.acp-label {
+	display: block;
+	margin: 0 0 6px;
+	font-weight: 600;
+}
+
+.acp-dates__list {
+	margin: 0 0 8px;
+}
+
+.acp-date {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	margin-bottom: 6px;
+}
+
+.acp-date input[type="date"] {
+	flex: 1;
+}
+
+.acp-date__remove {
+	width: 28px;
+	height: 28px;
+	color: #b32d2e;
+	font-size: 20px;
+	line-height: 1;
+	text-decoration: none;
+}
+
+/* Con «Próximamente» las fechas se conservan, pero se atenúan. */
+.acp-level[data-mode="proximamente"] .acp-dates {
+	opacity: 0.45;
+}
+
+.acp-preview {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px 6px;
+	margin: 16px 0 0;
+	padding: 10px 12px;
+	border-radius: 6px;
+	background: #eef0ff;
+	color: #283078;
+}
+
+.acp-preview.is-soon {
+	background: #fff1ed;
+	color: #c2370f;
+}
+
+.acp-warning {
+	margin: 8px 0 0;
+	color: #b32d2e;
+}
+
+.acp-settings {
+	padding: 16px 20px;
+	border: 1px solid #dcdcde;
+	border-radius: 8px;
+	background: #fff;
+}
+
+.acp-help {
+	margin-top: 24px;
+	max-width: 760px;
+}
+
+.acp-help summary {
+	cursor: pointer;
+	font-weight: 600;
+}
+
+.acp-help code {
+	user-select: all;
+}

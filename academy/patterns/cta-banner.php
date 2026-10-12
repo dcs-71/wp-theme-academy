@@ -11,7 +11,7 @@
  */
 
 $bg = academy_image_uri( 'assets/images/cta-formacion.webp' );
-$wa = academy_whatsapp_url( 'Hola, solicito más información sobre la Formación Internacional en Punción Seca.' );
+$wa = academy_whatsapp_url( academy_whatsapp_message( 'info' ) );
 ?>
 <!-- wp:cover {"url":"<?php echo $bg; ?>","dimRatio":80,"overlayColor":"blue","minHeight":420,"contentPosition":"center center","className":"section section--promo","anchor":"inscripcion","align":"full","layout":{"type":"constrained","contentSize":"820px"}} -->
 <div class="wp-block-cover alignfull section section--promo" id="inscripcion" style="min-height:420px"><span aria-hidden="true" class="wp-block-cover__background has-blue-background-color has-background-dim-80 has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo $bg; ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:paragraph {"align":"center","className":"promo__eyebrow","textColor":"base","fontSize":"small"} -->

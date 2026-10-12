@@ -57,7 +57,7 @@ foreach ( $faqs as $f ) {
 	);
 }
 
-$wa = academy_whatsapp_url( 'Hola, tengo una consulta sobre la Formación Internacional en Punción Seca.' );
+$wa = academy_whatsapp_url( academy_whatsapp_message( 'consulta' ) );
 ?>
 <!-- wp:group {"tagName":"section","className":"section section--faq","anchor":"preguntas","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"backgroundColor":"cream","align":"full","layout":{"type":"constrained","contentSize":"1180px"}} -->
 <section class="wp-block-group alignfull section section--faq has-cream-background-color has-background" id="preguntas" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)"><!-- wp:paragraph {"align":"center","className":"section__eyebrow","textColor":"orange","fontSize":"small","style":{"typography":{"fontWeight":"600","textTransform":"uppercase","letterSpacing":"0.14em"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->

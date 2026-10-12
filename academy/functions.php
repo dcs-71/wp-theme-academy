@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ACADEMY_VERSION' ) ) {
-	define( 'ACADEMY_VERSION', '1.5.2' );
+	define( 'ACADEMY_VERSION', '1.6.0' );
 }
 
 /**
@@ -51,6 +51,288 @@ function academy_whatsapp_url( $mensaje = '' ) {
 
 	return esc_url( $url );
 }
+
+/**
+ * Mensaje inicial de WhatsApp según el botón pulsado.
+ *
+ * Todos empiezan indicando que el contacto llega desde la web, para que el
+ * equipo distinga estas consultas de las de redes sociales.
+ *
+ * Los enlaces de `parts/header.html` y `parts/footer.html` son HTML estático y
+ * llevan estos mismos textos ya codificados: si se cambian aquí, actualízalos
+ * también allí (motivos «inscripcion» e «info»).
+ *
+ * @param string $motivo info | reserva | inscripcion | consulta.
+ * @return string
+ */
+function academy_whatsapp_message( $motivo = 'info' ) {
+	$intro = 'Hola, les escribo desde la web de Academy by Total Therapy.';
+
+	$textos = array(
+		'info'        => 'Quisiera más información sobre la Formación Internacional en Punción Seca.',
+		'reserva'     => 'Quiero reservar mi vacante en la Formación Internacional en Punción Seca.',
+		'inscripcion' => 'Quiero inscribirme en la Formación Internacional en Punción Seca. ¿Me pueden dar más información?',
+		'consulta'    => 'Tengo una consulta sobre la Formación Internacional en Punción Seca.',
+	);
+
+	$texto = isset( $textos[ $motivo ] ) ? $textos[ $motivo ] : $textos['info'];
+
+	/**
+	 * Permite cambiar el mensaje de WhatsApp desde un plugin.
+	 *
+	 * @param string $mensaje Mensaje completo.
+	 * @param string $motivo  Motivo del botón.
+	 */
+	return apply_filters( 'academy_whatsapp_message', $intro . ' ' . $texto, $motivo );
+}
+
+/* -------------------------------------------------------------------------
+ * Programación (fechas de cada nivel)
+ *
+ * Las fechas se guardan como AAAA-MM-DD y el tema las muestra en español
+ * («30 y 31 de octubre»). El plugin «Academy · Programación» las sustituye
+ * mediante el filtro `academy_schedule`; sin el plugin se usan las de abajo.
+ *
+ * Se pintan con shortcodes dentro de los bloques HTML de los patrones
+ * ([academy_fechas], [academy_fechas_tarjeta], [academy_fecha_insignia]) para
+ * que sigan siendo dinámicos aunque la portada se guarde desde el Editor.
+ * ---------------------------------------------------------------------- */
+
+/**
+ * Programación por defecto (sin plugin).
+ *
+ * @return array{levels:array<string,array{name:string,dates:string[]}>,soon_label:string}
+ */
+function academy_schedule_defaults() {
+	return array(
+		'levels'     => array(
+			'basico'     => array(
+				'name'  => 'Nivel Básico',
+				'dates' => array( '2026-10-30', '2026-10-31' ),
+			),
+			'intermedio' => array(
+				'name'  => 'Nivel Intermedio',
+				'dates' => array(),
+			),
+			'avanzado'   => array(
+				'name'  => 'Nivel Avanzado',
+				'dates' => array(),
+			),
+		),
+		'soon_label' => 'Próximamente',
+	);
+}
+
+/**
+ * Programación vigente, ya filtrada y normalizada.
+ *
+ * - Descarta valores que no sean fechas AAAA-MM-DD válidas y las ordena.
+ * - Si la última fecha de un nivel ya pasó, el nivel vuelve a «Próximamente»
+ *   automáticamente: la web nunca anuncia una edición terminada.
+ *
+ * @return array{levels:array<string,array{name:string,dates:string[]}>,soon_label:string}
+ */
+function academy_schedule() {
+	static $schedule = null;
+	if ( null !== $schedule ) {
+		return $schedule;
+	}
+
+	$defaults = academy_schedule_defaults();
+
+	/**
+	 * Permite sustituir la programación (lo usa el plugin Academy · Programación).
+	 *
+	 * @param array $schedule Programación por defecto del tema.
+	 */
+	$data  = apply_filters( 'academy_schedule', $defaults );
+	$today = current_time( 'Y-m-d' );
+
+	$schedule = array(
+		'levels'     => array(),
+		'soon_label' => ! empty( $data['soon_label'] ) ? (string) $data['soon_label'] : $defaults['soon_label'],
+	);
+
+	foreach ( $defaults['levels'] as $slug => $default ) {
+		$level = isset( $data['levels'][ $slug ] ) ? (array) $data['levels'][ $slug ] : $default;
+		$dates = isset( $level['dates'] ) ? (array) $level['dates'] : array();
+
+		$dates = array_values(
+			array_filter(
+				array_unique( array_map( 'strval', $dates ) ),
+				function ( $date ) {
+					$parsed = DateTime::createFromFormat( '!Y-m-d', $date );
+					return $parsed && $parsed->format( 'Y-m-d' ) === $date;
+				}
+			)
+		);
+		sort( $dates );
+
+		if ( $dates && end( $dates ) < $today ) {
+			$dates = array();
+		}
+
+		$schedule['levels'][ $slug ] = array(
+			'name'  => ! empty( $level['name'] ) ? (string) $level['name'] : $default['name'],
+			'dates' => $dates,
+		);
+	}
+
+	return $schedule;
+}
+
+/**
+ * Formatea fechas AAAA-MM-DD en español, agrupadas por mes.
+ *
+ * Ej.: 2026-10-30, 2026-10-31 → «30 y 31 de octubre»;
+ *      2026-08-29, 2026-10-03, 2026-10-10 → «29 de agosto, 03 y 10 de octubre».
+ *
+ * @param string[] $dates Fechas ordenadas.
+ * @return string
+ */
+function academy_format_dates( $dates ) {
+	$months = array( 1 => 'enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre' );
+
+	$groups = array();
+	foreach ( $dates as $date ) {
+		list( $year, $month, $day ) = array_map( 'intval', explode( '-', $date ) );
+		$key = $year . '-' . $month;
+		if ( ! isset( $groups[ $key ] ) ) {
+			$groups[ $key ] = array(
+				'month' => $months[ $month ],
+				'days'  => array(),
+			);
+		}
+		$groups[ $key ]['days'][] = sprintf( '%02d', $day );
+	}
+
+	$parts = array();
+	foreach ( $groups as $group ) {
+		$days = $group['days'];
+		$last = array_pop( $days );
+		$list = $days ? implode( ', ', $days ) . ' y ' . $last : $last;
+
+		$parts[] = $list . ' de ' . $group['month'];
+	}
+
+	return implode( ', ', $parts );
+}
+
+/**
+ * Datos listos para pintar de un nivel.
+ *
+ * @param string $slug basico | intermedio | avanzado.
+ * @return array{name:string,dates:string[],has_dates:bool,text:string,first:string,day:string,month:string}
+ */
+function academy_level_schedule( $slug ) {
+	$schedule = academy_schedule();
+	$level    = isset( $schedule['levels'][ $slug ] ) ? $schedule['levels'][ $slug ] : array(
+		'name'  => '',
+		'dates' => array(),
+	);
+
+	$data = array(
+		'name'      => $level['name'],
+		'dates'     => $level['dates'],
+		'has_dates' => ! empty( $level['dates'] ),
+		'text'      => $schedule['soon_label'],
+		'first'     => $schedule['soon_label'],
+		'day'       => '',
+		'month'     => '',
+	);
+
+	if ( $data['has_dates'] ) {
+		$first         = $level['dates'][0];
+		$data['text']  = academy_format_dates( $level['dates'] );
+		$data['first'] = academy_format_dates( array( $first ) );
+		$data['day']   = substr( $first, 8, 2 );
+		$data['month'] = ucfirst( substr( $data['first'], strpos( $data['first'], ' de ' ) + 4 ) );
+	}
+
+	return $data;
+}
+
+/**
+ * [academy_fechas nivel=basico] → «30 y 31 de octubre» o «Próximamente».
+ * [academy_fechas nivel=basico mostrar=primera] → solo la primera fecha.
+ *
+ * @param array $atts Atributos.
+ * @return string
+ */
+function academy_shortcode_fechas( $atts ) {
+	$atts  = shortcode_atts( array( 'nivel' => 'basico', 'mostrar' => 'todas' ), $atts );
+	$level = academy_level_schedule( sanitize_key( $atts['nivel'] ) );
+
+	return esc_html( 'primera' === $atts['mostrar'] ? $level['first'] : $level['text'] );
+}
+
+/**
+ * [academy_fechas_tarjeta nivel=basico] → bloque «Fechas» de las tarjetas de nivel.
+ *
+ * @param array $atts Atributos.
+ * @return string
+ */
+function academy_shortcode_fechas_tarjeta( $atts ) {
+	$atts  = shortcode_atts( array( 'nivel' => 'basico' ), $atts );
+	$level = academy_level_schedule( sanitize_key( $atts['nivel'] ) );
+	$icon  = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/></svg>';
+
+	return sprintf(
+		'<div class="level-dates%1$s">%2$s<span class="level-dates__label">Fechas</span><span class="level-dates__value">%3$s</span></div>',
+		$level['has_dates'] ? '' : ' level-dates--soon',
+		$icon,
+		esc_html( $level['text'] )
+	);
+}
+
+/**
+ * [academy_fecha_insignia nivel=basico] → insignia con día y mes (o «Próximamente»).
+ *
+ * @param array $atts Atributos.
+ * @return string
+ */
+function academy_shortcode_fecha_insignia( $atts ) {
+	$atts  = shortcode_atts( array( 'nivel' => 'basico' ), $atts );
+	$level = academy_level_schedule( sanitize_key( $atts['nivel'] ) );
+
+	if ( ! $level['has_dates'] ) {
+		return '<div class="date-badge date-badge--soon"><span class="date-badge__month">' . esc_html( $level['text'] ) . '</span></div>';
+	}
+
+	return sprintf(
+		'<div class="date-badge"><span class="date-badge__day">%1$s</span><span class="date-badge__month">%2$s</span></div>',
+		esc_html( $level['day'] ),
+		esc_html( $level['month'] )
+	);
+}
+
+/**
+ * Registra los shortcodes de la programación.
+ */
+function academy_register_schedule_shortcodes() {
+	add_shortcode( 'academy_fechas', 'academy_shortcode_fechas' );
+	add_shortcode( 'academy_fechas_tarjeta', 'academy_shortcode_fechas_tarjeta' );
+	add_shortcode( 'academy_fecha_insignia', 'academy_shortcode_fecha_insignia' );
+}
+add_action( 'init', 'academy_register_schedule_shortcodes' );
+
+/**
+ * Ejecuta los shortcodes de la programación dentro de los bloques HTML.
+ *
+ * WordPress procesa los shortcodes de las plantillas antes de renderizar los
+ * patrones, así que los de los patrones quedarían como texto. Se procesan
+ * aquí, en cada bloque HTML que los contenga.
+ *
+ * @param string $html HTML del bloque.
+ * @return string
+ */
+function academy_render_schedule_shortcodes( $html ) {
+	if ( false === strpos( $html, '[academy_' ) ) {
+		return $html;
+	}
+	return do_shortcode( $html );
+}
+add_filter( 'render_block_core/html', 'academy_render_schedule_shortcodes' );
 
 /**
  * URL de una imagen del tema con la versión como query string.
@@ -376,14 +658,14 @@ function academy_schema_graph() {
 		);
 
 		$levels = array(
-			array( 'Nivel Básico', 'Síndrome de dolor miofascial, diagnóstico, seguridad y primeras técnicas de punción seca (músculos 1 al 17). 20 horas académicas.' ),
-			array( 'Nivel Intermedio', 'Punción seca de miembro inferior y superior con práctica supervisada (músculos 18 al 59). 30 horas académicas.' ),
-			array( 'Nivel Avanzado', 'Punción seca torácica, paravertebral profunda, cráneo-cervical, mano y tronco (músculos 60 al 101). 30 horas académicas.' ),
+			'basico'     => array( 'Nivel Básico', 'Síndrome de dolor miofascial, diagnóstico, seguridad y primeras técnicas de punción seca (músculos 1 al 17). 20 horas académicas.' ),
+			'intermedio' => array( 'Nivel Intermedio', 'Punción seca de miembro inferior y superior con práctica supervisada (músculos 18 al 59). 30 horas académicas.' ),
+			'avanzado'   => array( 'Nivel Avanzado', 'Punción seca torácica, paravertebral profunda, cráneo-cervical, mano y tronco (músculos 60 al 101). 30 horas académicas.' ),
 		);
 
 		$instances = array();
-		foreach ( $levels as $level ) {
-			$instances[] = array(
+		foreach ( $levels as $slug => $level ) {
+			$instance = array(
 				'@type'       => 'CourseInstance',
 				'name'        => $texts['course'] . ' · ' . $level[0],
 				'description' => $level[1],
@@ -400,6 +682,15 @@ function academy_schema_graph() {
 				),
 				'instructor'  => array( '@id' => $person ),
 			);
+
+			// Fechas confirmadas de la programación vigente (si las hay).
+			$dates = academy_level_schedule( $slug )['dates'];
+			if ( $dates ) {
+				$instance['startDate'] = $dates[0];
+				$instance['endDate']   = end( $dates );
+			}
+
+			$instances[] = $instance;
 		}
 
 		$graph[] = array(
