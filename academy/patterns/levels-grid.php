@@ -3,7 +3,7 @@
  * Title: Ruta de formación · 3 niveles
  * Slug: academy/levels-grid
  * Categories: academy
- * Description: Tarjetas de los tres niveles de la Formación Internacional en Punción Seca con fechas confirmadas, horario y horas académicas.
+ * Description: Tarjetas de los tres niveles de la Formación Internacional en Punción Seca con fechas confirmadas y horas académicas.
  * Keywords: niveles, ruta, basico, intermedio, avanzado, puncion seca
  * Viewport Width: 1400
  *
@@ -20,7 +20,7 @@ $levels = array(
 		'img'      => 'assets/images/nivel-basico.webp',
 		'alt'      => 'Docente dictando la clase teórica del Nivel Básico de punción seca',
 		'nivel'    => 'Nivel Básico',
-		'fechas'   => array( '31 de julio', '01 de agosto' ),
+		'fechas'   => array( '30', '31 de octubre' ),
 		'jornadas' => '2 jornadas presenciales',
 		'horas'    => '20 horas académicas',
 		'musculos' => 'Músculos 1 al 17',
@@ -91,25 +91,21 @@ $ic_body  = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke=
 <!-- /wp:paragraph -->
 
 <!-- wp:html -->
+<ul class="level-meta">
+	<li><?php echo $ic_clock; ?> <span><?php echo esc_html( $l['jornadas'] ); ?></span></li>
+	<li><?php echo $ic_body; ?> <span><?php echo esc_html( $l['musculos'] ); ?></span></li>
+</ul>
 <div class="level-dates<?php echo $l['fechas'] ? '' : ' level-dates--soon'; ?>">
 	<?php echo $ic_cal; ?>
 	<span class="level-dates__label">Fechas</span>
 	<span class="level-dates__value"><?php echo $l['fechas'] ? esc_html( implode( ' y ', $l['fechas'] ) ) : 'Próximamente'; ?></span>
 </div>
-<ul class="level-meta">
-	<li><?php echo $ic_clock; ?> <span><?php echo esc_html( $l['jornadas'] ); ?></span></li>
-	<li><?php echo $ic_body; ?> <span><?php echo esc_html( $l['musculos'] ); ?></span></li>
-</ul>
 <!-- /wp:html --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->
 <?php endforeach; ?>
 </div>
 <!-- /wp:group -->
-
-<!-- wp:paragraph {"align":"center","className":"levels-hours","textColor":"muted","fontSize":"small","style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
-<p class="has-text-align-center levels-hours has-muted-color has-text-color has-small-font-size" style="margin-top:var(--wp--preset--spacing--40)">Todas las jornadas: clases de <strong>9:00 a. m. a 8:00 p. m.</strong> · Almuerzo de 1:00 p. m. a 2:00 p. m.</p>
-<!-- /wp:paragraph -->
 
 <!-- wp:group {"className":"levels-summary","style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
 <div class="wp-block-group levels-summary" style="margin-top:var(--wp--preset--spacing--50)"><!-- wp:html -->

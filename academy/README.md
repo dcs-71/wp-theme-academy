@@ -86,9 +86,9 @@ Testimonios, Así se vive la formación, Preguntas frecuentes, Aliados o Eventos
 
 | Nivel      | Fechas                              | Horas | Músculos |
 |------------|-------------------------------------|-------|----------|
-| Básico     | 31 de julio y 01 de agosto          | 20 h  | 1 – 17   |
-| Intermedio | 08, 15 y 22 de agosto               | 30 h  | 18 – 59  |
-| Avanzado   | 29 de agosto, 03 y 10 de octubre    | 30 h  | 60 – 101 |
+| Básico     | 30 y 31 de octubre                  | 20 h  | 1 – 17   |
+| Intermedio | Próximamente                        | 30 h  | 18 – 59  |
+| Avanzado   | Próximamente                        | 30 h  | 60 – 101 |
 
 Horario: 9:00 a. m. a 8:00 p. m. · Almuerzo: 1:00 p. m. a 2:00 p. m.
 Sede: Lima, Perú (la dirección exacta no se publica en la web; se comunica al inscribirse).

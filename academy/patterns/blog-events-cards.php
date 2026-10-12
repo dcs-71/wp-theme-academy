@@ -16,7 +16,7 @@ $minis = array(
 	array(
 		'img'   => 'assets/images/practica-supervisada.webp',
 		'alt'   => 'Práctica supervisada en camilla durante la formación',
-		'fecha' => 'Nivel Básico · 31 de julio',
+		'fecha' => 'Nivel Básico · 30 de octubre',
 		'cat'   => 'Práctica supervisada',
 		'texto' => 'Cada participante practica sobre camilla con acompañamiento docente permanente.',
 	),
@@ -44,7 +44,7 @@ $minis = array(
 <article class="blog-featured">
 	<img class="blog-featured__img" src="<?php echo $featured; ?>" alt="Clase teórica de la Formación Internacional en Punción Seca en Lima" width="1100" height="760" loading="lazy" decoding="async" />
 	<span class="blog-featured__overlay"></span>
-	<div class="date-badge"><span class="date-badge__day">31</span><span class="date-badge__month">Julio</span></div>
+	<div class="date-badge"><span class="date-badge__day">30</span><span class="date-badge__month">Octubre</span></div>
 	<div class="blog-featured__content">
 		<h3 class="blog-featured__title">Arranca el Nivel Básico: síndrome de dolor miofascial, diagnóstico y seguridad</h3>
 		<div class="blog-featured__meta">

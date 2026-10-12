@@ -19,27 +19,27 @@ $sede = 'Clases presenciales en Lima, Perú';
 $events = array(
 	array(
 		'img'   => 'assets/images/nivel-basico.webp',
-		'day'   => '31',
-		'month' => 'Julio',
+		'day'   => '30',
+		'month' => 'Octubre',
 		'title' => 'Nivel Básico · Seminario presencial',
 		'desc'  => 'Síndrome de dolor miofascial, criterios de diagnóstico, principios de la fisioterapia invasiva y seguridad. Músculos 1 al 17.',
-		'date'  => '31 de julio y 01 de agosto · 20 horas académicas',
+		'date'  => '30 y 31 de octubre · 20 horas académicas',
 	),
 	array(
 		'img'   => 'assets/images/nivel-intermedio.webp',
-		'day'   => '08',
-		'month' => 'Agosto',
+		'day'   => '',
+		'month' => '',
 		'title' => 'Nivel Intermedio · Seminario presencial',
 		'desc'  => 'Abordaje completo de miembro inferior y superior con práctica supervisada en camilla. Músculos 18 al 59.',
-		'date'  => '08, 15 y 22 de agosto · 30 horas académicas',
+		'date'  => 'Fechas próximamente · 30 horas académicas',
 	),
 	array(
 		'img'   => 'assets/images/nivel-avanzado.webp',
-		'day'   => '29',
-		'month' => 'Agosto',
+		'day'   => '',
+		'month' => '',
 		'title' => 'Nivel Avanzado · Seminario presencial',
 		'desc'  => 'Punción seca torácica, musculatura paravertebral profunda, región cráneo-cervical, mano y tronco. Músculos 60 al 101.',
-		'date'  => '29 de agosto, 03 y 10 de octubre · 30 horas académicas',
+		'date'  => 'Fechas próximamente · 30 horas académicas',
 	),
 );
 ?>
@@ -49,7 +49,11 @@ $events = array(
 	<article class="event-row">
 		<div class="event-row__media">
 			<img src="<?php echo academy_image_uri( $e['img'] ); ?>" alt="<?php echo esc_attr( $e['title'] . ' de la Formación Internacional en Punción Seca' ); ?>" width="900" height="675" loading="lazy" decoding="async" />
+			<?php if ( $e['day'] ) : ?>
 			<div class="date-badge"><span class="date-badge__day"><?php echo esc_html( $e['day'] ); ?></span><span class="date-badge__month"><?php echo esc_html( $e['month'] ); ?></span></div>
+			<?php else : ?>
+			<div class="date-badge date-badge--soon"><span class="date-badge__month">Próximamente</span></div>
+			<?php endif; ?>
 		</div>
 		<div class="event-row__body">
 			<h3 class="event-row__title"><?php echo esc_html( $e['title'] ); ?></h3>
