@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name:       Academy · Programación
+ * Plugin Name:       Academy · Programación y Alumnos
  * Plugin URI:        https://github.com/dcs-71/wp-theme-academy
- * Description:       Gestiona las fechas de la Formación Internacional en Punción Seca (Básico, Intermedio y Avanzado) desde el escritorio, sin editar el tema. Cada nivel puede mostrar sus fechas o «Próximamente». Requiere el tema Academy by Total Therapy.
- * Version:           1.0.0
+ * Description:       Gestiona desde el escritorio las fechas de la Formación Internacional en Punción Seca (Básico, Intermedio y Avanzado, o «Próximamente») y los alumnos formados que aparecen en la página «Alumnos». Requiere el tema Academy by Total Therapy.
+ * Version:           1.1.0
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            Total Therapy
@@ -12,7 +12,7 @@
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       academy-programacion
  *
- * Cómo se conecta con el tema:
+ * Cómo se conecta con el tema (fechas; los alumnos están en includes/alumnos.php):
  * el tema Academy pinta las fechas a partir de `academy_schedule()`, que pasa
  * por el filtro `academy_schedule`. Este plugin guarda la programación en la
  * opción `academy_programacion` y la inyecta en ese filtro. El formato en
@@ -26,9 +26,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ACADEMY_PROGRAMACION_VERSION', '1.0.0' );
+define( 'ACADEMY_PROGRAMACION_VERSION', '1.1.0' );
 define( 'ACADEMY_PROGRAMACION_OPTION', 'academy_programacion' );
 define( 'ACADEMY_PROGRAMACION_URL', plugin_dir_url( __FILE__ ) );
+
+require_once __DIR__ . '/includes/alumnos.php';
 
 /**
  * Máximo de fechas por nivel.

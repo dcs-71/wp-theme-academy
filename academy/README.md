@@ -76,11 +76,15 @@ Todo el contenido relevante es editable desde WordPress:
 | Colores y tipografía global  | **Apariencia → Editor → Estilos** |
 | Slides del hero              | Selecciona el bloque *Academy · Hero Slider* y edita cada *Cover* |
 | Fechas de cada nivel         | Plugin **Academy · Programación** (menú *Programación*). Sin plugin: `academy_schedule_defaults()` en `functions.php` |
+| Alumnos formados (/alumnos/) | Plugin, menú *Alumnos*. Sin plugin: `academy_alumni_defaults()` en `functions.php` y fotos en `assets/images/alumnos/` |
 
 ### Insertar un patrón
 En cualquier página: botón **+** → pestaña **Patrones** → categoría **Academy** → elige
 Hero, Ruta de formación, Promo, Temario, Docente, Material académico,
-Testimonios, Así se vive la formación, Preguntas frecuentes, Aliados o Eventos·Lista.
+Testimonios, Así se vive la formación, Preguntas frecuentes, Aliados, Alumnos formados o Eventos·Lista.
+
+La página **Alumnos** usa la plantilla `page-alumnos.html` (se aplica sola a la página con slug
+`alumnos`, o se elige como *Página de Alumnos*). El plugin crea esa página automáticamente.
 
 ### Contenido de la edición actual
 

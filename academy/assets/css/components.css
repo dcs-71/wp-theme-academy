@@ -52,6 +52,38 @@
 	transform: scaleX(1);
 }
 
+/* Menú compacto en portátiles pequeños para que quepa en una línea. */
+@media (min-width: 1024px) and (max-width: 1279px) {
+	.site-header__nav .wp-block-navigation__container {
+		gap: 1.75rem;
+	}
+}
+
+/*
+ * Por debajo de 1024 px los enlaces no caben junto al logo y al botón: se usa
+ * el menú hamburguesa (WordPress solo lo activa por debajo de 600 px).
+ */
+@media (max-width: 1023px) {
+	.site-header__inner {
+		gap: 0.75rem;
+	}
+	.site-header__actions {
+		margin-left: auto;
+	}
+	.site-header__nav {
+		order: 3;
+	}
+}
+
+@media (min-width: 600px) and (max-width: 1023px) {
+	.site-header__nav .wp-block-navigation__responsive-container-open:not(.always-shown) {
+		display: flex;
+	}
+	.site-header__nav .wp-block-navigation__responsive-container:not(.hidden-by-default):not(.is-menu-open) {
+		display: none;
+	}
+}
+
 /* Menú móvil a pantalla completa (colores en el bloque: overlay navy/blanco). */
 .site-header__nav .wp-block-navigation__responsive-container.is-menu-open {
 	padding: 1.5rem;
@@ -1019,6 +1051,190 @@
 }
 
 /* =====================================================
+   ALUMNOS FORMADOS
+   ===================================================== */
+.alumni-hero__eyebrow {
+	margin-inline: auto !important;
+}
+
+.alumni-hero h1 {
+	margin-top: 1.25rem;
+	letter-spacing: -0.02em;
+}
+
+.alumni-hero__text {
+	color: rgba(255, 255, 255, 0.82);
+	line-height: 1.6;
+	text-wrap: balance;
+}
+
+.alumni-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+	gap: 1.75rem;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+.alumni-card {
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	border: 1px solid #ecedf5;
+	border-radius: 20px;
+	background: #fff;
+	box-shadow: var(--wp--preset--shadow--soft);
+	transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.alumni-card:hover {
+	transform: translateY(-4px);
+	box-shadow: var(--wp--preset--shadow--card);
+}
+
+.alumni-card__photo {
+	position: relative;
+	aspect-ratio: 1;
+	overflow: hidden;
+	background: linear-gradient(180deg, #f4f5ff 0%, #e6e9ff 100%);
+}
+
+.alumni-card__img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	mix-blend-mode: multiply; /* el fondo blanco de la foto toma el degradado */
+}
+
+.alumni-card__initials {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	color: var(--wp--preset--color--blue);
+	font-size: 3rem;
+	font-weight: 700;
+}
+
+.alumni-card__body {
+	display: flex;
+	flex: 1;
+	flex-direction: column;
+	gap: 0.35rem;
+	padding: 1.25rem 1.25rem 1.4rem;
+}
+
+.alumni-card__group {
+	width: fit-content;
+	padding: 0.2rem 0.6rem;
+	border-radius: 9999px;
+	background: #fff1ed;
+	color: var(--wp--preset--color--orange);
+	font-size: 0.7rem;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.alumni-card__name {
+	margin: 0;
+	color: var(--wp--preset--color--navy);
+	font-size: 1.125rem;
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+.alumni-card__ctmp {
+	margin: 0;
+	color: var(--wp--preset--color--muted);
+	font-size: 0.875rem;
+}
+
+.alumni-card__ctmp strong {
+	color: var(--wp--preset--color--navy);
+	font-weight: 600;
+}
+
+.alumni-progress {
+	margin-top: auto;
+	padding-top: 0.9rem;
+}
+
+.alumni-progress__head {
+	display: flex;
+	gap: 0.5rem;
+	justify-content: space-between;
+	margin-bottom: 0.4rem;
+	color: var(--wp--preset--color--navy);
+	font-size: 0.8rem;
+	font-weight: 600;
+}
+
+.alumni-progress__head span:last-child {
+	flex: 0 0 auto;
+	color: var(--wp--preset--color--blue);
+	white-space: nowrap;
+}
+
+.alumni-progress__bar {
+	height: 6px;
+	overflow: hidden;
+	border-radius: 9999px;
+	background: #eef0ff;
+}
+
+.alumni-progress__bar span {
+	display: block;
+	height: 100%;
+	border-radius: inherit;
+	background: linear-gradient(90deg, var(--wp--preset--color--blue), var(--wp--preset--color--orange));
+}
+
+.alumni-empty {
+	color: var(--wp--preset--color--muted);
+	text-align: center;
+}
+
+.alumni-cta__text {
+	color: rgba(255, 255, 255, 0.86);
+}
+
+.alumni-cta__text strong {
+	color: #fff;
+}
+
+.testimonials-people__text a {
+	font-weight: 600;
+	white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+	.alumni-grid {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+		gap: 1rem;
+	}
+	.alumni-card__body {
+		padding: 0.9rem 0.9rem 1rem;
+	}
+	.alumni-card__name {
+		font-size: 1rem;
+	}
+	.alumni-progress__head {
+		font-size: 0.72rem;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.alumni-card,
+	.alumni-card:hover {
+		transform: none;
+		transition: none;
+	}
+}
+
+/* =====================================================
    FOOTER
    ===================================================== */
 
@@ -1296,18 +1512,8 @@
 	.instructor-layout .wp-block-column {
 		flex-basis: 100% !important;
 	}
-	/* Header móvil: logo · Inscríbete · menú. */
-	.site-header__inner {
-		gap: 0.75rem;
-	}
 	.site-header__brand img {
 		width: 140px !important;
-	}
-	.site-header__actions {
-		margin-left: auto;
-	}
-	.site-header__nav {
-		order: 3;
 	}
 	.site-header__cta .wp-block-button__link {
 		padding: 0.5rem 1rem !important;

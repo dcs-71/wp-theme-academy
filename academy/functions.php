@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( ! defined( 'ACADEMY_VERSION' ) ) {
-	define( 'ACADEMY_VERSION', '1.6.0' );
+	define( 'ACADEMY_VERSION', '1.7.0' );
 }
 
 /**
@@ -333,6 +333,165 @@ function academy_render_schedule_shortcodes( $html ) {
 	return do_shortcode( $html );
 }
 add_filter( 'render_block_core/html', 'academy_render_schedule_shortcodes' );
+add_filter( 'render_block_core/paragraph', 'academy_render_schedule_shortcodes' );
+
+/* -------------------------------------------------------------------------
+ * Alumnos formados
+ *
+ * La página «Alumnos» (plantilla page-alumnos.html) muestra a los
+ * fisioterapeutas formados con su número de colegiatura CTMP. El plugin
+ * «Academy · Programación y Alumnos» los gestiona desde el escritorio
+ * (menú Alumnos) mediante el filtro `academy_alumni`; sin el plugin se usa
+ * la lista de abajo.
+ * ---------------------------------------------------------------------- */
+
+/**
+ * Formaciones posibles y su avance en la ruta de tres niveles.
+ *
+ * @return array<string,array{label:string,progress:int}>
+ */
+function academy_alumni_formations() {
+	return array(
+		'completa'   => array(
+			'label'    => 'Formación completa',
+			'progress' => 100,
+		),
+		'intermedio' => array(
+			'label'    => 'Nivel Intermedio completado',
+			'progress' => 66,
+		),
+		'basico'     => array(
+			'label'    => 'Nivel Básico completado',
+			'progress' => 33,
+		),
+	);
+}
+
+/**
+ * Alumnos por defecto (sin plugin), tomados de la web anterior.
+ *
+ * @return array<int,array{name:string,ctmp:string,formation:string,group:string,image:string}>
+ */
+function academy_alumni_defaults() {
+	$alumni = array(
+		array( 'Lic. Alejandra Espinoza', '13837', 'alejandra-espinoza' ),
+		array( 'Lic. Cintya Quispe', '11867', 'cintya-quispe' ),
+		array( 'Lic. Jonathan Escajadillo', '12846', 'jonathan-escajadillo' ),
+		array( 'Lic. Sary Chang', '15918', 'sary-chang' ),
+		array( 'Mg. Aldair Ramirez', '13148', 'aldair-ramirez' ),
+		array( 'Mg. Karen Quiñones', '11106', 'karen-quinones' ),
+	);
+
+	return array_map(
+		function ( $a ) {
+			return array(
+				'name'      => $a[0],
+				'ctmp'      => $a[1],
+				'formation' => 'completa',
+				'group'     => '',
+				'image'     => 'assets/images/alumnos/' . $a[2] . '.webp',
+			);
+		},
+		$alumni
+	);
+}
+
+/**
+ * Alumnos a mostrar. Cada uno puede traer `image_id` (adjunto de la
+ * biblioteca, lo usa el plugin) o `image` (ruta dentro del tema).
+ *
+ * @return array<int,array>
+ */
+function academy_alumni() {
+	/**
+	 * Permite sustituir la lista de alumnos (lo usa el plugin).
+	 *
+	 * @param array $alumni Alumnos por defecto del tema.
+	 */
+	$alumni = apply_filters( 'academy_alumni', academy_alumni_defaults() );
+
+	return is_array( $alumni ) ? array_values( $alumni ) : array();
+}
+
+/**
+ * HTML de la foto de un alumno.
+ *
+ * @param array $alumno Datos del alumno.
+ * @return string
+ */
+function academy_alumni_photo( $alumno ) {
+	$alt = sprintf( 'Retrato de %s', $alumno['name'] );
+
+	if ( ! empty( $alumno['image_id'] ) ) {
+		return wp_get_attachment_image(
+			(int) $alumno['image_id'],
+			'medium_large',
+			false,
+			array(
+				'class'    => 'alumni-card__img',
+				'alt'      => $alt,
+				'loading'  => 'lazy',
+				'decoding' => 'async',
+				'sizes'    => '(max-width: 600px) 50vw, 280px',
+			)
+		);
+	}
+
+	if ( ! empty( $alumno['image'] ) ) {
+		return sprintf(
+			'<img class="alumni-card__img" src="%1$s" alt="%2$s" width="640" height="640" loading="lazy" decoding="async" />',
+			academy_image_uri( $alumno['image'] ),
+			esc_attr( $alt )
+		);
+	}
+
+	// Sin foto: iniciales sobre fondo de marca.
+	$initials = '';
+	foreach ( preg_split( '/\s+/', preg_replace( '/^(Lic|Mg|Dr|Dra|Tlgo)\.\s*/u', '', $alumno['name'] ) ) as $word ) {
+		$initials .= mb_substr( $word, 0, 1 );
+	}
+	return '<span class="alumni-card__initials" aria-hidden="true">' . esc_html( mb_strtoupper( mb_substr( $initials, 0, 2 ) ) ) . '</span>';
+}
+
+/**
+ * [academy_alumnos] → cuadrícula de alumnos formados.
+ *
+ * @return string
+ */
+function academy_shortcode_alumnos() {
+	$alumni     = academy_alumni();
+	$formations = academy_alumni_formations();
+
+	if ( ! $alumni ) {
+		return '<p class="alumni-empty">Muy pronto publicaremos a los egresados de la formación.</p>';
+	}
+
+	$html = '<ul class="alumni-grid">';
+	foreach ( $alumni as $alumno ) {
+		$formation = isset( $formations[ $alumno['formation'] ?? '' ] ) ? $formations[ $alumno['formation'] ] : $formations['completa'];
+
+		$html .= '<li class="alumni-card">';
+		$html .= '<div class="alumni-card__photo">' . academy_alumni_photo( $alumno ) . '</div>';
+		$html .= '<div class="alumni-card__body">';
+		if ( ! empty( $alumno['group'] ) ) {
+			$html .= '<span class="alumni-card__group">Grupo ' . esc_html( $alumno['group'] ) . '</span>';
+		}
+		$html .= '<h3 class="alumni-card__name">' . esc_html( $alumno['name'] ) . '</h3>';
+		if ( ! empty( $alumno['ctmp'] ) ) {
+			$html .= '<p class="alumni-card__ctmp">CTMP <strong>' . esc_html( $alumno['ctmp'] ) . '</strong></p>';
+		}
+		$html .= sprintf(
+			'<div class="alumni-progress"><div class="alumni-progress__head"><span>%1$s</span><span>%2$d&nbsp;%%</span></div><div class="alumni-progress__bar" role="progressbar" aria-label="%1$s" aria-valuemin="0" aria-valuemax="100" aria-valuenow="%2$d"><span style="width:%2$d%%"></span></div></div>',
+			esc_html( $formation['label'] ),
+			(int) $formation['progress']
+		);
+		$html .= '</div></li>';
+	}
+	$html .= '</ul>';
+
+	return $html;
+}
+add_shortcode( 'academy_alumnos', 'academy_shortcode_alumnos' );
 
 /**
  * URL de una imagen del tema con la versión como query string.
@@ -449,6 +608,8 @@ function academy_seo_texts() {
 		'course'      => 'Formación Internacional en Punción Seca',
 		'title'       => 'Formación Internacional en Punción Seca | Academy by Total Therapy',
 		'description' => 'Academy by Total Therapy: Formación Internacional en Punción Seca en Lima con la Mg. Chantal Páucar. 3 niveles, 80 horas y práctica supervisada.',
+		'alumni_title'       => 'Alumnos formados en punción seca | Academy by Total Therapy',
+		'alumni_description' => 'Conoce a los fisioterapeutas formados en la Formación Internacional en Punción Seca de Academy by Total Therapy, con su colegiatura CTMP.',
 	);
 }
 
@@ -479,11 +640,27 @@ add_filter( 'document_title_separator', 'academy_title_separator' );
  * @return string
  */
 function academy_front_page_title( $title ) {
-	if ( is_front_page() && ! academy_seo_plugin_active() ) {
-		$texts = academy_seo_texts();
+	if ( academy_seo_plugin_active() ) {
+		return $title;
+	}
+
+	$texts = academy_seo_texts();
+	if ( is_front_page() ) {
 		return $texts['title'];
 	}
+	if ( academy_is_alumni_page() ) {
+		return $texts['alumni_title'];
+	}
 	return $title;
+}
+
+/**
+ * ¿Es la página de alumnos (slug «alumnos» o plantilla «Página de Alumnos»)?
+ *
+ * @return bool
+ */
+function academy_is_alumni_page() {
+	return is_page( 'alumnos' ) || ( is_page() && 'page-alumnos' === get_page_template_slug() );
 }
 add_filter( 'pre_get_document_title', 'academy_front_page_title' );
 
@@ -520,6 +697,10 @@ function academy_meta_description() {
 		if ( $post instanceof WP_Post ) {
 			$desc = has_excerpt( $post ) ? get_the_excerpt( $post ) : strip_shortcodes( $post->post_content );
 		}
+	}
+
+	if ( academy_is_alumni_page() && ( ! is_singular() || ! has_excerpt() ) ) {
+		$desc = $texts['alumni_description'];
 	}
 
 	if ( '' === trim( wp_strip_all_tags( $desc ) ) ) {
@@ -709,6 +890,28 @@ function academy_schema_graph() {
 				'audienceType' => 'Fisioterapeutas y tecnólogos médicos en terapia física',
 			),
 			'hasCourseInstance' => $instances,
+		);
+	}
+
+	if ( academy_is_alumni_page() ) {
+		$items = array();
+		foreach ( academy_alumni() as $i => $alumno ) {
+			$items[] = array(
+				'@type'    => 'ListItem',
+				'position' => $i + 1,
+				'item'     => array(
+					'@type'    => 'Person',
+					'name'     => $alumno['name'],
+					'alumniOf' => array( '@id' => $org ),
+				),
+			);
+		}
+
+		$graph[] = array(
+			'@type'           => 'ItemList',
+			'name'            => 'Alumnos formados en punción seca',
+			'numberOfItems'   => count( $items ),
+			'itemListElement' => $items,
 		);
 	}
 

@@ -144,7 +144,8 @@
 	},
 	"customTemplates": [
 		{ "name": "page-eventos", "title": "Página de Eventos", "postTypes": ["page"] },
-		{ "name": "page-no-title", "title": "Página sin título", "postTypes": ["page"] }
+		{ "name": "page-no-title", "title": "Página sin título", "postTypes": ["page"] },
+		{ "name": "page-alumnos", "title": "Página de Alumnos", "postTypes": ["page"] }
 	],
 	"templateParts": [
 		{ "name": "header", "title": "Encabezado (Header)", "area": "header" },

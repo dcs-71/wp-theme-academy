@@ -8,7 +8,7 @@ Editor y Gutenberg, sin page builders ni librerías pesadas. Tipografía Poppins
 | Carpeta | Descripción |
 |---------|-------------|
 | [`academy/`](academy/) | Tema: landing de la Formación Internacional en Punción Seca (hero, ruta de formación, temario, docente, FAQ…). |
-| [`academy-programacion/`](academy-programacion/) | Plugin: menú **Programación** para poner las fechas de cada nivel (o «Próximamente») sin tocar el tema. |
+| [`academy-programacion/`](academy-programacion/) | Plugin: menús **Programación** (fechas de cada nivel o «Próximamente») y **Alumnos** (alumnos formados de la página /alumnos/), sin tocar el tema. |
 
 Para instalar el tema: comprime la carpeta `academy/` en un `.zip` y súbelo en **Apariencia →
 Temas → Añadir nuevo → Subir tema**, o copia la carpeta dentro de `wp-content/themes/`.
