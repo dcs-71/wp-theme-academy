@@ -38,7 +38,7 @@ $avatares = array(
 		<img src="<?php echo academy_image_uri( $a['img'] ); ?>" alt="<?php echo esc_attr( $a['alt'] ); ?>" width="240" height="240" loading="lazy" decoding="async" />
 	<?php endforeach; ?>
 	</div>
-	<p class="testimonials-people__text"><strong>Grupo II</strong> · Participantes de la formación en Lima</p>
+	<p class="testimonials-people__text"><strong>Grupo 2026-II</strong> · Participantes de la formación en Lima</p>
 </div>
 <!-- /wp:html --></section>
 <!-- /wp:group -->

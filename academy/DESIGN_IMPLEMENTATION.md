@@ -39,11 +39,10 @@ Escala 20→70 (0.5rem → 5.5rem) para paddings de sección y gaps.
 
 | Sección del PSD                          | Implementación | Contenido |
 |------------------------------------------|----------------|-----------|
-| Header azul (logo, nav, CTA, búsqueda)   | `parts/header.html` | Logo Academy blanco + botón *Inscríbete* |
-| Hero (foto clara + título navy + CTA)    | `patterns/hero-slider.php` → bloque `academy/hero-slider` | 3 slides con fotos reales del Grupo II |
-| Grid de tarjetas + botón navy            | `patterns/levels-grid.php` | Ruta de formación: Básico / Intermedio / Avanzado |
+| Header azul (logo, nav, CTA)             | `parts/header.html` | Logo Academy blanco + botón *Inscríbete* |
+| Hero (foto + degradado navy + CTA)       | `patterns/hero-slider.php` → bloque `academy/hero-slider` | 3 slides con fotos reales del Grupo 2026-II |
+| Grid de tarjetas + botón navy            | `patterns/levels-grid.php` | Ruta de formación: Básico / Intermedio / Avanzado, con fechas y horario |
 | Banner promo azul (overlay + CTA)        | `patterns/cta-banner.php` | «Formación que transforma. Impacto que perdura.» |
-| Bloque navy de datos                     | `patterns/schedule.php` | Fechas, horario y almuerzo de cada nivel |
 | Sección de contenidos                    | `patterns/program-content.php` | Temario completo (acordeón nativo) |
 | Bloque a dos columnas                    | `patterns/instructor.php` | Mg. Chantal Páucar, directora académica |
 | Banner con gradiente                     | `patterns/materials-banner.php` | Material académico y de práctica incluido |
@@ -65,9 +64,9 @@ Escala 20→70 (0.5rem → 5.5rem) para paddings de sección y gaps.
 ## 3. Componentes a medida (CSS en `assets/css/components.css`)
 
 - **Tarjeta de nivel** (`.card--level`): media con etiqueta de horas superpuesta, antetítulo,
-  título del nivel, descripción y meta con iconos SVG (fechas, horario, rango de músculos).
+  título del nivel, descripción, bloque de fechas (o «Próximamente») y meta con iconos SVG
+  (jornadas y rango de músculos).
 - **Cifras resumen** (`.stat`): 80 horas · 101 músculos · 8 jornadas · 3 niveles.
-- **Tarjeta de programación** (`.schedule-card`): bloques Fechas / Horario / Almuerzo sobre navy.
 - **Acordeón de temario** (`.program-item`): `<details>/<summary>` nativos, sin JS, con chevron
   animado y foco visible.
 - **Credenciales de la docente** (`.credential`): rejilla 2×2 con barra lateral naranja.
@@ -103,7 +102,7 @@ Escala 20→70 (0.5rem → 5.5rem) para paddings de sección y gaps.
 - Las estructuras del PSD orientadas a catálogo (grid de categorías 4×2, tabs de cursos,
   precios/valoraciones y la sección de app móvil) se **reconvirtieron** a las secciones que
   la formación necesita: ruta de niveles, programación, temario y material incluido.
-- Las **imágenes son fotografías reales** del Grupo II (día 1), optimizadas a medidas web en
+- Las **imágenes son fotografías reales** del Grupo 2026-II (día 1), optimizadas a medidas web en
   `assets/images/`. Ya no hay placeholders SVG.
 - El **logo** se inserta como bloque *Imagen* con el archivo `logo-academy-blanco.png`
   incluido en el tema; puede cambiarse por el bloque *Logotipo del sitio* si se prefiere.

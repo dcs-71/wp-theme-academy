@@ -73,6 +73,6 @@ $minis = array(
 <!-- /wp:columns -->
 
 <!-- wp:paragraph {"align":"center","className":"blog-more","style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}},"typography":{"fontWeight":"500"}}} -->
-<p class="has-text-align-center blog-more" style="margin-top:var(--wp--preset--spacing--40);font-weight:500"><a href="#programacion">Ver la programación completa →</a></p>
+<p class="has-text-align-center blog-more" style="margin-top:var(--wp--preset--spacing--40);font-weight:500"><a href="#fechas">Ver fechas y niveles →</a></p>
 <!-- /wp:paragraph --></section>
 <!-- /wp:group -->

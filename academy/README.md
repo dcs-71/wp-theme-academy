@@ -75,12 +75,12 @@ Todo el contenido relevante es editable desde WordPress:
 | Secciones de la landing      | Son **patrones**: insértalos con el botón **+ → Patrones → Academy** |
 | Colores y tipografía global  | **Apariencia → Editor → Estilos** |
 | Slides del hero              | Selecciona el bloque *Academy · Hero Slider* y edita cada *Cover* |
-| Fechas de la edición         | Patrones *Ruta de formación*, *Programación*, *Temario* y *Eventos·Lista* |
+| Fechas de la edición         | Patrones *Ruta de formación* (fechas en cada tarjeta), *Temario* y *Eventos·Lista* |
 
 ### Insertar un patrón
 En cualquier página: botón **+** → pestaña **Patrones** → categoría **Academy** → elige
-Hero, Ruta de formación, Promo, Programación, Temario, Docente, Material académico,
-Testimonios, Así se vive la formación, Aliados o Eventos·Lista.
+Hero, Ruta de formación, Promo, Temario, Docente, Material académico,
+Testimonios, Así se vive la formación, Preguntas frecuentes, Aliados o Eventos·Lista.
 
 ### Contenido de la edición actual
 
@@ -94,7 +94,7 @@ Horario: 9:00 a. m. a 8:00 p. m. · Almuerzo: 1:00 p. m. a 2:00 p. m.
 Sede: Lima, Perú (la dirección exacta no se publica en la web; se comunica al inscribirse).
 
 Para una nueva edición basta con editar los arrays al inicio de
-`patterns/levels-grid.php`, `patterns/schedule.php`, `patterns/program-content.php` y
+`patterns/levels-grid.php` (array `fechas` de cada nivel), `patterns/program-content.php` y
 `patterns/events-list.php` (o los bloques equivalentes desde el editor).
 
 ---

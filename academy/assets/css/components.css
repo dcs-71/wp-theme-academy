@@ -17,6 +17,10 @@
 	height: auto;
 }
 
+.site-header__nav {
+	font-size: 1.0625rem;
+}
+
 .site-header__nav a {
 	color: #fff;
 	text-decoration: none;
@@ -249,6 +253,55 @@
 	margin-top: 0.15rem;
 }
 
+/* Fechas del nivel: destacadas dentro de la tarjeta. */
+.level-dates {
+	display: grid;
+	grid-template-columns: auto 1fr;
+	align-items: center;
+	column-gap: 0.6rem;
+	margin-top: 0.5rem;
+	padding: 0.75rem 0.9rem;
+	border-radius: 12px;
+	background: #eef0ff;
+	color: var(--wp--preset--color--navy);
+}
+
+.level-dates svg {
+	grid-row: span 2;
+	width: 20px;
+	height: 20px;
+	color: var(--wp--preset--color--blue);
+}
+
+.level-dates__label {
+	color: var(--wp--preset--color--blue);
+	font-size: 0.6875rem;
+	font-weight: 600;
+	letter-spacing: 0.12em;
+	line-height: 1.3;
+	text-transform: uppercase;
+}
+
+.level-dates__value {
+	font-size: 0.95rem;
+	font-weight: 600;
+	line-height: 1.35;
+}
+
+.level-dates--soon {
+	background: #fff1ed;
+}
+
+.level-dates--soon svg,
+.level-dates--soon .level-dates__label,
+.level-dates--soon .level-dates__value {
+	color: var(--wp--preset--color--orange);
+}
+
+.levels-hours strong {
+	color: var(--wp--preset--color--navy);
+}
+
 /* Cifras resumen */
 .levels-summary {
 	gap: 1rem 3rem;
@@ -298,75 +351,6 @@
 	font-weight: 600;
 	letter-spacing: 0.14em;
 	text-transform: uppercase;
-}
-
-/* =====================================================
-   PROGRAMACIÓN (fechas y horarios)
-   ===================================================== */
-.schedule-grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 1.75rem;
-}
-
-.schedule-card {
-	background: rgba(255, 255, 255, 0.07);
-	border: 1px solid rgba(255, 255, 255, 0.14);
-	border-radius: 16px;
-	padding: 1.75rem;
-}
-
-.schedule-card__level {
-	margin: 0 0 1.25rem;
-	color: #fff;
-	font-size: 1.5rem;
-	font-weight: 700;
-	text-transform: uppercase;
-	letter-spacing: 0.04em;
-}
-
-.schedule-card__block + .schedule-card__block {
-	margin-top: 1.25rem;
-	padding-top: 1.25rem;
-	border-top: 1px solid rgba(255, 255, 255, 0.14);
-}
-
-.schedule-card__label {
-	display: block;
-	font-size: 0.7rem;
-	font-weight: 600;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-	color: var(--wp--preset--color--orange);
-	margin-bottom: 0.4rem;
-}
-
-.schedule-card__dates {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-.schedule-card--soon {
-	background: rgba(255, 255, 255, 0.04);
-	border-style: dashed;
-}
-
-.schedule-card__soon {
-	margin: 0;
-	color: var(--wp--preset--color--orange);
-	font-size: 1.05rem;
-	font-weight: 600;
-	line-height: 1.6;
-}
-
-.schedule-card__dates li,
-.schedule-card__value {
-	margin: 0;
-	color: #fff;
-	font-size: 1.05rem;
-	font-weight: 500;
-	line-height: 1.6;
 }
 
 /* =====================================================
@@ -1286,9 +1270,6 @@
 @media (max-width: 781px) {
 	.levels-grid {
 		grid-template-columns: 1fr !important;
-	}
-	.schedule-grid {
-		grid-template-columns: 1fr;
 	}
 	.materials-list {
 		grid-template-columns: 1fr;

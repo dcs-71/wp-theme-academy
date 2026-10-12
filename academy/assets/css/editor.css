@@ -69,41 +69,6 @@
 	color: var(--wp--preset--color--muted);
 }
 
-.editor-styles-wrapper .schedule-grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 1.75rem;
-}
-
-.editor-styles-wrapper .schedule-card {
-	background: rgba(255, 255, 255, 0.07);
-	border: 1px solid rgba(255, 255, 255, 0.14);
-	border-radius: 16px;
-	padding: 1.75rem;
-	color: #fff;
-}
-
-.editor-styles-wrapper .schedule-card__label {
-	display: block;
-	font-size: 0.7rem;
-	font-weight: 600;
-	letter-spacing: 0.12em;
-	text-transform: uppercase;
-	color: var(--wp--preset--color--orange);
-}
-
-.editor-styles-wrapper .schedule-card__soon {
-	margin: 0;
-	color: var(--wp--preset--color--orange);
-	font-weight: 600;
-}
-
-.editor-styles-wrapper .schedule-card__dates {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
 .editor-styles-wrapper .program-item {
 	background: #fff;
 	border-radius: 16px;

@@ -3,18 +3,24 @@
  * Title: Ruta de formación · 3 niveles
  * Slug: academy/levels-grid
  * Categories: academy
- * Description: Tarjetas de los tres niveles de la Formación Internacional en Punción Seca con fechas y horas académicas.
+ * Description: Tarjetas de los tres niveles de la Formación Internacional en Punción Seca con fechas confirmadas, horario y horas académicas.
  * Keywords: niveles, ruta, basico, intermedio, avanzado, puncion seca
  * Viewport Width: 1400
  *
  * @package Academy
  */
 
+/*
+ * Solo se publican las fechas ya confirmadas. Para abrir la convocatoria de un
+ * nivel, rellena su array `fechas`: la tarjeta pasa sola de «Próximamente» a
+ * mostrar las fechas.
+ */
 $levels = array(
 	array(
 		'img'      => 'assets/images/nivel-basico.webp',
 		'alt'      => 'Docente dictando la clase teórica del Nivel Básico de punción seca',
 		'nivel'    => 'Nivel Básico',
+		'fechas'   => array( '31 de julio', '01 de agosto' ),
 		'jornadas' => '2 jornadas presenciales',
 		'horas'    => '20 horas académicas',
 		'musculos' => 'Músculos 1 al 17',
@@ -24,6 +30,7 @@ $levels = array(
 		'img'      => 'assets/images/nivel-intermedio.webp',
 		'alt'      => 'Docente guiando la punción seca de miembro inferior en el Nivel Intermedio',
 		'nivel'    => 'Nivel Intermedio',
+		'fechas'   => array(),
 		'jornadas' => '3 jornadas presenciales',
 		'horas'    => '30 horas académicas',
 		'musculos' => 'Músculos 18 al 59',
@@ -33,6 +40,7 @@ $levels = array(
 		'img'      => 'assets/images/nivel-avanzado.webp',
 		'alt'      => 'Demostración de punción seca en camilla ante el grupo del Nivel Avanzado',
 		'nivel'    => 'Nivel Avanzado',
+		'fechas'   => array(),
 		'jornadas' => '3 jornadas presenciales',
 		'horas'    => '30 horas académicas',
 		'musculos' => 'Músculos 60 al 101',
@@ -41,6 +49,7 @@ $levels = array(
 );
 
 $ic_cal   = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="16" rx="2"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/></svg>';
+$ic_clock = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>';
 $ic_body  = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="2"/><path d="M12 7v8m0 0-3 5m3-5 3 5M6 10l6-2 6 2"/></svg>';
 ?>
 <!-- wp:group {"tagName":"section","className":"section section--levels","anchor":"ruta","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|60"}}},"backgroundColor":"base","layout":{"type":"constrained","contentSize":"1180px"}} -->
@@ -56,8 +65,8 @@ $ic_body  = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke=
 <p class="has-text-align-center has-muted-color has-text-color" style="margin-bottom:var(--wp--preset--spacing--50)">La Formación Internacional en Punción Seca de Academy by Total Therapy se cursa en tres niveles progresivos, 100% presenciales en Lima, en grupos reducidos y con práctica supervisada en cada sesión.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:group {"className":"levels-grid","layout":{"type":"grid","columnCount":3}} -->
-<div class="wp-block-group levels-grid">
+<!-- wp:group {"anchor":"fechas","className":"levels-grid","layout":{"type":"grid","columnCount":3}} -->
+<div id="fechas" class="wp-block-group levels-grid">
 <?php foreach ( $levels as $l ) : ?>
 <?php $img = academy_image_uri( $l['img'] ); ?>
 <!-- wp:group {"className":"card card--level","style":{"border":{"radius":"16px"},"spacing":{"blockGap":"0"},"shadow":"var:preset|shadow|card"},"backgroundColor":"base","layout":{"type":"default"}} -->
@@ -82,8 +91,13 @@ $ic_body  = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke=
 <!-- /wp:paragraph -->
 
 <!-- wp:html -->
+<div class="level-dates<?php echo $l['fechas'] ? '' : ' level-dates--soon'; ?>">
+	<?php echo $ic_cal; ?>
+	<span class="level-dates__label">Fechas</span>
+	<span class="level-dates__value"><?php echo $l['fechas'] ? esc_html( implode( ' y ', $l['fechas'] ) ) : 'Próximamente'; ?></span>
+</div>
 <ul class="level-meta">
-	<li><?php echo $ic_cal; ?> <span><?php echo esc_html( $l['jornadas'] ); ?></span></li>
+	<li><?php echo $ic_clock; ?> <span><?php echo esc_html( $l['jornadas'] ); ?></span></li>
 	<li><?php echo $ic_body; ?> <span><?php echo esc_html( $l['musculos'] ); ?></span></li>
 </ul>
 <!-- /wp:html --></div>
@@ -92,6 +106,10 @@ $ic_body  = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke=
 <?php endforeach; ?>
 </div>
 <!-- /wp:group -->
+
+<!-- wp:paragraph {"align":"center","className":"levels-hours","textColor":"muted","fontSize":"small","style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
+<p class="has-text-align-center levels-hours has-muted-color has-text-color has-small-font-size" style="margin-top:var(--wp--preset--spacing--40)">Todas las jornadas: clases de <strong>9:00 a. m. a 8:00 p. m.</strong> · Almuerzo de 1:00 p. m. a 2:00 p. m.</p>
+<!-- /wp:paragraph -->
 
 <!-- wp:group {"className":"levels-summary","style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}},"layout":{"type":"flex","flexWrap":"wrap","justifyContent":"center"}} -->
 <div class="wp-block-group levels-summary" style="margin-top:var(--wp--preset--spacing--50)"><!-- wp:html -->
