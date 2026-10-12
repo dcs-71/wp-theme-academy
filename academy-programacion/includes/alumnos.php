@@ -54,7 +54,7 @@ function academy_alumnos_register_cpt() {
 				'search_items'          => __( 'Buscar alumnos', 'academy-programacion' ),
 				'not_found'             => __( 'No hay alumnos.', 'academy-programacion' ),
 				'not_found_in_trash'    => __( 'No hay alumnos en la papelera.', 'academy-programacion' ),
-				'all_items'             => __( 'Todos los alumnos', 'academy-programacion' ),
+				'all_items'             => __( 'Alumnos formados', 'academy-programacion' ),
 				'featured_image'        => __( 'Foto del alumno', 'academy-programacion' ),
 				'set_featured_image'    => __( 'Elegir foto', 'academy-programacion' ),
 				'remove_featured_image' => __( 'Quitar foto', 'academy-programacion' ),
@@ -62,10 +62,8 @@ function academy_alumnos_register_cpt() {
 			),
 			'public'              => false,
 			'show_ui'             => true,
-			'show_in_menu'        => true,
+			'show_in_menu'        => 'academy-programacion', // Submenú de «Academy».
 			'show_in_rest'        => false,
-			'menu_position'       => 26,
-			'menu_icon'           => 'dashicons-groups',
 			'supports'            => array( 'title', 'thumbnail', 'page-attributes' ),
 			'capability_type'     => 'page',
 			'map_meta_cap'        => true,
@@ -182,6 +180,31 @@ function academy_alumnos_changed( $post_id ) {
 }
 add_action( 'save_post', 'academy_alumnos_changed', 20 );
 add_action( 'deleted_post', 'academy_alumnos_changed' );
+
+/**
+ * Mantiene «Academy → Alumnos formados» resaltado también al añadir o editar
+ * un alumno (por defecto WordPress solo lo marca en el listado).
+ *
+ * @param string $parent_file Menú padre activo.
+ * @return string
+ */
+function academy_alumnos_parent_file( $parent_file ) {
+	$screen = get_current_screen();
+	return $screen && ACADEMY_ALUMNOS_CPT === $screen->post_type ? 'academy-programacion' : $parent_file;
+}
+add_filter( 'parent_file', 'academy_alumnos_parent_file' );
+
+/**
+ * Submenú activo para las pantallas de alumnos.
+ *
+ * @param string|null $submenu_file Submenú activo.
+ * @return string|null
+ */
+function academy_alumnos_submenu_file( $submenu_file ) {
+	$screen = get_current_screen();
+	return $screen && ACADEMY_ALUMNOS_CPT === $screen->post_type ? 'edit.php?post_type=' . ACADEMY_ALUMNOS_CPT : $submenu_file;
+}
+add_filter( 'submenu_file', 'academy_alumnos_submenu_file' );
 
 /* -------------------------------------------------------------------------
  * Listado en el escritorio

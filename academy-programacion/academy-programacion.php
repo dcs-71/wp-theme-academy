@@ -3,7 +3,7 @@
  * Plugin Name:       Academy · Programación y Alumnos
  * Plugin URI:        https://github.com/dcs-71/wp-theme-academy
  * Description:       Gestiona desde el escritorio las fechas de la Formación Internacional en Punción Seca (Básico, Intermedio y Avanzado, o «Próximamente») y los alumnos formados que aparecen en la página «Alumnos». Requiere el tema Academy by Total Therapy.
- * Version:           1.1.0
+ * Version:           1.2.0
  * Requires at least: 6.5
  * Requires PHP:      7.4
  * Author:            Total Therapy
@@ -26,7 +26,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'ACADEMY_PROGRAMACION_VERSION', '1.1.0' );
+define( 'ACADEMY_PROGRAMACION_VERSION', '1.2.0' );
 define( 'ACADEMY_PROGRAMACION_OPTION', 'academy_programacion' );
 define( 'ACADEMY_PROGRAMACION_URL', plugin_dir_url( __FILE__ ) );
 
@@ -239,22 +239,53 @@ add_action( 'add_option_' . ACADEMY_PROGRAMACION_OPTION, 'academy_programacion_p
  * ---------------------------------------------------------------------- */
 
 /**
- * Menú «Programación».
+ * Slug del menú «Academy» (y de su primera pantalla, «Fechas»).
+ */
+const ACADEMY_PROGRAMACION_MENU = 'academy-programacion';
+
+/**
+ * Icono del menú: la «a» del logo de Academy, en un solo color para que
+ * WordPress lo pinte según el esquema de colores del escritorio.
+ *
+ * @return string
+ */
+function academy_programacion_menu_icon() {
+	return 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9Ii0yIDE4IDgyIDg4Ij48cGF0aCBmaWxsPSJibGFjayIgZD0ibTUyLjk3LDc1LjEyYy0uMjYuMzItLjU0LjY0LS44My45NS0zLjIyLDMuMzctNy4xNSw1LjA1LTExLjc4LDUuMDYtNC42MywwLTguNTctMS42OS0xMS44LTUuMDktMy4yMy0zLjQtNC44NS04LjAxLTQuODYtMTMuODIsMC01LjgxLDEuNTktMTAuMzgsNC44Mi0xMy43LDMuMjItMy4zMiw3LjE1LTQuOTksMTEuNzgtNC45OSw0LjYzLDAsOC41NiwxLjY3LDExLjgsNS4wMi4yOS4zLjU3LjYyLjgzLjk0aDMuOTd2LTE0LjQ3Yy0yLjE5LTMuNTMtNS4zLTYuMzgtOS4zMy04LjU0LTQuMDUtMi4xNy04Ljc1LTMuMjYtMTQuMTEtMy4yNS02LjI3LjAxLTExLjk0LDEuNjEtMTcuMDMsNC44LTUuMDgsMy4xOS05LjEsNy43NC0xMi4wNCwxMy42NUMxLjQ1LDQ3LjU4LS4wMSw1NC40NCwwLDYyLjI1Yy4wMSw3LjgxLDEuNSwxNC42OSw0LjQ2LDIwLjY0LDIuOTYsNS45NSw2Ljk5LDEwLjUzLDEyLjA4LDEzLjc0LDUuMDksMy4yMiwxMC43Myw0LjgyLDE2LjksNC44MSw1LjM2LDAsMTAuMDYtMS4xMSwxNC4xLTMuMjksMy45OC0yLjE1LDcuMDktNC45Nyw5LjM1LTguNDV2LTE0LjU5aC0zLjkzWiIvPjxwYXRoIGZpbGw9ImJsYWNrIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGQ9Im02NC41OCwyMy4wNmMtNi45NywwLTEyLjYyLDUuNjUtMTIuNjIsMTIuNjJ2NTMuMjhjMCw2Ljk3LDUuNjUsMTIuNjIsMTIuNjIsMTIuNjJzMTIuNjItNS42NSwxMi42Mi0xMi42MnYtNTMuMjhjMC02Ljk3LTUuNjUtMTIuNjItMTIuNjItMTIuNjJaIE03NS4xNyw2Mi4zMmExMC41OSwxMC41OSAwIDEsMCAtMjEuMTgsMGExMC41OSwxMC41OSAwIDEsMCAyMS4xOCwwWiIvPjwvc3ZnPg==';
+}
+
+/**
+ * Menú «Academy» en la barra lateral con dos submenús:
+ *   - Fechas: programación de cada nivel.
+ *   - Alumnos formados: listado del tipo de contenido (ver includes/alumnos.php).
+ *
+ * Se registra antes que los submenús de tipos de contenido (prioridad 9) para
+ * que «Fechas» quede primero.
  */
 function academy_programacion_menu() {
-	$hook = add_menu_page(
+	$cap = academy_programacion_capability();
+
+	add_menu_page(
 		__( 'Programación de la formación', 'academy-programacion' ),
-		__( 'Programación', 'academy-programacion' ),
-		academy_programacion_capability(),
-		'academy-programacion',
+		__( 'Academy', 'academy-programacion' ),
+		$cap,
+		ACADEMY_PROGRAMACION_MENU,
 		'academy_programacion_render_page',
-		'dashicons-calendar-alt',
+		academy_programacion_menu_icon(),
 		25
+	);
+
+	$hook = add_submenu_page(
+		ACADEMY_PROGRAMACION_MENU,
+		__( 'Fechas de la formación', 'academy-programacion' ),
+		__( 'Fechas', 'academy-programacion' ),
+		$cap,
+		ACADEMY_PROGRAMACION_MENU,
+		'academy_programacion_render_page'
 	);
 
 	add_action( 'admin_print_styles-' . $hook, 'academy_programacion_assets' );
 }
-add_action( 'admin_menu', 'academy_programacion_menu' );
+add_action( 'admin_menu', 'academy_programacion_menu', 9 );
 
 /**
  * CSS y JS de la pantalla del plugin.
@@ -273,7 +304,8 @@ function academy_programacion_assets() {
 function academy_programacion_action_links( $links ) {
 	array_unshift(
 		$links,
-		sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=academy-programacion' ) ), esc_html__( 'Editar fechas', 'academy-programacion' ) )
+		sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'admin.php?page=' . ACADEMY_PROGRAMACION_MENU ) ), esc_html__( 'Fechas', 'academy-programacion' ) ),
+		sprintf( '<a href="%s">%s</a>', esc_url( admin_url( 'edit.php?post_type=' . ACADEMY_ALUMNOS_CPT ) ), esc_html__( 'Alumnos', 'academy-programacion' ) )
 	);
 	return $links;
 }
@@ -335,7 +367,7 @@ function academy_programacion_render_page() {
 	$name  = ACADEMY_PROGRAMACION_OPTION;
 	?>
 	<div class="wrap acp">
-		<h1><?php esc_html_e( 'Programación de la formación', 'academy-programacion' ); ?></h1>
+		<h1><?php esc_html_e( 'Fechas de la formación', 'academy-programacion' ); ?></h1>
 		<p class="acp-intro"><?php esc_html_e( 'Indica las fechas de la próxima edición de cada nivel o deja «Próximamente». Los cambios se ven al momento en la portada (Ruta de formación), en «Así se vive la formación» y en la página de eventos.', 'academy-programacion' ); ?></p>
 
 		<?php if ( ! function_exists( 'academy_schedule' ) ) : ?>

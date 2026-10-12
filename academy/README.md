@@ -75,8 +75,8 @@ Todo el contenido relevante es editable desde WordPress:
 | Secciones de la landing      | Son **patrones**: insértalos con el botón **+ → Patrones → Academy** |
 | Colores y tipografía global  | **Apariencia → Editor → Estilos** |
 | Slides del hero              | Selecciona el bloque *Academy · Hero Slider* y edita cada *Cover* |
-| Fechas de cada nivel         | Plugin **Academy · Programación** (menú *Programación*). Sin plugin: `academy_schedule_defaults()` en `functions.php` |
-| Alumnos formados (/alumnos/) | Plugin, menú *Alumnos*. Sin plugin: `academy_alumni_defaults()` en `functions.php` y fotos en `assets/images/alumnos/` |
+| Fechas de cada nivel         | Plugin **Academy · Programación y Alumnos** (menú *Academy → Fechas*). Sin plugin: `academy_schedule_defaults()` en `functions.php` |
+| Alumnos formados (/alumnos/) | Plugin, menú *Academy → Alumnos formados*. Sin plugin: `academy_alumni_defaults()` en `functions.php` y fotos en `assets/images/alumnos/` |
 
 ### Insertar un patrón
 En cualquier página: botón **+** → pestaña **Patrones** → categoría **Academy** → elige
