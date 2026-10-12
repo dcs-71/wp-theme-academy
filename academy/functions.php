@@ -341,7 +341,7 @@ add_filter( 'render_block_core/paragraph', 'academy_render_schedule_shortcodes' 
  * La página «Alumnos» (plantilla page-alumnos.html) muestra a los
  * fisioterapeutas formados con su número de colegiatura CTMP. El plugin
  * «Academy · Programación y Alumnos» los gestiona desde el escritorio
- * (menú Alumnos) mediante el filtro `academy_alumni`; sin el plugin se usa
+ * (menú Academy → Alumnos formados) mediante el filtro `academy_alumni`; sin el plugin se usa
  * la lista de abajo.
  * ---------------------------------------------------------------------- */
 
