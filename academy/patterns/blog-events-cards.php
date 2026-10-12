@@ -10,18 +10,18 @@
  * @package Academy
  */
 
-$featured = academy_image_uri( 'assets/images/clase-teoria.jpg' );
+$featured = academy_image_uri( 'assets/images/clase-teoria.webp' );
 
 $minis = array(
 	array(
-		'img'   => 'assets/images/practica-supervisada.jpg',
+		'img'   => 'assets/images/practica-supervisada.webp',
 		'alt'   => 'Práctica supervisada en camilla durante la formación',
 		'fecha' => 'Nivel Básico · 31 de julio',
 		'cat'   => 'Práctica supervisada',
 		'texto' => 'Cada participante practica sobre camilla con acompañamiento docente permanente.',
 	),
 	array(
-		'img'   => 'assets/images/material-marcaje.jpg',
+		'img'   => 'assets/images/material-marcaje.webp',
 		'alt'   => 'Marcaje anatómico previo a la punción seca',
 		'fecha' => 'Todos los niveles',
 		'cat'   => 'Marcaje anatómico',
@@ -42,11 +42,11 @@ $minis = array(
 <div class="wp-block-columns blog-layout"><!-- wp:column {"width":"58%"} -->
 <div class="wp-block-column" style="flex-basis:58%"><!-- wp:html -->
 <article class="blog-featured">
-	<img class="blog-featured__img" src="<?php echo $featured; ?>" alt="Clase teórica de la Formación Internacional en Punción Seca" loading="lazy" />
+	<img class="blog-featured__img" src="<?php echo $featured; ?>" alt="Clase teórica de la Formación Internacional en Punción Seca en Lima" width="1100" height="760" loading="lazy" decoding="async" />
 	<span class="blog-featured__overlay"></span>
 	<div class="date-badge"><span class="date-badge__day">31</span><span class="date-badge__month">Julio</span></div>
 	<div class="blog-featured__content">
-		<p class="blog-featured__title">Arranca el Nivel Básico: síndrome de dolor miofascial, diagnóstico y seguridad</p>
+		<h3 class="blog-featured__title">Arranca el Nivel Básico: síndrome de dolor miofascial, diagnóstico y seguridad</h3>
 		<div class="blog-featured__meta">
 			<span>9:00 a. m. – 8:00 p. m.</span>
 			<span>Lima, Perú</span>
@@ -60,7 +60,7 @@ $minis = array(
 <div class="wp-block-column" style="flex-basis:42%"><!-- wp:html -->
 <?php foreach ( $minis as $m ) : ?>
 <article class="blog-mini">
-	<img class="blog-mini__img" src="<?php echo academy_image_uri( $m['img'] ); ?>" alt="<?php echo esc_attr( $m['alt'] ); ?>" loading="lazy" />
+	<img class="blog-mini__img" src="<?php echo academy_image_uri( $m['img'] ); ?>" alt="<?php echo esc_attr( $m['alt'] ); ?>" width="900" height="675" loading="lazy" decoding="async" />
 	<div class="blog-mini__body">
 		<span class="blog-mini__date"><?php echo esc_html( $m['fecha'] ); ?></span>
 		<p class="blog-mini__cat"><?php echo esc_html( $m['cat'] ); ?></p>

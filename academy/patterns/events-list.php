@@ -18,7 +18,7 @@ $sede = 'Clases presenciales en Lima, Perú';
 
 $events = array(
 	array(
-		'img'   => 'assets/images/nivel-basico.jpg',
+		'img'   => 'assets/images/nivel-basico.webp',
 		'day'   => '31',
 		'month' => 'Julio',
 		'title' => 'Nivel Básico · Seminario presencial',
@@ -26,7 +26,7 @@ $events = array(
 		'date'  => '31 de julio y 01 de agosto · 20 horas académicas',
 	),
 	array(
-		'img'   => 'assets/images/nivel-intermedio.jpg',
+		'img'   => 'assets/images/nivel-intermedio.webp',
 		'day'   => '08',
 		'month' => 'Agosto',
 		'title' => 'Nivel Intermedio · Seminario presencial',
@@ -34,7 +34,7 @@ $events = array(
 		'date'  => '08, 15 y 22 de agosto · 30 horas académicas',
 	),
 	array(
-		'img'   => 'assets/images/nivel-avanzado.jpg',
+		'img'   => 'assets/images/nivel-avanzado.webp',
 		'day'   => '29',
 		'month' => 'Agosto',
 		'title' => 'Nivel Avanzado · Seminario presencial',
@@ -48,7 +48,7 @@ $events = array(
 <?php foreach ( $events as $e ) : ?>
 	<article class="event-row">
 		<div class="event-row__media">
-			<img src="<?php echo academy_image_uri( $e['img'] ); ?>" alt="<?php echo esc_attr( $e['title'] ); ?>" loading="lazy" />
+			<img src="<?php echo academy_image_uri( $e['img'] ); ?>" alt="<?php echo esc_attr( $e['title'] . ' de la Formación Internacional en Punción Seca' ); ?>" width="900" height="675" loading="lazy" decoding="async" />
 			<div class="date-badge"><span class="date-badge__day"><?php echo esc_html( $e['day'] ); ?></span><span class="date-badge__month"><?php echo esc_html( $e['month'] ); ?></span></div>
 		</div>
 		<div class="event-row__body">

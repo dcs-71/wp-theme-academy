@@ -50,7 +50,7 @@ Escala 20→70 (0.5rem → 5.5rem) para paddings de sección y gaps.
 | Testimonios (avatares + cita)            | `patterns/testimonials.php` | Cita de respaldo científico (Travell) |
 | Blog/Eventos (destacado + 2 mini)        | `patterns/blog-events-cards.php` | «Así se vive la formación» |
 | Partners (logos)                         | `patterns/partners-logos.php` | Seminarios Travell &amp; Simons |
-| Footer negro (4 cols + CTA + social)     | `parts/footer.html` | Dirección de la sede, teléfono y web |
+| Footer negro (marca + 3 cols + panel CTA + social) | `parts/footer.html` | Ubicación, teléfono y reserva de vacante |
 
 `templates/front-page.html` compone los patrones en el orden de la landing.
 

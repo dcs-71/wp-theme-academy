@@ -35,6 +35,28 @@ if ( $show_arrows ) {
 		. '</div>';
 }
 
+/*
+ * Prioridad de carga: la primera diapositiva es la imagen más grande visible
+ * al abrir la página (LCP), así que se pide con prioridad alta; el resto se
+ * difiere hasta que haga falta.
+ */
+if ( class_exists( 'WP_HTML_Tag_Processor' ) ) {
+	$tags  = new WP_HTML_Tag_Processor( $content );
+	$first = true;
+	while ( $tags->next_tag( array( 'tag_name' => 'img', 'class_name' => 'wp-block-cover__image-background' ) ) ) {
+		$tags->set_attribute( 'decoding', 'async' );
+		if ( $first ) {
+			$tags->remove_attribute( 'loading' );
+			$tags->set_attribute( 'fetchpriority', 'high' );
+			$first = false;
+		} else {
+			$tags->set_attribute( 'loading', 'lazy' );
+			$tags->remove_attribute( 'fetchpriority' );
+		}
+	}
+	$content = $tags->get_updated_html();
+}
+
 $dots = '';
 if ( $show_dots ) {
 	$dots = '<div class="academy-hero-slider__dots" role="tablist" aria-label="' . esc_attr__( 'Navegación del slider', 'academy' ) . '"></div>';

@@ -29,35 +29,37 @@
 	}
 }
 
-/* Flechas */
+/* Flechas: agrupadas abajo a la derecha, alineadas con el contenido. */
 .academy-hero-slider__arrows {
-	pointer-events: none;
+	position: absolute;
+	right: max(1.25rem, calc((100% - 1180px) / 2));
+	bottom: 1.75rem;
+	z-index: 2;
+	display: flex;
+	gap: 0.5rem;
 }
 
 .academy-hero-slider__arrow {
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	z-index: 2;
-	pointer-events: auto;
+	position: static;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
 	width: 48px;
 	height: 48px;
-	border: none;
 	border-radius: 9999px;
-	background: rgba(255, 255, 255, 0.9);
-	color: var(--wp--preset--color--navy, #283078);
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	background: rgba(255, 255, 255, 0.1);
+	color: #fff;
 	font-size: 1.75rem;
 	line-height: 1;
 	cursor: pointer;
-	box-shadow: 0 4px 16px rgba(5, 0, 57, 0.18);
-	transition: background 0.2s ease, transform 0.2s ease;
+	backdrop-filter: blur(4px);
+	transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .academy-hero-slider__arrow:hover {
 	background: var(--wp--preset--color--orange, #ff4f26);
+	border-color: var(--wp--preset--color--orange, #ff4f26);
 	color: #fff;
 }
 
@@ -66,19 +68,16 @@
 	outline-offset: 2px;
 }
 
-.academy-hero-slider__arrow--prev { left: 1.25rem; }
-.academy-hero-slider__arrow--next { right: 1.25rem; }
 
-/* Puntos */
+
+/* Puntos: abajo a la izquierda, alineados con el texto del hero. */
 .academy-hero-slider__dots {
 	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 1.25rem;
+	left: max(1.5rem, calc((100% - 1180px) / 2));
+	bottom: 2.6rem;
 	z-index: 2;
 	display: flex;
 	gap: 0.5rem;
-	justify-content: center;
 }
 
 .academy-hero-slider__dot {
@@ -102,12 +101,15 @@
 	outline-offset: 2px;
 }
 
-@media (max-width: 600px) {
-	.academy-hero-slider__arrow {
-		width: 40px;
-		height: 40px;
-		font-size: 1.4rem;
+/* En móvil se navega con swipe y puntos; las flechas tapaban el texto. */
+@media (max-width: 781px) {
+	.academy-hero-slider__arrows {
+		display: none;
 	}
-	.academy-hero-slider__arrow--prev { left: 0.5rem; }
-	.academy-hero-slider__arrow--next { right: 0.5rem; }
+	.academy-hero-slider__dots {
+		left: 0;
+		right: 0;
+		bottom: 1.5rem;
+		justify-content: center;
+	}
 }

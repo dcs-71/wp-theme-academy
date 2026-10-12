@@ -52,7 +52,7 @@ No requiere plugins para funcionar. Ver la sección 7 para integraciones opciona
    **tres** sitios y debe coincidir en los tres:
    - `functions.php` → constante `ACADEMY_WHATSAPP` (la usan los patrones).
    - `parts/header.html` → botón *Inscríbete* y enlace *Contacto*.
-   - `parts/footer.html` → teléfono, *Contacto por WhatsApp* y *Escríbenos por WhatsApp*.
+   - `parts/footer.html` → teléfono de contacto y botón *Escríbenos por WhatsApp*.
 
    Formato: código de país + número, solo dígitos (`51993582936` = +51 993 582 936).
 4. **Menús:** edita el bloque *Navegación* en el encabezado desde el Site Editor.

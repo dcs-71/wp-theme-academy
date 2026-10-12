@@ -12,7 +12,8 @@
 
 $levels = array(
 	array(
-		'img'      => 'assets/images/nivel-basico.jpg',
+		'img'      => 'assets/images/nivel-basico.webp',
+		'alt'      => 'Docente dictando la clase teórica del Nivel Básico de punción seca',
 		'nivel'    => 'Nivel Básico',
 		'jornadas' => '2 jornadas presenciales',
 		'horas'    => '20 horas académicas',
@@ -20,7 +21,8 @@ $levels = array(
 		'text'     => 'Fundamentos del síndrome de dolor miofascial, diagnóstico, seguridad y primeras técnicas de punción.',
 	),
 	array(
-		'img'      => 'assets/images/nivel-intermedio.jpg',
+		'img'      => 'assets/images/nivel-intermedio.webp',
+		'alt'      => 'Docente guiando la punción seca de miembro inferior en el Nivel Intermedio',
 		'nivel'    => 'Nivel Intermedio',
 		'jornadas' => '3 jornadas presenciales',
 		'horas'    => '30 horas académicas',
@@ -28,7 +30,8 @@ $levels = array(
 		'text'     => 'Miembro inferior y superior completos: cadera, muslo, pierna, pie, hombro, brazo y antebrazo.',
 	),
 	array(
-		'img'      => 'assets/images/nivel-avanzado.jpg',
+		'img'      => 'assets/images/nivel-avanzado.webp',
+		'alt'      => 'Demostración de punción seca en camilla ante el grupo del Nivel Avanzado',
 		'nivel'    => 'Nivel Avanzado',
 		'jornadas' => '3 jornadas presenciales',
 		'horas'    => '30 horas académicas',
@@ -50,7 +53,7 @@ $ic_body  = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke=
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","textColor":"muted","style":{"spacing":{"margin":{"bottom":"var:preset|spacing|50"}}}} -->
-<p class="has-text-align-center has-muted-color has-text-color" style="margin-bottom:var(--wp--preset--spacing--50)">Clases 100% presenciales en grupos reducidos, con práctica supervisada en cada sesión.</p>
+<p class="has-text-align-center has-muted-color has-text-color" style="margin-bottom:var(--wp--preset--spacing--50)">La Formación Internacional en Punción Seca de Academy by Total Therapy se cursa en tres niveles progresivos, 100% presenciales en Lima, en grupos reducidos y con práctica supervisada en cada sesión.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"className":"levels-grid","layout":{"type":"grid","columnCount":3}} -->
@@ -60,7 +63,7 @@ $ic_body  = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke=
 <!-- wp:group {"className":"card card--level","style":{"border":{"radius":"16px"},"spacing":{"blockGap":"0"},"shadow":"var:preset|shadow|card"},"backgroundColor":"base","layout":{"type":"default"}} -->
 <div class="wp-block-group card card--level has-base-background-color has-background" style="border-radius:16px;box-shadow:var(--wp--preset--shadow--card)"><!-- wp:html -->
 <div class="card__media">
-	<img src="<?php echo $img; ?>" alt="<?php echo esc_attr( $l['nivel'] ); ?> de la Formación Internacional en Punción Seca" loading="lazy" />
+	<img src="<?php echo $img; ?>" alt="<?php echo esc_attr( $l['alt'] ); ?>" width="900" height="675" loading="lazy" decoding="async" />
 	<span class="card__tag"><?php echo esc_html( $l['horas'] ); ?></span>
 </div>
 <!-- /wp:html -->
@@ -70,8 +73,8 @@ $ic_body  = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke=
 <p class="has-blue-color has-text-color has-small-font-size" style="margin-bottom:0;font-weight:600;letter-spacing:0.08em;text-transform:uppercase">Seminario presencial</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"level":3,"fontSize":"x-large","style":{"typography":{"fontWeight":"700"}}} -->
-<h3 class="wp-block-heading has-x-large-font-size" style="font-weight:700"><?php echo esc_html( $l['nivel'] ); ?></h3>
+<!-- wp:heading {"level":3,"className":"card__title","style":{"typography":{"fontWeight":"700"}}} -->
+<h3 class="wp-block-heading card__title" style="font-weight:700"><?php echo esc_html( $l['nivel'] ); ?></h3>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"textColor":"muted","fontSize":"small"} -->

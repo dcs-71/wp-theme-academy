@@ -45,6 +45,19 @@
 			slide.setAttribute( 'aria-hidden', i === 0 ? 'false' : 'true' );
 		} );
 
+		// Las diapositivas 2+ se cargan en diferido; una vez cargada la página
+		// se piden ya para que no aparezcan en blanco al deslizar.
+		function loadAllSlides() {
+			track.querySelectorAll( 'img[loading="lazy"]' ).forEach( function ( img ) {
+				img.loading = 'eager';
+			} );
+		}
+		if ( document.readyState === 'complete' ) {
+			loadAllSlides();
+		} else {
+			window.addEventListener( 'load', loadAllSlides );
+		}
+
 		// Construye los puntos de navegación.
 		var dotsWrap = root.querySelector( '.academy-hero-slider__dots' );
 		var dots = [];
@@ -64,9 +77,15 @@
 		}
 
 		function update() {
+			var pending = slides[ current ].querySelector( 'img[loading="lazy"]' );
+			if ( pending ) {
+				pending.loading = 'eager';
+			}
 			track.style.transform = 'translateX(' + ( -current * 100 ) + '%)';
 			slides.forEach( function ( slide, i ) {
 				slide.setAttribute( 'aria-hidden', i === current ? 'false' : 'true' );
+				// Evita que el foco del teclado entre en diapositivas ocultas.
+				slide.inert = i !== current;
 			} );
 			dots.forEach( function ( dot, i ) {
 				var active = i === current;

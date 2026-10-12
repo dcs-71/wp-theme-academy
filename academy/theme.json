@@ -22,7 +22,7 @@
 				{ "slug": "ink", "color": "#151515", "name": "Negro" },
 				{ "slug": "gray", "color": "#EFEFEF", "name": "Gris claro" },
 				{ "slug": "cream", "color": "#F2EFEA", "name": "Crema" },
-				{ "slug": "muted", "color": "#8A8FA8", "name": "Gris texto" },
+				{ "slug": "muted", "color": "#5F6480", "name": "Gris texto" },
 				{ "slug": "midnight", "color": "#050039", "name": "Midnight" }
 			],
 			"gradients": [

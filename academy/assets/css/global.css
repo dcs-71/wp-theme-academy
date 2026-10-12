@@ -24,11 +24,40 @@ body {
 	outline-offset: 2px;
 }
 
-/* Header fijo con sombra al hacer scroll. */
-.site-header {
+/*
+ * Header, main y footer van pegados: cada sección gestiona su propio
+ * espaciado. Sin esto WordPress deja 24 px en blanco entre ellos.
+ */
+.wp-site-blocks > * + * {
+	margin-block-start: 0;
+}
+
+.wp-site-blocks .landing > * {
+	margin-block: 0;
+}
+
+/*
+ * Header fijo con sombra al hacer scroll. El sticky va en el contenedor de la
+ * parte de plantilla (<header class="wp-block-template-part">): si se aplica
+ * al grupo interior no tiene recorrido y no se queda fijo.
+ */
+.wp-site-blocks > header.wp-block-template-part {
 	position: sticky;
 	top: 0;
 	z-index: 100;
+}
+
+.admin-bar .wp-site-blocks > header.wp-block-template-part {
+	top: var(--wp-admin--admin-bar--height, 32px);
+}
+
+@media (max-width: 600px) {
+	.admin-bar .wp-site-blocks > header.wp-block-template-part {
+		top: 0;
+	}
+}
+
+.site-header {
 	transition: box-shadow 0.25s ease;
 }
 
@@ -42,7 +71,13 @@ body {
 
 /* Secciones: títulos centrados con buen ritmo vertical. */
 .section h2 {
-	letter-spacing: -0.01em;
+	letter-spacing: -0.015em;
+	text-wrap: balance;
+}
+
+/* Los anclajes (#ruta, #programa…) no quedan tapados por el header fijo. */
+[id] {
+	scroll-margin-top: 96px;
 }
 
 /* Botón outline. */

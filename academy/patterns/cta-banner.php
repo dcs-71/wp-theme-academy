@@ -10,12 +10,12 @@
  * @package Academy
  */
 
-$bg = academy_image_uri( 'assets/images/cta-formacion.jpg' );
+$bg = academy_image_uri( 'assets/images/cta-formacion.webp' );
 $wa = academy_whatsapp_url( 'Hola, solicito más información sobre la Formación Internacional en Punción Seca.' );
 ?>
 <!-- wp:cover {"url":"<?php echo $bg; ?>","dimRatio":80,"overlayColor":"blue","minHeight":420,"contentPosition":"center center","className":"section section--promo","anchor":"inscripcion","align":"full","layout":{"type":"constrained","contentSize":"820px"}} -->
-<div class="wp-block-cover alignfull section section--promo" id="inscripcion" style="min-height:420px"><span aria-hidden="true" class="wp-block-cover__background has-blue-background-color has-background-dim-80 has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo $bg; ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:paragraph {"align":"center","textColor":"base","fontSize":"medium"} -->
-<p class="has-text-align-center has-base-color has-text-color has-medium-font-size">Excelencia clínica</p>
+<div class="wp-block-cover alignfull section section--promo" id="inscripcion" style="min-height:420px"><span aria-hidden="true" class="wp-block-cover__background has-blue-background-color has-background-dim-80 has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo $bg; ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:paragraph {"align":"center","className":"promo__eyebrow","textColor":"base","fontSize":"small"} -->
+<p class="has-text-align-center promo__eyebrow has-base-color has-text-color has-small-font-size">Excelencia clínica</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"textAlign":"center","level":2,"textColor":"base","fontSize":"huge","style":{"typography":{"fontWeight":"700"}}} -->

@@ -11,53 +11,70 @@
  * @package Academy
  */
 
+/*
+ * Solo la primera diapositiva lleva el <h1> de la página (una sola por URL,
+ * con la búsqueda principal). Las demás usan <h2> con el mismo estilo.
+ */
 $slides = array(
 	array(
-		'img'     => 'assets/images/hero-1.jpg',
-		'eyebrow' => 'En alianza con Seminarios Travell &amp; Simons',
-		'title'   => 'Formación Internacional en Punción Seca',
-		'text'    => 'Dirigida por la Mg. Chantal Páucar. Tres niveles presenciales en Lima, del 31 de julio al 10 de octubre.',
-		'cta'     => 'Reserva tu vacante',
-		'url'     => academy_whatsapp_url( 'Hola, quiero reservar mi vacante en la Formación Internacional en Punción Seca. ¿Me pueden dar más información?' ),
+		'img'       => 'assets/images/hero-1.webp',
+		'alt'       => 'Fisioterapeutas practicando punción seca en camilla con supervisión docente en Academy by Total Therapy, Lima',
+		'level'     => 1,
+		'eyebrow'   => 'Academy by Total Therapy · Lima, Perú',
+		'title'     => 'Formación Internacional en Punción Seca',
+		'text'      => 'Dirigida por la Mg. Chantal Páucar en alianza con Seminarios Travell &amp; Simons. Tres niveles presenciales con práctica supervisada en grupos reducidos.',
+		'cta'       => 'Reserva tu vacante',
+		'url'       => academy_whatsapp_url( 'Hola, quiero reservar mi vacante en la Formación Internacional en Punción Seca. ¿Me pueden dar más información?' ),
+		'secondary' => array( 'Ver la ruta de formación', '#ruta' ),
 	),
 	array(
-		'img'     => 'assets/images/hero-2.jpg',
-		'eyebrow' => 'Ruta de formación',
-		'title'   => 'Tres niveles para dominar la punción seca',
-		'text'    => 'Básico, Intermedio y Avanzado: 80 horas académicas y 101 músculos abordados con práctica supervisada.',
-		'cta'     => 'Ver la ruta de formación',
-		'url'     => '#ruta',
+		'img'       => 'assets/images/hero-2.webp',
+		'alt'       => 'Clase teórica de la Formación Internacional en Punción Seca en la sede de Lima',
+		'level'     => 2,
+		'eyebrow'   => 'Ruta de formación',
+		'title'     => 'De los fundamentos al nivel avanzado',
+		'text'      => 'Básico, Intermedio y Avanzado: 80 horas académicas y 101 músculos abordados con práctica supervisada.',
+		'cta'       => 'Ver la ruta de formación',
+		'url'       => '#ruta',
+		'secondary' => array( 'Temario completo', '#programa' ),
 	),
 	array(
-		'img'     => 'assets/images/hero-3.jpg',
-		'eyebrow' => 'Excelencia clínica',
-		'title'   => 'Formación que transforma, impacto que perdura',
-		'text'    => 'Material de práctica completo, manual impreso a color por módulo y grupos reducidos en nuestra sede de Lima.',
-		'cta'     => 'Conoce el programa',
-		'url'     => '#programa',
+		'img'       => 'assets/images/hero-3.webp',
+		'alt'       => 'Docentes supervisando la práctica de punción seca en camilla durante la formación',
+		'level'     => 2,
+		'eyebrow'   => 'Excelencia clínica',
+		'title'     => 'Práctica supervisada en grupos reducidos',
+		'text'      => 'Acompañamiento docente en cada sesión, material de práctica completo y manual impreso a color por módulo, en nuestra sede de Lima.',
+		'cta'       => 'Conoce el programa',
+		'url'       => '#programa',
+		'secondary' => array( 'Escríbenos', academy_whatsapp_url( 'Hola, solicito más información sobre la Formación Internacional en Punción Seca.' ) ),
 	),
 );
 ?>
-<!-- wp:academy/hero-slider {"autoplay":true,"loop":true,"delay":6500,"align":"full"} -->
+<!-- wp:academy/hero-slider {"autoplay":true,"loop":true,"delay":7000,"align":"full"} -->
 <?php foreach ( $slides as $s ) : ?>
 <?php $bg = academy_image_uri( $s['img'] ); ?>
-<!-- wp:cover {"url":"<?php echo $bg; ?>","dimRatio":60,"overlayColor":"base","minHeight":620,"className":"academy-slide","align":"full"} -->
-<div class="wp-block-cover alignfull academy-slide" style="min-height:620px"><span aria-hidden="true" class="wp-block-cover__background has-base-background-color has-background-dim-60 has-background-dim"></span><img class="wp-block-cover__image-background" alt="" src="<?php echo $bg; ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:group {"className":"hero__content","layout":{"type":"constrained","contentSize":"820px"}} -->
-<div class="wp-block-group hero__content"><!-- wp:paragraph {"align":"center","className":"hero__eyebrow","textColor":"orange","fontSize":"small","style":{"typography":{"fontWeight":"600","textTransform":"uppercase","letterSpacing":"0.14em"}}} -->
-<p class="has-text-align-center hero__eyebrow has-orange-color has-text-color has-small-font-size" style="font-weight:600;letter-spacing:0.14em;text-transform:uppercase"><?php echo wp_kses_post( $s['eyebrow'] ); ?></p>
+<!-- wp:cover {"url":"<?php echo $bg; ?>","alt":"<?php echo esc_attr( $s['alt'] ); ?>","dimRatio":70,"overlayColor":"midnight","minHeight":640,"className":"academy-slide","align":"full","layout":{"type":"constrained","contentSize":"1180px"}} -->
+<div class="wp-block-cover alignfull academy-slide" style="min-height:640px"><span aria-hidden="true" class="wp-block-cover__background has-midnight-background-color has-background-dim-70 has-background-dim"></span><img class="wp-block-cover__image-background" alt="<?php echo esc_attr( $s['alt'] ); ?>" src="<?php echo $bg; ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:group {"className":"hero__content","layout":{"type":"constrained","contentSize":"660px","justifyContent":"left"}} -->
+<div class="wp-block-group hero__content"><!-- wp:paragraph {"className":"hero__eyebrow","fontSize":"small"} -->
+<p class="hero__eyebrow has-small-font-size"><?php echo wp_kses_post( $s['eyebrow'] ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:heading {"textAlign":"center","level":1,"textColor":"navy","fontSize":"huge","style":{"typography":{"fontWeight":"700"}}} -->
-<h1 class="wp-block-heading has-text-align-center has-navy-color has-text-color has-huge-font-size" style="font-weight:700"><?php echo esc_html( $s['title'] ); ?></h1>
+<!-- wp:heading {"level":<?php echo (int) $s['level']; ?>,"className":"hero__title","textColor":"base","fontSize":"huge"} -->
+<h<?php echo (int) $s['level']; ?> class="wp-block-heading hero__title has-base-color has-text-color has-huge-font-size"><?php echo esc_html( $s['title'] ); ?></h<?php echo (int) $s['level']; ?>>
 <!-- /wp:heading -->
 
-<!-- wp:paragraph {"align":"center","textColor":"navy","fontSize":"large","style":{"spacing":{"margin":{"top":"var:preset|spacing|30"}}}} -->
-<p class="has-text-align-center has-navy-color has-text-color has-large-font-size" style="margin-top:var(--wp--preset--spacing--30)"><?php echo esc_html( $s['text'] ); ?></p>
+<!-- wp:paragraph {"className":"hero__text","fontSize":"large"} -->
+<p class="hero__text has-large-font-size"><?php echo wp_kses_post( $s['text'] ); ?></p>
 <!-- /wp:paragraph -->
 
-<!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
-<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--40)"><!-- wp:button {"backgroundColor":"orange","textColor":"base"} -->
+<!-- wp:buttons {"className":"hero__actions"} -->
+<div class="wp-block-buttons hero__actions"><!-- wp:button {"backgroundColor":"orange","textColor":"base"} -->
 <div class="wp-block-button"><a class="wp-block-button__link has-base-color has-orange-background-color has-text-color has-background wp-element-button" href="<?php echo esc_url( $s['url'] ); ?>"><?php echo esc_html( $s['cta'] ); ?></a></div>
+<!-- /wp:button -->
+
+<!-- wp:button {"textColor":"base","className":"is-style-outline"} -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-base-color has-text-color wp-element-button" href="<?php echo esc_url( $s['secondary'][1] ); ?>"><?php echo esc_html( $s['secondary'][0] ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div></div>

@@ -10,7 +10,7 @@
  * @package Academy
  */
 
-$foto = academy_image_uri( 'assets/images/docente-chantal.jpg' );
+$foto = academy_image_uri( 'assets/images/docente-chantal.webp' );
 
 $credenciales = array(
 	array(
@@ -35,7 +35,7 @@ $credenciales = array(
 <section class="wp-block-group section section--instructor has-base-background-color has-background" id="docente" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--60)"><!-- wp:columns {"verticalAlignment":"center","className":"instructor-layout","style":{"spacing":{"blockGap":{"top":"var:preset|spacing|50","left":"var:preset|spacing|60"}}}} -->
 <div class="wp-block-columns are-vertically-aligned-center instructor-layout"><!-- wp:column {"verticalAlignment":"center","width":"40%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:40%"><!-- wp:image {"sizeSlug":"large","className":"instructor-photo","style":{"border":{"radius":"18px"},"shadow":"var:preset|shadow|card"}} -->
-<figure class="wp-block-image size-large has-custom-border instructor-photo"><img src="<?php echo $foto; ?>" alt="Mg. Chantal Páucar, directora académica de Academy by Total Therapy" style="border-radius:18px;box-shadow:var(--wp--preset--shadow--card)"/></figure>
+<figure class="wp-block-image size-large has-custom-border instructor-photo"><img src="<?php echo $foto; ?>" alt="Mg. Chantal Páucar, directora académica de Academy by Total Therapy, dictando una clase de punción seca" style="border-radius:18px;box-shadow:var(--wp--preset--shadow--card)"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column -->
 

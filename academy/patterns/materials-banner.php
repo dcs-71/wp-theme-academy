@@ -10,7 +10,7 @@
  * @package Academy
  */
 
-$foto = academy_image_uri( 'assets/images/material-aguja.jpg' );
+$foto = academy_image_uri( 'assets/images/material-aguja.webp' );
 
 $materiales = array(
 	'Agujas en todas las medidas necesarias',
@@ -48,7 +48,7 @@ $materiales = array(
 
 <!-- wp:column {"verticalAlignment":"center","width":"42%"} -->
 <div class="wp-block-column is-vertically-aligned-center" style="flex-basis:42%"><!-- wp:image {"sizeSlug":"large","align":"center","className":"materials-photo","style":{"border":{"radius":"18px"}}} -->
-<figure class="wp-block-image aligncenter size-large has-custom-border materials-photo"><img src="<?php echo $foto; ?>" alt="Material de práctica de punción seca durante la formación" style="border-radius:18px"/></figure>
+<figure class="wp-block-image aligncenter size-large has-custom-border materials-photo"><img src="<?php echo $foto; ?>" alt="Aguja de punción seca y guantes de nitrilo usados en la práctica supervisada" style="border-radius:18px"/></figure>
 <!-- /wp:image --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns --></section>

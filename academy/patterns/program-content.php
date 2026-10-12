@@ -119,8 +119,8 @@ $program = array(
 	),
 );
 ?>
-<!-- wp:group {"tagName":"section","className":"section section--program","anchor":"programa","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|70"}}},"backgroundColor":"cream","layout":{"type":"constrained","contentSize":"1180px"}} -->
-<section class="wp-block-group section section--program has-cream-background-color has-background" id="programa" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--70)"><!-- wp:paragraph {"align":"center","className":"section__eyebrow","textColor":"orange","fontSize":"small","style":{"typography":{"fontWeight":"600","textTransform":"uppercase","letterSpacing":"0.14em"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
+<!-- wp:group {"tagName":"section","className":"section section--program","anchor":"programa","style":{"spacing":{"padding":{"top":"var:preset|spacing|60","bottom":"var:preset|spacing|70"}}},"backgroundColor":"cream","align":"full","layout":{"type":"constrained","contentSize":"1180px"}} -->
+<section class="wp-block-group alignfull section section--program has-cream-background-color has-background" id="programa" style="padding-top:var(--wp--preset--spacing--60);padding-bottom:var(--wp--preset--spacing--70)"><!-- wp:paragraph {"align":"center","className":"section__eyebrow","textColor":"orange","fontSize":"small","style":{"typography":{"fontWeight":"600","textTransform":"uppercase","letterSpacing":"0.14em"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
 <p class="has-text-align-center section__eyebrow has-orange-color has-text-color has-small-font-size" style="margin-bottom:var(--wp--preset--spacing--20);font-weight:600;letter-spacing:0.14em;text-transform:uppercase">Programa académico</p>
 <!-- /wp:paragraph -->
 
@@ -142,7 +142,7 @@ $program = array(
 		</summary>
 		<div class="program-item__body">
 		<?php foreach ( $p['bloques'] as $b ) : ?>
-			<h4 class="program-item__subtitle"><?php echo esc_html( $b['titulo'] ); ?></h4>
+			<h3 class="program-item__subtitle"><?php echo esc_html( $b['titulo'] ); ?></h3>
 			<ul class="program-item__list">
 			<?php foreach ( $b['items'] as $item ) : ?>
 				<li><?php echo esc_html( $item ); ?></li>
