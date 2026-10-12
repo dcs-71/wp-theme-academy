@@ -14,7 +14,7 @@ $wa = academy_whatsapp_url( academy_whatsapp_message( 'reserva' ) );
 ?>
 <!-- wp:group {"tagName":"section","className":"section alumni-hero","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"backgroundColor":"navy","textColor":"base","align":"full","layout":{"type":"constrained","contentSize":"760px"}} -->
 <section class="wp-block-group alignfull section alumni-hero has-base-color has-navy-background-color has-text-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)"><!-- wp:paragraph {"align":"center","className":"hero__eyebrow alumni-hero__eyebrow","fontSize":"small"} -->
-<p class="has-text-align-center hero__eyebrow alumni-hero__eyebrow has-small-font-size">Egresados de Academy by Total Therapy</p>
+<p class="has-text-align-center hero__eyebrow alumni-hero__eyebrow has-small-font-size">Egresados de Academy</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading {"textAlign":"center","level":1,"textColor":"base","fontSize":"huge"} -->
@@ -22,7 +22,7 @@ $wa = academy_whatsapp_url( academy_whatsapp_message( 'reserva' ) );
 <!-- /wp:heading -->
 
 <!-- wp:paragraph {"align":"center","className":"alumni-hero__text","fontSize":"large"} -->
-<p class="has-text-align-center alumni-hero__text has-large-font-size">Fisioterapeutas formados internacionalmente en punción seca en las formaciones de Academy by Total Therapy, con su número de colegiatura del Colegio de Tecnólogos Médicos del Perú (CTMP).</p>
+<p class="has-text-align-center alumni-hero__text has-large-font-size">Fisioterapeutas formados en punción seca en las formaciones internacionales de Academy by Total Therapy.</p>
 <!-- /wp:paragraph --></section>
 <!-- /wp:group -->
 

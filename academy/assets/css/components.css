@@ -1053,7 +1053,20 @@
 /* =====================================================
    ALUMNOS FORMADOS
    ===================================================== */
+/* Fondo con algo de profundidad: halo azul y naranja muy suaves sobre navy. */
+.alumni-hero {
+	background:
+		radial-gradient(circle at 15% 0%, rgba(86, 103, 255, 0.45) 0%, transparent 45%),
+		radial-gradient(circle at 90% 100%, rgba(255, 79, 38, 0.18) 0%, transparent 40%),
+		var(--wp--preset--color--navy) !important;
+}
+
+/*
+ * La etiqueta reutiliza el estilo del hero, que es inline-flex; en un bloque
+ * centrado necesita ser flex para que los márgenes automáticos la centren.
+ */
 .alumni-hero__eyebrow {
+	display: flex !important;
 	margin-inline: auto !important;
 }
 
