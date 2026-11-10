@@ -40,8 +40,9 @@ No requiere plugins para funcionar. Ver la sección 7 para integraciones opciona
 
 ## 3. Primeros pasos tras activar
 
-1. **Logo:** ya viene puesto (`assets/images/logo-academy-blanco.png`) como bloque *Imagen*
-   en el encabezado y el pie. Para cambiarlo: **Apariencia → Editor → Patrones → Encabezado**.
+1. **Logo:** ya viene puesto como bloque *Imagen*: `assets/images/logo-academy-header.svg`
+   en el encabezado y `assets/images/logo-academy-blanco.webp` en el pie. Para cambiarlo:
+   **Apariencia → Editor → Patrones → Encabezado** o **Pie**.
 2. **Página de inicio:**
    - Crea una página "Inicio" (puede quedar vacía).
    - En **Ajustes → Lectura → Tu página de inicio muestra → Una página estática**,
@@ -86,7 +87,10 @@ Testimonios, Así se vive la formación, Preguntas frecuentes, Aliados, Alumnos 
 La página **Alumnos** usa la plantilla `page-alumnos.html` (se aplica sola a la página con slug
 `alumnos`, o se elige como *Página de Alumnos*). El plugin crea esa página automáticamente.
 
-### Contenido de la edición actual
+### Fechas de ejemplo y valores predeterminados
+
+La siguiente tabla es una **edición de ejemplo** para explicar la estructura; no representa
+necesariamente las fechas publicadas en este momento.
 
 | Nivel      | Fechas                              | Horas | Músculos |
 |------------|-------------------------------------|-------|----------|
@@ -97,10 +101,14 @@ La página **Alumnos** usa la plantilla `page-alumnos.html` (se aplica sola a la
 Horario: 9:00 a. m. a 8:00 p. m. · Almuerzo: 1:00 p. m. a 2:00 p. m.
 Sede: Lima, Perú (la dirección exacta no se publica en la web; se comunica al inscribirse).
 
-Las fechas de cada nivel se cambian desde el plugin **Academy · Programación** (menú
-*Programación* del escritorio); el tema las pinta en las tarjetas de *Ruta de formación*,
-en *Así se vive la formación*, en *Eventos·Lista* y en los datos estructurados del curso.
-Cuando la última fecha de un nivel pasa, vuelve solo a «Próximamente».
+Las fechas publicadas se administran en **Academy → Fechas** (opción `academy_programacion`
+del plugin). Sin plugin, el tema usa `academy_schedule_defaults()` en `functions.php`, cuyos
+valores actuales son `2026-10-30` y `2026-10-31` para el Nivel Básico. Si la última fecha de
+un nivel ya pasó, el tema muestra «Próximamente» y no anuncia una edición terminada.
+
+El tema pinta las fechas en las tarjetas de *Ruta de formación*, en *Así se vive la formación*,
+en *Eventos·Lista* y en los datos estructurados del curso. Los patrones no deben editarse para
+cambiar fechas: usan los shortcodes de programación.
 
 Shortcodes disponibles (también dentro de bloques HTML de los patrones):
 `[academy_fechas nivel=basico]`, `[academy_fechas nivel=basico mostrar=primera]`,
@@ -129,7 +137,7 @@ indican que el contacto llega desde la web. Los enlaces de `parts/header.html` y
 ```
 academy/
 ├── style.css                 Cabecera del tema
-├── functions.php             Soportes, encolados, registro de bloque y patrones
+├── functions.php             Soportes, encolados, programación, alumnos, SEO, bloque y patrones
 ├── theme.json                Colores, tipografía, spacing, layout, estilos globales
 ├── templates/                Plantillas (front-page, page-eventos, single, 404…)
 ├── parts/                    Header, footer, hero interior
@@ -163,7 +171,24 @@ dedicados (separación de responsabilidades):
 
 ---
 
-## 8. Mantenimiento
+## 8. SEO
+
+El tema cubre lo esencial sin depender de un plugin de SEO:
+
+- Título del documento, meta description, canonical de portada cuando corresponde, Open
+  Graph, Twitter Cards, iconos y datos estructurados JSON-LD (organización, sitio, docente y
+  curso).
+- Si detecta Yoast, Rank Math, AIOSEO o SEOPress, se aparta y deja que el plugin gestione esas
+  etiquetas.
+- Los textos base están en `academy_seo_texts()` y la lógica en `academy_seo_head()` de
+  `functions.php`.
+
+Esta es la implementación observada en el código; no se ha validado en un WordPress real
+durante la adaptación documental.
+
+---
+
+## 9. Mantenimiento
 
 - **Fuentes:** para añadir pesos, coloca el `.woff2` en `assets/fonts/` y declara el
   `fontFace` en `theme.json`.

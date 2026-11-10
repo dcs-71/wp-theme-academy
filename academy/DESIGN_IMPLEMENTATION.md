@@ -4,6 +4,10 @@ Mapeo entre el diseño (PSD: `Landing_Academy_desktop_1`, `_desktop_2`, `Mobile`
 implementación en el Block Theme. **Toda la dirección visual se derivó directamente de
 los PSD** (colores muestreados píxel a píxel, layout, tipografía y componentes).
 
+> **Nota de vigencia (2026-11-10):** este documento conserva el mapeo histórico PSD→implementación.
+> Las capacidades añadidas después (FAQ, Alumnos formados y SEO) se documentan en el README
+> del tema y no se reconstruyen aquí. Los PSD fuente no están versionados en el repositorio.
+
 ---
 
 ## 1. Sistema de diseño (tokens)
@@ -104,8 +108,9 @@ Escala 20→70 (0.5rem → 5.5rem) para paddings de sección y gaps.
   la formación necesita: ruta de niveles, programación, temario y material incluido.
 - Las **imágenes son fotografías reales** del Grupo 2026-II (día 1), optimizadas a medidas web en
   `assets/images/`. Ya no hay placeholders SVG.
-- El **logo** se inserta como bloque *Imagen* con el archivo `logo-academy-blanco.png`
-  incluido en el tema; puede cambiarse por el bloque *Logotipo del sitio* si se prefiere.
+- El **logo** se inserta como bloque *Imagen*: `logo-academy-header.svg` en el encabezado y
+  `logo-academy-blanco.webp` en el pie. Puede cambiarse por el bloque *Logotipo del sitio* si
+  se prefiere.
 
 ---
 

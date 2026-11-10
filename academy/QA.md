@@ -3,9 +3,17 @@
 Lista de verificación para validar el tema en un WordPress real (6.5+). Marca cada
 ítem al probarlo.
 
+> **Revisión documental (2026-11-10):** se actualizaron referencias de patrones, plantillas,
+> logo, responsive y procedimiento de fechas; el menú se corrigió en el README del tema. Esta
+> revisión no ejecutó pruebas funcionales ni certifica la aceptación del tema.
+>
+> **Alcance de las marcas:** las casillas marcadas en la sección 0 son un registro histórico
+> del entorno de desarrollo original. No hay logs ni CI en el repositorio que permitan
+> reproducirlas; no se reejecutaron en esta adaptación.
+
 ---
 
-## 0. Validaciones automáticas ya ejecutadas (entorno de desarrollo)
+## 0. Validaciones automáticas declaradas (registro histórico)
 
 - [x] `theme.json` — JSON válido.
 - [x] `blocks/hero-slider/block.json` — JSON válido.
@@ -28,14 +36,15 @@ Lista de verificación para validar el tema en un WordPress real (6.5+). Marca c
 - [ ] **Apariencia → Editor** abre sin errores.
 - [ ] Header editable como parte de plantilla; el logo se puede subir/cambiar.
 - [ ] Footer editable (navegación, redes, badges, copyright).
-- [ ] Plantillas visibles: `front-page`, `page-eventos`, `page`, `single`, `index`,
-      `404`, `page-no-title`.
+- [ ] Plantillas visibles: `front-page`, `page-eventos`, `page-alumnos`, `page`, `single`,
+      `index`, `404`, `page-no-title`.
 - [ ] En **Estilos** se ven la paleta Academy y la tipografía Poppins.
 
 ## 3. Patrones (Gutenberg)
 
-- [ ] El insertor **(+) → Patrones → Academy** muestra: Hero, Categorías, Promo, Cursos,
-      Testimonios, Blog/Eventos, App, Partners, Eventos·Lista.
+- [ ] El insertor **(+) → Patrones → Academy** muestra: Hero, Ruta de formación, Promo,
+      Temario, Docente, Material académico, Testimonios, Así se vive la formación,
+      Preguntas frecuentes, Aliados, Alumnos formados y Eventos·Lista.
 - [ ] Cada patrón se inserta y se ve igual que en el frontend (consistencia editor↔web).
 - [ ] Textos, imágenes, botones y enlaces de los patrones son editables.
 
@@ -49,17 +58,19 @@ Lista de verificación para validar el tema en un WordPress real (6.5+). Marca c
 - [ ] Con `prefers-reduced-motion: reduce` el autoplay no se activa.
 - [ ] El JS del slider solo se carga en páginas con el bloque.
 
-## 5. Página de inicio y Eventos
+## 5. Página de inicio, Eventos y Alumnos
 
 - [ ] Página estática de inicio usa `front-page.html` con todas las secciones.
 - [ ] La página "Eventos" con plantilla *Página de Eventos* muestra hero + lista.
-- [ ] Las tabs de cursos muestran la pestaña activa subrayada.
+- [ ] La página "Alumnos" usa la plantilla *Página de Alumnos* y muestra la cuadrícula de
+      alumnos formados.
 
 ## 6. Responsive (desktop / tablet / móvil)
 
 - [ ] Desktop (≥1200px): grids de 3–4 columnas, layout correcto.
-- [ ] Tablet (~768–1024px): cursos pasan a 2 columnas; categorías se reordenan.
-- [ ] Móvil (≤600px): todo a 1 columna; header con menú hamburguesa nativo.
+- [ ] Tablet (~768–1024px): las tarjetas de niveles pasan a 2 columnas y las credenciales a 1.
+- [ ] Móvil (≤600px): niveles y material a 1 columna; blog y docente se apilan; header con
+      menú hamburguesa.
 - [ ] Tarjeta de evento se apila verticalmente en móvil.
 
 ## 7. Rendimiento y dependencias
@@ -88,10 +99,12 @@ Lista de verificación para validar el tema en un WordPress real (6.5+). Marca c
 
 - Las imágenes son fotografías reales de la formación (Grupo 2026-II, día 1) ya optimizadas en
   `assets/images/`. Para cambiarlas, sustituye el archivo o edita el bloque desde WordPress.
-- El logo (`logo-academy-blanco.png`) va como bloque *Imagen* en header y footer; si prefieres
-  gestionarlo desde **Ajustes → Identidad del sitio**, cámbialo por *Logotipo del sitio*.
+- El logo va como bloque *Imagen*: `logo-academy-header.svg` en el header y
+  `logo-academy-blanco.webp` en el footer; si prefieres gestionarlo desde **Ajustes →
+  Identidad del sitio**, cámbialo por *Logotipo del sitio*.
 - Revisar antes de publicar: enlaces de redes sociales del footer (aún en `#`) y las URLs
   `/contacto` y `/eventos`, que deben existir como páginas.
-- Actualizar fechas y niveles al lanzar una nueva edición: `patterns/levels-grid.php`,
-  `patterns/program-content.php` y `patterns/events-list.php`.
+- Las fechas se administran en **Academy → Fechas** (plugin) o en
+  `academy_schedule_defaults()` (sin plugin). Los patrones usan shortcodes; no se editan para
+  cambiar fechas.
 - Para eventos dinámicos, ver `README.md` §7 (plugin `academy-core` + Query Loop).
