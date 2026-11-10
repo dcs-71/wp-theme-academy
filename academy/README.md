@@ -48,20 +48,48 @@ No requiere plugins para funcionar. Ver la sección 7 para integraciones opciona
    - En **Ajustes → Lectura → Tu página de inicio muestra → Una página estática**,
      elige "Inicio". El tema usa `front-page.html` automáticamente con todas las
      secciones de la landing.
-3. **Número de WhatsApp:** todos los CTA abren una conversación de WhatsApp con un
-   mensaje ya escrito, así que funcionan sin crear ninguna página. El número está en
-   **tres** sitios y debe coincidir en los tres:
-   - `functions.php` → constante `ACADEMY_WHATSAPP` (la usan los patrones).
-   - `parts/header.html` → botón *Inscríbete* y enlace *Contacto*.
-   - `parts/footer.html` → teléfono de contacto y botón *Escríbenos por WhatsApp*.
-
-   Formato: código de país + número, solo dígitos (`51993582936` = +51 993 582 936).
+3. **Teléfono de contacto:** la fuente única es `config/contact.json`; consulta
+   «Teléfono de contacto» más abajo.
 4. **Menús:** edita el bloque *Navegación* en el encabezado desde el Site Editor.
 5. **Redes sociales:** en el pie, sustituye los enlaces `#` por los perfiles reales.
 6. **Página de Eventos (opcional):** el tema incluye la plantilla *Página de Eventos*
    con el detalle de fechas por nivel. Ningún enlace apunta ahí todavía para no generar
    404; si la quieres, crea una página con el slug `eventos`, asígnale esa plantilla y
    enlázala desde el menú.
+
+### Teléfono de contacto
+
+La fuente única es `config/contact.json`. Ejemplo de formato válido:
+
+```json
+{
+  "phone": {
+    "e164": "+51993582936",
+    "display": "+51 993 582 936"
+  }
+}
+```
+
+- `phone.e164`: teléfono canónico en formato internacional, con prefijo `+` y solo
+  dígitos después.
+- `phone.display`: texto visible; debe contener exactamente los mismos dígitos que
+  `e164` y limitarse a dígitos y signos de formato telefónico (`+`, espacios, guiones,
+  puntos y paréntesis).
+- Al cambiar ambos valores y purgar la caché, se actualizan los CTA de WhatsApp, el
+  teléfono visible del footer y las FAQ, y el `telephone` del JSON-LD.
+- Si el archivo falta, no es legible, el JSON es inválido o los valores no cumplen el
+  contrato, el tema omite el teléfono y los enlaces afectados; no usa el número anterior.
+- El enlace «Contacto» del header usa el marcador `#academy-contact-whatsapp-info`, los
+  botones de WhatsApp usan bindings del tema y el teléfono visible se pinta con shortcodes
+  internos. No los sustituyas por URLs o textos fijos si quieres conservar la configuración
+  centralizada.
+- El contenido ya guardado en WordPress no se actualiza automáticamente. Revisa los
+  patrones ya insertados, las páginas y las partes de plantilla personalizadas desde el
+  Site Editor, y actualiza manualmente los valores antiguos.
+- Shortcodes internos: `[academy_contact_phone]` para el texto visible y
+  `[academy_contact_phone_link motivo="info" label="..."]` para un enlace. No los uses para
+  cambiar el número: edita el JSON.
+- Después de editar el JSON, purga la caché de página u objeto del sitio.
 
 ---
 
@@ -116,7 +144,8 @@ Shortcodes disponibles (también dentro de bloques HTML de los patrones):
 
 Los mensajes de WhatsApp se definen en `academy_whatsapp_message()` (functions.php) y todos
 indican que el contacto llega desde la web. Los enlaces de `parts/header.html` y
-`parts/footer.html` llevan los mismos textos ya codificados.
+`parts/footer.html` consumen esos mensajes mediante los bindings y el filtro del tema; no
+dupliques los textos.
 
 ---
 
@@ -138,6 +167,7 @@ indican que el contacto llega desde la web. Los enlaces de `parts/header.html` y
 academy/
 ├── style.css                 Cabecera del tema
 ├── functions.php             Soportes, encolados, programación, alumnos, SEO, bloque y patrones
+├── config/contact.json       Teléfono de contacto (fuente única)
 ├── theme.json                Colores, tipografía, spacing, layout, estilos globales
 ├── templates/                Plantillas (front-page, page-eventos, single, 404…)
 ├── parts/                    Header, footer, hero interior
@@ -178,6 +208,8 @@ El tema cubre lo esencial sin depender de un plugin de SEO:
 - Título del documento, meta description, canonical de portada cuando corresponde, Open
   Graph, Twitter Cards, iconos y datos estructurados JSON-LD (organización, sitio, docente y
   curso).
+- El `telephone` del JSON-LD se toma de `config/contact.json`; se omite si la configuración
+  no es válida.
 - Si detecta Yoast, Rank Math, AIOSEO o SEOPress, se aparta y deja que el plugin gestione esas
   etiquetas.
 - Los textos base están en `academy_seo_texts()` y la lógica en `academy_seo_head()` de
@@ -193,8 +225,10 @@ durante la adaptación documental.
 - **Fuentes:** para añadir pesos, coloca el `.woff2` en `assets/fonts/` y declara el
   `fontFace` en `theme.json`.
 - **Colores:** edítalos en `theme.json → settings.color.palette`. Se propagan a todo.
-- **Caché:** tras cambiar `theme.json`, si no ves cambios, limpia la caché de objetos
-  o desactiva/activa el tema.
+- **Teléfono:** edita `config/contact.json`, valida el JSON, purga la caché y revisa el
+  contenido persistido que conserve valores antiguos.
+- **Caché:** tras cambiar `theme.json` o `config/contact.json`, si no ves cambios, limpia la
+  caché de objetos o desactiva/activa el tema.
 - **Versionado:** sube `Version` en `style.css` y la constante `ACADEMY_VERSION` en
   `functions.php` para forzar refresco de CSS/JS.
 

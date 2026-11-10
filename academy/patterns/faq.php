@@ -37,7 +37,7 @@ $faqs = array(
 	),
 	array(
 		'q' => '¿Cómo me inscribo?',
-		'a' => 'Escríbenos por WhatsApp al +51 993 582 936 y te enviamos fechas, inversión y el proceso de inscripción. Las vacantes por nivel son limitadas para garantizar la práctica supervisada.',
+		'a' => 'Escríbenos por WhatsApp al [academy_contact_phone] y te enviamos fechas, inversión y el proceso de inscripción. Las vacantes por nivel son limitadas para garantizar la práctica supervisada.',
 	),
 );
 
@@ -57,7 +57,6 @@ foreach ( $faqs as $f ) {
 	);
 }
 
-$wa = academy_whatsapp_url( academy_whatsapp_message( 'consulta' ) );
 ?>
 <!-- wp:group {"tagName":"section","className":"section section--faq","anchor":"preguntas","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"backgroundColor":"cream","align":"full","layout":{"type":"constrained","contentSize":"1180px"}} -->
 <section class="wp-block-group alignfull section section--faq has-cream-background-color has-background" id="preguntas" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)"><!-- wp:paragraph {"align":"center","className":"section__eyebrow","textColor":"orange","fontSize":"small","style":{"typography":{"fontWeight":"600","textTransform":"uppercase","letterSpacing":"0.14em"},"spacing":{"margin":{"bottom":"var:preset|spacing|20"}}}} -->
@@ -85,6 +84,6 @@ $wa = academy_whatsapp_url( academy_whatsapp_message( 'consulta' ) );
 <!-- /wp:html -->
 
 <!-- wp:paragraph {"align":"center","className":"faq-more","style":{"spacing":{"margin":{"top":"var:preset|spacing|50"}}}} -->
-<p class="has-text-align-center faq-more" style="margin-top:var(--wp--preset--spacing--50)">¿Tienes otra pregunta? <a href="<?php echo $wa; ?>">Escríbenos por WhatsApp</a></p>
+<p class="has-text-align-center faq-more" style="margin-top:var(--wp--preset--spacing--50)">¿Tienes otra pregunta? [academy_contact_phone_link motivo="consulta" label="Escríbenos por WhatsApp"]</p>
 <!-- /wp:paragraph --></section>
 <!-- /wp:group -->

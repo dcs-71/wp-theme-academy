@@ -10,7 +10,6 @@
  * @package Academy
  */
 
-$wa = academy_whatsapp_url( academy_whatsapp_message( 'reserva' ) );
 ?>
 <!-- wp:group {"tagName":"section","className":"section alumni-hero","style":{"spacing":{"padding":{"top":"var:preset|spacing|70","bottom":"var:preset|spacing|70"}}},"backgroundColor":"navy","textColor":"base","align":"full","layout":{"type":"constrained","contentSize":"760px"}} -->
 <section class="wp-block-group alignfull section alumni-hero has-base-color has-navy-background-color has-text-color has-background" style="padding-top:var(--wp--preset--spacing--70);padding-bottom:var(--wp--preset--spacing--70)"><!-- wp:paragraph {"align":"center","className":"hero__eyebrow alumni-hero__eyebrow","fontSize":"small"} -->
@@ -42,8 +41,8 @@ $wa = academy_whatsapp_url( academy_whatsapp_message( 'reserva' ) );
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons {"layout":{"type":"flex","justifyContent":"center"},"style":{"spacing":{"margin":{"top":"var:preset|spacing|40"}}}} -->
-<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--40)"><!-- wp:button {"backgroundColor":"orange","textColor":"base"} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-base-color has-orange-background-color has-text-color has-background wp-element-button" href="<?php echo $wa; ?>">Reserva tu vacante</a></div>
+<div class="wp-block-buttons" style="margin-top:var(--wp--preset--spacing--40)"><!-- wp:button {"backgroundColor":"orange","textColor":"base","metadata":{"bindings":{"url":{"source":"academy/contact","args":{"field":"whatsapp_url","motivo":"reserva"}}}}} -->
+<div class="wp-block-button"><a class="wp-block-button__link has-base-color has-orange-background-color has-text-color has-background wp-element-button" href="#">Reserva tu vacante</a></div>
 <!-- /wp:button -->
 
 <!-- wp:button {"textColor":"base","className":"is-style-outline"} -->

@@ -21,16 +21,134 @@ if ( ! defined( 'ACADEMY_VERSION' ) ) {
 	define( 'ACADEMY_VERSION', '1.7.1' );
 }
 
-/**
- * Número de WhatsApp de Academy, en formato internacional y solo dígitos
- * (código de país + número, sin «+», espacios ni guiones).
+/* -------------------------------------------------------------------------
+ * Teléfono de contacto
  *
- * Es el único punto donde se declara el número para los patrones. Si cambia,
- * actualízalo aquí y también en `parts/header.html` y `parts/footer.html`,
- * que son HTML estático y no pueden llamar a PHP.
+ * La fuente única es `config/contact.json`. Las funciones siguientes validan
+ * el archivo y derivan las representaciones usadas por el tema. La lectura se
+ * cachea solo durante la petición actual.
+ * ---------------------------------------------------------------------- */
+
+/**
+ * Configuración válida del teléfono de contacto.
+ *
+ * @return array{e164:string,display:string}|array{}
  */
-if ( ! defined( 'ACADEMY_WHATSAPP' ) ) {
-	define( 'ACADEMY_WHATSAPP', '51993582936' );
+function academy_contact_phone_config() {
+	static $config = null;
+
+	if ( null !== $config ) {
+		return $config;
+	}
+
+	$config = array();
+	$path   = get_theme_file_path( 'config/contact.json' );
+
+	if ( ! is_readable( $path ) ) {
+		return $config;
+	}
+
+	$json = file_get_contents( $path ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+	if ( false === $json ) {
+		return $config;
+	}
+
+	$data = json_decode( $json, true );
+	if ( JSON_ERROR_NONE !== json_last_error() || ! is_array( $data ) ) {
+		return $config;
+	}
+
+	$phone   = isset( $data['phone'] ) && is_array( $data['phone'] ) ? $data['phone'] : array();
+	$e164    = isset( $phone['e164'] ) && is_string( $phone['e164'] ) ? trim( $phone['e164'] ) : '';
+	$display = isset( $phone['display'] ) && is_string( $phone['display'] ) ? trim( $phone['display'] ) : '';
+
+	if ( ! preg_match( '/^\+[1-9][0-9]{7,14}$/', $e164 ) ) {
+		return $config;
+	}
+
+	if ( '' === $display || strlen( $display ) > 32 || ! preg_match( '/^[0-9+(). -]+$/', $display ) ) {
+		return $config;
+	}
+
+	$e164_digits    = preg_replace( '/\D+/', '', $e164 );
+	$display_digits = preg_replace( '/\D+/', '', $display );
+
+	if ( $e164_digits !== $display_digits ) {
+		return $config;
+	}
+
+	$config = array(
+		'e164'    => $e164,
+		'display' => $display,
+	);
+
+	return $config;
+}
+
+/**
+ * Teléfono canónico en formato internacional.
+ *
+ * @return string
+ */
+function academy_contact_phone_e164() {
+	$config = academy_contact_phone_config();
+
+	return isset( $config['e164'] ) ? $config['e164'] : '';
+}
+
+/**
+ * Representación visible del teléfono.
+ *
+ * @return string
+ */
+function academy_contact_phone_display() {
+	$config = academy_contact_phone_config();
+
+	return isset( $config['display'] ) ? $config['display'] : '';
+}
+
+/**
+ * Dígitos del teléfono para enlaces de WhatsApp.
+ *
+ * @return string
+ */
+function academy_contact_phone_digits() {
+	$e164 = academy_contact_phone_e164();
+
+	return '' !== $e164 ? substr( $e164, 1 ) : '';
+}
+
+/**
+ * URL telefónica con el formato `tel:`.
+ *
+ * @return string
+ */
+function academy_contact_phone_tel_url() {
+	$e164 = academy_contact_phone_e164();
+
+	return '' !== $e164 ? 'tel:' . $e164 : '';
+}
+
+/**
+ * URL de WhatsApp sin escapar, para atributos y bindings.
+ *
+ * @param string $mensaje Texto con el que se abre la conversación.
+ * @return string
+ */
+function academy_contact_whatsapp_url( $mensaje = '' ) {
+	$phone = academy_contact_phone_digits();
+
+	if ( '' === $phone ) {
+		return '';
+	}
+
+	$url = 'https://wa.me/' . $phone;
+
+	if ( '' !== $mensaje ) {
+		$url = add_query_arg( 'text', rawurlencode( $mensaje ), $url );
+	}
+
+	return $url;
 }
 
 /**
@@ -43,13 +161,9 @@ if ( ! defined( 'ACADEMY_WHATSAPP' ) ) {
  * @return string URL escapada lista para un atributo `href`.
  */
 function academy_whatsapp_url( $mensaje = '' ) {
-	$url = 'https://wa.me/' . ACADEMY_WHATSAPP;
+	$url = academy_contact_whatsapp_url( $mensaje );
 
-	if ( '' !== $mensaje ) {
-		$url = add_query_arg( 'text', rawurlencode( $mensaje ), $url );
-	}
-
-	return esc_url( $url );
+	return '' !== $url ? esc_url( $url ) : '';
 }
 
 /**
@@ -58,9 +172,8 @@ function academy_whatsapp_url( $mensaje = '' ) {
  * Todos empiezan indicando que el contacto llega desde la web, para que el
  * equipo distinga estas consultas de las de redes sociales.
  *
- * Los enlaces de `parts/header.html` y `parts/footer.html` son HTML estático y
- * llevan estos mismos textos ya codificados: si se cambian aquí, actualízalos
- * también allí (motivos «inscripcion» e «info»).
+ * Los enlaces de `parts/header.html` y `parts/footer.html` usan estos mismos
+ * mensajes mediante los bindings y el filtro del tema; no dupliques los textos.
  *
  * @param string $motivo info | reserva | inscripcion | consulta.
  * @return string
@@ -85,6 +198,180 @@ function academy_whatsapp_message( $motivo = 'info' ) {
 	 */
 	return apply_filters( 'academy_whatsapp_message', $intro . ' ' . $texto, $motivo );
 }
+
+/**
+ * Shortcode del teléfono visible.
+ *
+ * @return string
+ */
+function academy_shortcode_contact_phone() {
+	return esc_html( academy_contact_phone_display() );
+}
+
+/**
+ * Shortcode de enlace visible de WhatsApp.
+ *
+ * @param array $atts Atributos del shortcode.
+ * @return string
+ */
+function academy_shortcode_contact_phone_link( $atts ) {
+	$atts = shortcode_atts(
+		array(
+			'motivo' => 'info',
+			'label'  => '',
+		),
+		$atts,
+		'academy_contact_phone_link'
+	);
+
+	$display = academy_contact_phone_display();
+	$url     = academy_contact_whatsapp_url( academy_whatsapp_message( $atts['motivo'] ) );
+
+	if ( '' === $display || '' === $url ) {
+		return '';
+	}
+
+	$label = '' !== $atts['label'] ? $atts['label'] : $display;
+
+	return '<a href="' . esc_url( $url ) . '">' . esc_html( $label ) . '</a>';
+}
+
+/**
+ * Registra los shortcodes de contacto.
+ */
+function academy_register_contact_shortcodes() {
+	add_shortcode( 'academy_contact_phone', 'academy_shortcode_contact_phone' );
+	add_shortcode( 'academy_contact_phone_link', 'academy_shortcode_contact_phone_link' );
+}
+add_action( 'init', 'academy_register_contact_shortcodes' );
+
+/**
+ * Resuelve el valor de un binding de contacto.
+ *
+ * @param array $source_args Argumentos del binding.
+ * @return string
+ */
+function academy_contact_binding_url( $source_args ) {
+	$field = isset( $source_args['field'] ) && is_string( $source_args['field'] ) ? $source_args['field'] : '';
+
+	if ( 'whatsapp_url' === $field ) {
+		$motivo = isset( $source_args['motivo'] ) && is_string( $source_args['motivo'] ) ? $source_args['motivo'] : 'info';
+		return academy_contact_whatsapp_url( academy_whatsapp_message( $motivo ) );
+	}
+
+	if ( 'tel_url' === $field ) {
+		return academy_contact_phone_tel_url();
+	}
+
+	return '';
+}
+
+/**
+ * Callback del binding source de contacto.
+ *
+ * @param array    $source_args    Argumentos del binding.
+ * @param WP_Block $block_instance Bloque.
+ * @param string   $attribute_name Atributo.
+ * @return string
+ */
+function academy_contact_block_binding_value( $source_args, $block_instance, $attribute_name ) {
+	return academy_contact_binding_url( $source_args );
+}
+
+/**
+ * Registra el binding source de contacto para `core/button`.
+ *
+ * WordPress 6.5 no admite Block Bindings en `core/navigation-link`; ese enlace
+ * se resuelve con el filtro focalizado de más abajo.
+ */
+function academy_register_contact_block_bindings() {
+	if ( ! function_exists( 'register_block_bindings_source' ) ) {
+		return;
+	}
+
+	register_block_bindings_source(
+		'academy/contact',
+		array(
+			'label'              => __( 'Academy contact', 'academy' ),
+			'get_value_callback' => 'academy_contact_block_binding_value',
+		)
+	);
+}
+add_action( 'init', 'academy_register_contact_block_bindings' );
+
+/**
+ * Motivo de WhatsApp asociado a un marcador de navegación.
+ *
+ * @param string $url URL del enlace.
+ * @return string
+ */
+function academy_contact_navigation_motivo( $url ) {
+	$markers = array(
+		'#academy-contact-whatsapp-info'        => 'info',
+		'#academy-contact-whatsapp-inscripcion' => 'inscripcion',
+	);
+
+	return isset( $markers[ $url ] ) ? $markers[ $url ] : '';
+}
+
+/**
+ * Resuelve el enlace de navegación de contacto sin Block Bindings.
+ *
+ * @param string $block_content HTML del bloque.
+ * @param array  $block         Bloque parseado.
+ * @return string
+ */
+function academy_filter_contact_navigation_link( $block_content, $block ) {
+	if ( ! isset( $block['blockName'] ) || 'core/navigation-link' !== $block['blockName'] ) {
+		return $block_content;
+	}
+
+	$url    = isset( $block['attrs']['url'] ) && is_string( $block['attrs']['url'] ) ? $block['attrs']['url'] : '';
+	$motivo = academy_contact_navigation_motivo( $url );
+
+	if ( '' === $motivo ) {
+		return $block_content;
+	}
+
+	$resolved = academy_contact_whatsapp_url( academy_whatsapp_message( $motivo ) );
+
+	if ( '' === $resolved || ! class_exists( 'WP_HTML_Tag_Processor' ) ) {
+		return '';
+	}
+
+	$tags = new WP_HTML_Tag_Processor( $block_content );
+	if ( $tags->next_tag( 'a' ) ) {
+		$tags->set_attribute( 'href', $resolved );
+		return $tags->get_updated_html();
+	}
+
+	return '';
+}
+add_filter( 'render_block', 'academy_filter_contact_navigation_link', 10, 2 );
+
+/**
+ * Omite los botones vinculados al teléfono si la configuración no es válida.
+ *
+ * @param string $block_content HTML del bloque.
+ * @param array  $block         Bloque parseado.
+ * @return string
+ */
+function academy_filter_contact_button( $block_content, $block ) {
+	if ( ! isset( $block['blockName'] ) || 'core/button' !== $block['blockName'] ) {
+		return $block_content;
+	}
+
+	$binding = isset( $block['attrs']['metadata']['bindings']['url'] ) ? $block['attrs']['metadata']['bindings']['url'] : array();
+
+	if ( ! is_array( $binding ) || ! isset( $binding['source'] ) || 'academy/contact' !== $binding['source'] ) {
+		return $block_content;
+	}
+
+	$args = isset( $binding['args'] ) && is_array( $binding['args'] ) ? $binding['args'] : array();
+
+	return '' === academy_contact_binding_url( $args ) ? '' : $block_content;
+}
+add_filter( 'render_block', 'academy_filter_contact_button', 10, 2 );
 
 /* -------------------------------------------------------------------------
  * Programación (fechas de cada nivel)
@@ -317,11 +604,11 @@ function academy_register_schedule_shortcodes() {
 add_action( 'init', 'academy_register_schedule_shortcodes' );
 
 /**
- * Ejecuta los shortcodes de la programación dentro de los bloques HTML.
+ * Ejecuta los shortcodes dinámicos del tema dentro de bloques HTML y párrafos.
  *
  * WordPress procesa los shortcodes de las plantillas antes de renderizar los
  * patrones, así que los de los patrones quedarían como texto. Se procesan
- * aquí, en cada bloque HTML que los contenga.
+ * aquí, en cada bloque que los contenga. Incluye programación y contacto.
  *
  * @param string $html HTML del bloque.
  * @return string
@@ -796,7 +1083,6 @@ function academy_schema_graph() {
 			),
 			'image'              => get_theme_file_uri( 'assets/images/og-academy.jpg' ),
 			'description'        => 'Unidad de formación en fisioterapia invasiva de los centros Total Therapy en Lima, Perú.',
-			'telephone'          => '+' . ACADEMY_WHATSAPP,
 			'address'            => array(
 				'@type'           => 'PostalAddress',
 				'addressLocality' => 'Lima',
@@ -817,6 +1103,11 @@ function academy_schema_graph() {
 			'publisher'     => array( '@id' => $org ),
 		),
 	);
+
+	$phone = academy_contact_phone_e164();
+	if ( '' !== $phone ) {
+		$graph[0]['telephone'] = $phone;
+	}
 
 	if ( is_front_page() ) {
 		$person = $home . '#chantal-paucar';

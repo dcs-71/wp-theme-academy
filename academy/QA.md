@@ -93,6 +93,30 @@ Lista de verificación para validar el tema en un WordPress real (6.5+). Marca c
 - [ ] `ABSPATH` check en `functions.php`.
 - [ ] Sin lógica de negocio (pagos/reservas/CPT complejos) dentro del tema.
 
+## 10. Teléfono de contacto configurable
+
+> Estas comprobaciones quedan pendientes de la validación humana en WordPress 6.5+. No se
+> ejecutaron pruebas funcionales durante la implementación.
+
+- [ ] `academy/config/contact.json` existe, `jq empty` pasa y `e164` cumple el formato
+      internacional.
+- [ ] `display` contiene los mismos dígitos que `e164` y solo usa caracteres de formato
+      telefónico.
+- [ ] No quedan usos activos de `ACADEMY_WHATSAPP` ni del número anterior fuera del JSON.
+- [ ] Con configuración válida, el teléfono visible del footer y las FAQ, los enlaces de
+      WhatsApp del header/footer/patrones y el `telephone` del JSON-LD usan el valor
+      configurado.
+- [ ] Los mensajes `info`, `reserva`, `inscripcion` y `consulta` se conservan.
+- [ ] El enlace «Contacto» del header resuelve a WhatsApp; el marcador
+      `#academy-contact-whatsapp-info` no queda visible en el frontend.
+- [ ] Con el archivo ausente o inválido en un entorno de desarrollo, no aparece el número
+      anterior, no se generan enlaces incorrectos, no hay errores PHP visibles y el
+      `telephone` del JSON-LD se omite.
+- [ ] Tras purgar la caché y recargar, un cambio en el JSON se refleja en todos los usos
+      activos.
+- [ ] Se revisaron patrones insertados, páginas y partes de plantilla personalizadas; los
+      valores antiguos se actualizaron manualmente.
+
 ---
 
 ## Notas

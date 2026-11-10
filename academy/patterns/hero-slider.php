@@ -24,7 +24,8 @@ $slides = array(
 		'title'     => 'Formación Internacional en Punción Seca',
 		'text'      => 'Dirigida por la Mg. Chantal Páucar en alianza con Seminarios Travell &amp; Simons. Tres niveles presenciales con práctica supervisada en grupos reducidos.',
 		'cta'       => 'Reserva tu vacante',
-		'url'       => academy_whatsapp_url( academy_whatsapp_message( 'reserva' ) ),
+		'url'       => '#',
+		'binding'   => 'reserva',
 		'secondary' => array( 'Ver la ruta de formación', '#ruta' ),
 	),
 	array(
@@ -39,21 +40,65 @@ $slides = array(
 		'secondary' => array( 'Temario completo', '#programa' ),
 	),
 	array(
-		'img'       => 'assets/images/hero-3.webp',
-		'alt'       => 'Docentes supervisando la práctica de punción seca en camilla durante la formación',
-		'level'     => 2,
-		'eyebrow'   => 'Excelencia clínica',
-		'title'     => 'Práctica supervisada en grupos reducidos',
-		'text'      => 'Acompañamiento docente en cada sesión, material de práctica completo y manual impreso a color por módulo, en nuestra sede de Lima.',
-		'cta'       => 'Conoce el programa',
-		'url'       => '#programa',
-		'secondary' => array( 'Escríbenos', academy_whatsapp_url( academy_whatsapp_message( 'info' ) ) ),
+		'img'               => 'assets/images/hero-3.webp',
+		'alt'               => 'Docentes supervisando la práctica de punción seca en camilla durante la formación',
+		'level'             => 2,
+		'eyebrow'           => 'Excelencia clínica',
+		'title'             => 'Práctica supervisada en grupos reducidos',
+		'text'              => 'Acompañamiento docente en cada sesión, material de práctica completo y manual impreso a color por módulo, en nuestra sede de Lima.',
+		'cta'               => 'Conoce el programa',
+		'url'               => '#programa',
+		'secondary'         => array( 'Escríbenos', '#' ),
+		'secondary_binding' => 'info',
 	),
 );
 ?>
 <!-- wp:academy/hero-slider {"autoplay":true,"loop":true,"delay":7000,"align":"full"} -->
 <?php foreach ( $slides as $s ) : ?>
-<?php $bg = academy_image_uri( $s['img'] ); ?>
+<?php
+$bg = academy_image_uri( $s['img'] );
+
+$primary_attrs = array(
+	'backgroundColor' => 'orange',
+	'textColor'       => 'base',
+);
+if ( ! empty( $s['binding'] ) ) {
+	$primary_attrs['metadata'] = array(
+		'bindings' => array(
+			'url' => array(
+				'source' => 'academy/contact',
+				'args'   => array(
+					'field'  => 'whatsapp_url',
+					'motivo' => $s['binding'],
+				),
+			),
+		),
+	);
+}
+$primary_json = wp_json_encode( $primary_attrs, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+
+$secondary_attrs = array(
+	'textColor' => 'base',
+	'className' => 'is-style-outline',
+);
+if ( ! empty( $s['secondary_binding'] ) ) {
+	$secondary_attrs['metadata'] = array(
+		'bindings' => array(
+			'url' => array(
+				'source' => 'academy/contact',
+				'args'   => array(
+					'field'  => 'whatsapp_url',
+					'motivo' => $s['secondary_binding'],
+				),
+			),
+		),
+	);
+}
+$secondary_json = wp_json_encode( $secondary_attrs, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+
+$primary_href   = ! empty( $s['binding'] ) ? '#' : $s['url'];
+$secondary_href = ! empty( $s['secondary_binding'] ) ? '#' : $s['secondary'][1];
+?>
 <!-- wp:cover {"url":"<?php echo $bg; ?>","alt":"<?php echo esc_attr( $s['alt'] ); ?>","dimRatio":70,"overlayColor":"midnight","minHeight":640,"className":"academy-slide","align":"full","layout":{"type":"constrained","contentSize":"1180px"}} -->
 <div class="wp-block-cover alignfull academy-slide" style="min-height:640px"><span aria-hidden="true" class="wp-block-cover__background has-midnight-background-color has-background-dim-70 has-background-dim"></span><img class="wp-block-cover__image-background" alt="<?php echo esc_attr( $s['alt'] ); ?>" src="<?php echo $bg; ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container"><!-- wp:group {"className":"hero__content","layout":{"type":"constrained","contentSize":"660px","justifyContent":"left"}} -->
 <div class="wp-block-group hero__content"><!-- wp:paragraph {"className":"hero__eyebrow","fontSize":"small"} -->
@@ -69,12 +114,12 @@ $slides = array(
 <!-- /wp:paragraph -->
 
 <!-- wp:buttons {"className":"hero__actions"} -->
-<div class="wp-block-buttons hero__actions"><!-- wp:button {"backgroundColor":"orange","textColor":"base"} -->
-<div class="wp-block-button"><a class="wp-block-button__link has-base-color has-orange-background-color has-text-color has-background wp-element-button" href="<?php echo esc_url( $s['url'] ); ?>"><?php echo esc_html( $s['cta'] ); ?></a></div>
+<div class="wp-block-buttons hero__actions"><!-- wp:button <?php echo $primary_json; ?> -->
+<div class="wp-block-button"><a class="wp-block-button__link has-base-color has-orange-background-color has-text-color has-background wp-element-button" href="<?php echo esc_url( $primary_href ); ?>"><?php echo esc_html( $s['cta'] ); ?></a></div>
 <!-- /wp:button -->
 
-<!-- wp:button {"textColor":"base","className":"is-style-outline"} -->
-<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-base-color has-text-color wp-element-button" href="<?php echo esc_url( $s['secondary'][1] ); ?>"><?php echo esc_html( $s['secondary'][0] ); ?></a></div>
+<!-- wp:button <?php echo $secondary_json; ?> -->
+<div class="wp-block-button is-style-outline"><a class="wp-block-button__link has-base-color has-text-color wp-element-button" href="<?php echo esc_url( $secondary_href ); ?>"><?php echo esc_html( $s['secondary'][0] ); ?></a></div>
 <!-- /wp:button --></div>
 <!-- /wp:buttons --></div>
 <!-- /wp:group --></div></div>

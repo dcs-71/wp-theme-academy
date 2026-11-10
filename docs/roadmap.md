@@ -61,14 +61,19 @@ implica aceptación funcional ni verificación de compatibilidad.
 | Instrucciones operativas | `AGENTS.md` creado y aprobado el 2026-11-10 |
 | Roadmap | Este documento |
 | Correcciones documentales | Aplicadas en README (raíz y tema), QA y DESIGN_IMPLEMENTATION |
-| SPEC e historias | No creadas todavía; se prepararán para el próximo incremento real |
-| Revisión final | Aprobada el 2026-11-10 |
+| SPEC e historias | `001-contact-phone-config` y `US-001` implementadas; pendiente de aceptación funcional/visual; SPEC no cerrada |
+| Revisión final de la adaptación | Aprobada el 2026-11-10 |
 
 ## Próximo incremento funcional
 
-**Por definir.** No se asignan prioridades, fechas, funcionalidades ni SPEC históricas. Cuando
-se elija un cambio real, se preparará una SPEC pequeña y su historia con alcance, criterios
-comprobables y estado de aprobación.
+**Centralización del teléfono de contacto en JSON** — SPEC
+[`001-contact-phone-config`](../specs/001-contact-phone-config/spec.md) e historia
+[`US-001`](../specs/stories/US-001-centralize-contact-phone.md).
+
+Estado: **PENDIENTE_ACEPTACION**. La implementación está realizada en la rama
+`001-contact-phone-config`, sin commit. No se ha validado en WordPress, no se ha actualizado
+el contenido publicado y la SPEC no se declara cerrada. Las prioridades y fechas restantes del
+roadmap siguen sin definir.
 
 ## Documentación canónica
 
@@ -80,5 +85,5 @@ comprobables y estado de aprobación.
 - [`academy-programacion/readme.txt`](../academy-programacion/readme.txt) — documentación del
   plugin.
 - [`AGENTS.md`](../AGENTS.md) — instrucciones operativas para IA.
-- [`.specify/memory/constitution.md`](../.specify/memory/constitution.md) — constitución en
-  borrador.
+- [`.specify/memory/constitution.md`](../.specify/memory/constitution.md) — constitución
+  aprobada.
