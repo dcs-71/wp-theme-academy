@@ -32,7 +32,7 @@ if ( ! defined( 'ACADEMY_VERSION' ) ) {
 /**
  * Configuración válida del teléfono de contacto.
  *
- * @return array{e164:string,display:string}|array{}
+ * @return array{number:string,display:string}|array{}
  */
 function academy_contact_phone_config() {
 	static $config = null;
@@ -59,10 +59,10 @@ function academy_contact_phone_config() {
 	}
 
 	$phone   = isset( $data['phone'] ) && is_array( $data['phone'] ) ? $data['phone'] : array();
-	$e164    = isset( $phone['e164'] ) && is_string( $phone['e164'] ) ? trim( $phone['e164'] ) : '';
+	$number  = isset( $phone['number'] ) && is_string( $phone['number'] ) ? trim( $phone['number'] ) : '';
 	$display = isset( $phone['display'] ) && is_string( $phone['display'] ) ? trim( $phone['display'] ) : '';
 
-	if ( ! preg_match( '/^\+[1-9][0-9]{7,14}$/', $e164 ) ) {
+	if ( ! preg_match( '/^\+[1-9][0-9]{7,14}$/', $number ) ) {
 		return $config;
 	}
 
@@ -70,15 +70,15 @@ function academy_contact_phone_config() {
 		return $config;
 	}
 
-	$e164_digits    = preg_replace( '/\D+/', '', $e164 );
+	$number_digits  = preg_replace( '/\D+/', '', $number );
 	$display_digits = preg_replace( '/\D+/', '', $display );
 
-	if ( $e164_digits !== $display_digits ) {
+	if ( $number_digits !== $display_digits ) {
 		return $config;
 	}
 
 	$config = array(
-		'e164'    => $e164,
+		'number'  => $number,
 		'display' => $display,
 	);
 
@@ -86,14 +86,14 @@ function academy_contact_phone_config() {
 }
 
 /**
- * Teléfono canónico en formato internacional.
+ * Teléfono canónico en formato internacional E.164.
  *
  * @return string
  */
 function academy_contact_phone_e164() {
 	$config = academy_contact_phone_config();
 
-	return isset( $config['e164'] ) ? $config['e164'] : '';
+	return isset( $config['number'] ) ? $config['number'] : '';
 }
 
 /**

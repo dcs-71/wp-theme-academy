@@ -98,9 +98,9 @@ Lista de verificación para validar el tema en un WordPress real (6.5+). Marca c
 > Estas comprobaciones quedan pendientes de la validación humana en WordPress 6.5+. No se
 > ejecutaron pruebas funcionales durante la implementación.
 
-- [ ] `academy/config/contact.json` existe, `jq empty` pasa y `e164` cumple el formato
-      internacional.
-- [ ] `display` contiene los mismos dígitos que `e164` y solo usa caracteres de formato
+- [ ] `academy/config/contact.json` existe, `jq empty` pasa y `number` cumple el formato
+      internacional E.164.
+- [ ] `display` contiene los mismos dígitos que `number` y solo usa caracteres de formato
       telefónico.
 - [ ] No quedan usos activos de `ACADEMY_WHATSAPP` ni del número anterior fuera del JSON.
 - [ ] Con configuración válida, el teléfono visible del footer y las FAQ, los enlaces de

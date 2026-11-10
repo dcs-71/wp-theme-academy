@@ -64,16 +64,16 @@ La fuente única es `config/contact.json`. Ejemplo de formato válido:
 ```json
 {
   "phone": {
-    "e164": "+51993582936",
-    "display": "+51 993 582 936"
+    "number": "+51908932632",
+    "display": "+51 908 932 632"
   }
 }
 ```
 
-- `phone.e164`: teléfono canónico en formato internacional, con prefijo `+` y solo
-  dígitos después.
+- `phone.number`: teléfono canónico en formato internacional E.164, con prefijo `+` y
+  solo dígitos después.
 - `phone.display`: texto visible; debe contener exactamente los mismos dígitos que
-  `e164` y limitarse a dígitos y signos de formato telefónico (`+`, espacios, guiones,
+  `number` y limitarse a dígitos y signos de formato telefónico (`+`, espacios, guiones,
   puntos y paréntesis).
 - Al cambiar ambos valores y purgar la caché, se actualizan los CTA de WhatsApp, el
   teléfono visible del footer y las FAQ, y el `telephone` del JSON-LD.

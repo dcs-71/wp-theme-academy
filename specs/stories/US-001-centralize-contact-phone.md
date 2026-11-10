@@ -6,7 +6,7 @@
 
 **Tipo**: Funcionalidad / configuración del tema
 
-**Estado**: PENDIENTE_ACEPTACION
+**Estado**: PENDIENTE_ACEPTACION — ajuste de esquema pendiente de comprobación final
 
 **Fecha de preparación**: 2026-11-10
 
@@ -26,11 +26,11 @@ El teléfono de contacto aparece hoy en varios lugares del tema con distintas re
 
 La constante centraliza solo una parte. Los enlaces estáticos del header/footer y el texto visible pueden quedar desincronizados si cambia el número. El objetivo es que una única edición del JSON actualice todos los usos activos controlados por el tema, sin añadir un panel administrativo ni una opción en base de datos.
 
-## 2. Usos encontrados
+## 2. Usos encontrados en el estado inicial
 
-### Usos activos
+### Usos activos del estado inicial
 
-| Uso | Archivo y referencia | Representación actual |
+| Uso | Archivo y referencia | Representación inicial |
 |---|---|---|
 | Constante del tema | `academy/functions.php:32-34` | `51993582936` |
 | Generador de URL de WhatsApp | `academy/functions.php:45-52` | `https://wa.me/51993582936` |
@@ -70,16 +70,16 @@ Un único archivo versionado en el tema:
 ```json
 {
   "phone": {
-    "e164": "+51993582936",
-    "display": "+51 993 582 936"
+    "number": "+51908932632",
+    "display": "+51 908 932 632"
   }
 }
 ```
 
 Reglas:
 
-- `phone.e164` es el teléfono canónico, obligatorio, con formato internacional y prefijo `+`.
-- `phone.display` es la representación visible, obligatoria, no vacía, con los mismos dígitos que `e164` y limitada a caracteres de formato telefónico.
+- `phone.number` es el teléfono canónico, obligatorio, en formato internacional E.164 y prefijo `+`.
+- `phone.display` es la representación visible, obligatoria, no vacía, con los mismos dígitos que `number` y limitada a caracteres de formato telefónico.
 - Ambos campos son necesarios. Si falta uno, el teléfono está vacío, el formato no es válido o los dígitos no coinciden, la configuración es inválida.
 - El valor inicial del JSON es el número actual, declarado explícitamente como configuración. No queda como fallback en código.
 - No se crea panel administrativo, opción de base de datos ni endpoint REST.
@@ -91,15 +91,15 @@ Reglas:
 - Decodificar el JSON y validar su estructura y valores.
 - No usar `wp_json_file_decode()` como lectura principal si su comportamiento ante archivo ausente o JSON inválido produce `wp_trigger_error()`; la lectura debe ser segura y silenciosa en frontend.
 - Cachear el resultado en memoria durante la petición.
-- Ante archivo ausente, JSON inválido, estructura incorrecta, `e164` inválido o `display` vacío: devolver una configuración vacía y no emitir el número anterior.
+- Ante archivo ausente, JSON inválido, estructura incorrecta, `number` inválido o `display` vacío: devolver una configuración vacía y no emitir el número anterior.
 - No producir errores PHP visibles ni enlaces con un número incorrecto.
 
 ### Formatos derivados
 
 - **Visualización**: `phone.display`.
-- **Enlace telefónico**: `tel:` + `phone.e164` (por ejemplo, `tel:+51993582936`).
-- **WhatsApp**: `https://wa.me/` + dígitos de `e164` sin `+`, conservando el parámetro `text` y los mensajes actuales.
-- **JSON-LD**: `telephone` con `phone.e164`; si la configuración no es válida, omitir la propiedad.
+- **Enlace telefónico**: `tel:` + `phone.number` (por ejemplo, `tel:+51908932632`).
+- **WhatsApp**: `https://wa.me/` + dígitos de `number` sin `+`, conservando el parámetro `text` y los mensajes actuales.
+- **JSON-LD**: `telephone` con `phone.number`; si la configuración no es válida, omitir la propiedad.
 
 ### Integración propuesta
 
@@ -170,7 +170,7 @@ Los enlaces estáticos del header/footer deben pasar a usar la misma función, d
 - **Contenido persistido**: los patrones ya insertados y las partes de plantilla personalizadas no heredan automáticamente los nuevos bindings, shortcodes o marcadores.
 - **Caché**: una página cacheada puede seguir mostrando el número anterior hasta purgar la caché.
 - **Configuración inválida**: el fallo seguro puede dejar zonas de contacto vacías; es preferible a mostrar un número incorrecto.
-- **Duplicación de representaciones**: `e164` y `display` deben validarse para que sus dígitos coincidan.
+- **Duplicación de representaciones**: `number` y `display` deben validarse para que sus dígitos coincidan.
 - **Constante existente**: no se encontraron consumidores de `ACADEMY_WHATSAPP` fuera de `academy/functions.php`; se elimina. Un child theme externo no presente en el repositorio podría consumirla, pero no hay evidencia que justifique conservarla.
 - **Editor**: los botones con bindings y el marcador del enlace de navegación deben seguir siendo editables y comprensibles en el Site Editor.
 
@@ -180,16 +180,16 @@ Los enlaces estáticos del header/footer deben pasar a usar la misma función, d
 - **Patrones ya insertados antes del cambio**: conservan el markup guardado; hay que reinsertarlos o actualizar manualmente sus enlaces/textos.
 - **Partes de plantilla del tema**: el archivo del tema se actualiza, pero si el sitio guardó una copia personalizada en la base de datos, esa copia tiene prioridad; hay que actualizarla o restaurarla desde el Site Editor.
 - **Páginas y contenido libre**: revisar el número/URL antiguos y actualizarlos manualmente.
-- **Aceptación**: incluir una búsqueda del número y de `wa.me/51993582936` en el contenido renderizado y en el editor; documentar los lugares que requieren actualización manual.
+- **Aceptación**: incluir una búsqueda del número y de `wa.me/51908932632` en el contenido renderizado y en el editor; documentar los lugares que requieren actualización manual.
 - **No** se añade un filtro de compatibilidad que reemplace el número antiguo en tiempo de render, para no introducir un fallback oculto ni una capa adicional.
 
 ## 9. Criterios de aceptación
 
 1. **AC-01 — Fuente única**: el teléfono activo del tema se configura solo en `academy/config/contact.json`; no quedan valores literales activos en `functions.php`, header, footer ni patrones.
-2. **AC-02 — Propagación**: al cambiar `e164` y `display` en el JSON, tras recargar y purgar caché, el número visible, los enlaces de WhatsApp y el `telephone` del JSON-LD usan los nuevos valores.
-3. **AC-03 — Formatos**: el texto visible coincide con `display`; el enlace telefónico, si se usa, es `tel:+...`; los enlaces de WhatsApp usan los dígitos de `e164` y conservan el mensaje correspondiente.
+2. **AC-02 — Propagación**: al cambiar `number` y `display` en el JSON, tras recargar y purgar caché, el número visible, los enlaces de WhatsApp y el `telephone` del JSON-LD usan los nuevos valores.
+3. **AC-03 — Formatos**: el texto visible coincide con `display`; el enlace telefónico, si se usa, es `tel:+...`; los enlaces de WhatsApp usan los dígitos de `number` y conservan el mensaje correspondiente.
 4. **AC-04 — Mensajes**: los textos de `info`, `reserva`, `inscripcion` y `consulta` no cambian.
-5. **AC-05 — Fallo seguro**: con archivo ausente, JSON inválido, `e164` inválido o `display` vacío, no aparece el número anterior ni se generan enlaces incorrectos; no hay errores PHP visibles; el `telephone` del JSON-LD se omite.
+5. **AC-05 — Fallo seguro**: con archivo ausente, JSON inválido, `number` inválido o `display` vacío, no aparece el número anterior ni se generan enlaces incorrectos; no hay errores PHP visibles; el `telephone` del JSON-LD se omite.
 6. **AC-06 — Diseño**: las clases, etiquetas, estructura visual y comportamiento de los componentes no cambian.
 7. **AC-07 — Páginas y patrones**: los nuevos insertos usan bindings, shortcodes o el marcador de navegación; los insertos previos se revisan y actualizan según el procedimiento documentado.
 8. **AC-08 — Documentación**: `README.md` y `QA.md` explican el JSON, la validación, la purga de caché y la migración de contenido persistido.
@@ -216,21 +216,22 @@ Aprobadas por la persona responsable el 2026-11-10:
 1. **Fallo seguro**: ocultar/omitir los componentes de teléfono y WhatsApp cuando la configuración no es válida, sin texto de reemplazo y sin usar el número anterior.
 2. **Contenido persistido**: migración manual documentada, sin filtro de compatibilidad para el número anterior.
 3. **Constante `ACADEMY_WHATSAPP`**: eliminarla del tema y sustituir sus usos por helpers; no hay consumidores en el repositorio.
-4. **Representación visible**: exigir `display` en el JSON y validar que sus dígitos coincidan con `e164`.
+4. **Representación visible**: exigir `display` en el JSON y validar que sus dígitos coincidan con `number`.
 5. **Compatibilidad**: usar Block Bindings en `core/button` para WordPress 6.5 y un filtro focalizado de render para `core/navigation-link`, que no está soportado por Block Bindings en esa versión.
 
 ## 12. Aprobación
 
-**Estado**: PENDIENTE_ACEPTACION.
+**Estado**: PENDIENTE_ACEPTACION — ajuste de esquema pendiente de comprobación final.
 
 Contrato aprobado el 2026-11-10. Implementación completada en la rama
 `001-contact-phone-config`; queda pendiente la aceptación funcional y visual de la persona
 responsable. La aprobación del contrato no autoriza commit, merge, push ni cambios en
 producción.
 
-## 13. Registro de implementación
+## 13. Registro de implementación base
 
-**Rama**: `001-contact-phone-config`, sin commit.
+**Rama**: `001-contact-phone-config`. La implementación base está en el commit existente
+`cc779b5`; este ajuste de esquema queda sin commit.
 
 **Archivos implementados**:
 
@@ -258,3 +259,22 @@ producción.
   personalizadas.
 - Purgar la caché del sitio y comprobar los casos válido e inválido.
 - Confirmar que los mensajes de WhatsApp y el diseño no cambiaron.
+
+## 14. Ajuste de esquema: `phone.e164` → `phone.number`
+
+**Fecha**: 2026-11-10
+
+**Estado**: pendiente de comprobación final.
+
+- Se renombró la propiedad JSON `phone.e164` a `phone.number`.
+- No se añadió compatibilidad con la clave anterior.
+- Se mantienen los helpers públicos; `academy_contact_phone_e164()` conserva su nombre
+  porque devuelve un valor en formato E.164, no porque el JSON use esa clave.
+- Se mantienen el número oficial `+51908932632`, el display `+51 908 932 632`, los mensajes
+  de WhatsApp, los enlaces y el comportamiento ante configuración inválida.
+- Verificación focalizada: sintaxis JSON, formato E.164, coincidencia de dígitos, `php -l`,
+  ausencia de referencias de código a `phone.e164` y diff revisado.
+- **Validación previa confirmada**: la persona responsable confirmó el funcionamiento de la
+  implementación anterior en WordPress el 2026-11-10. Esa confirmación corresponde al estado
+  previo y no se atribuye a este renombrado, que sigue pendiente de comprobación en
+  WordPress.
