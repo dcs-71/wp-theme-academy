@@ -6,13 +6,13 @@
 
 **Tipo**: Funcionalidad / configuración del tema
 
-**Estado**: PENDIENTE_ACEPTACION — ajuste de esquema pendiente de comprobación final
+**Estado**: CERRADA
 
 **Fecha de preparación**: 2026-11-10
 
 **Aprobación del contrato**: 2026-11-10
 
-**Alcance de esta etapa**: Build de US-001. Las decisiones aprobadas se registran en la sección 11. No se ejecutan commits, merges, pushes ni operaciones sobre la base de datos.
+**Alcance de esta etapa**: Build de US-001. Las decisiones aprobadas se registran en la sección 11. El cierre y la aceptación se registran en las secciones 12–14.
 
 ## 1. Contexto y problema
 
@@ -221,17 +221,20 @@ Aprobadas por la persona responsable el 2026-11-10:
 
 ## 12. Aprobación
 
-**Estado**: PENDIENTE_ACEPTACION — ajuste de esquema pendiente de comprobación final.
+**Estado**: CERRADA.
 
-Contrato aprobado el 2026-11-10. Implementación completada en la rama
-`001-contact-phone-config`; queda pendiente la aceptación funcional y visual de la persona
-responsable. La aprobación del contrato no autoriza commit, merge, push ni cambios en
-producción.
+Contrato aprobado el 2026-11-10. Implementación base y ajuste de esquema integrados en
+`main`. Aceptación funcional y visual confirmada por la persona responsable el 2026-11-10,
+incluido el renombrado `phone.e164` → `phone.number`.
+
+Esta aceptación es funcional y visual. No implica que se hayan ejecutado suites E2E,
+pruebas automatizadas adicionales ni verificaciones de compatibilidad WordPress/PHP no
+registradas.
 
 ## 13. Registro de implementación base
 
-**Rama**: `001-contact-phone-config`. La implementación base está en el commit existente
-`cc779b5`; este ajuste de esquema queda sin commit.
+**Rama**: `001-contact-phone-config`. La implementación base está en el commit `cc779b5` y
+el ajuste de esquema en `8c6c996`; ambos se integraron en `main` por fast-forward.
 
 **Archivos implementados**:
 
@@ -246,25 +249,25 @@ producción.
 - `php -l` sobre todos los PHP del tema: correcto.
 - `jq empty` sobre `config/contact.json`, `theme.json` y `block.json`: correcto.
 - Comentarios de bloque JSON estáticos de header, footer y patrones: correctos.
-- Búsqueda del número anterior: solo aparece en `config/contact.json` como valor inicial y
-  en documentación/ejemplos; no quedan usos activos hardcodeados.
+- Búsqueda del número anterior `51993582936`: no aparece en el JSON ni en código activo;
+  solo permanece en la tabla histórica de esta historia.
 - `ACADEMY_WHATSAPP` eliminada; no quedan consumidores en el repositorio.
-- No se ejecutaron pruebas funcionales ni E2E, ni se levantó WordPress.
+- No se ejecutaron suites E2E ni pruebas automatizadas adicionales.
 
-**Pendiente de aceptación**:
+**Aceptación humana**:
 
-- Validar en WordPress 6.5+ los bindings de `core/button`, el filtro del enlace de
-  navegación y los shortcodes de texto visible.
-- Revisar y actualizar manualmente patrones insertados, páginas y partes de plantilla
-  personalizadas.
-- Purgar la caché del sitio y comprobar los casos válido e inválido.
-- Confirmar que los mensajes de WhatsApp y el diseño no cambiaron.
+- Aceptación funcional y visual confirmada por la persona responsable el 2026-11-10,
+  incluido el ajuste `phone.e164` → `phone.number`.
+- La validación humana no se atribuye a pruebas técnicas no ejecutadas ni a verificaciones
+  de compatibilidad WordPress/PHP no registradas.
+- El contenido persistido y la caché del sitio no se inspeccionaron desde este repositorio;
+  no se declara su actualización automática.
 
 ## 14. Ajuste de esquema: `phone.e164` → `phone.number`
 
 **Fecha**: 2026-11-10
 
-**Estado**: pendiente de comprobación final.
+**Estado**: CERRADA — aceptación final confirmada por la persona responsable el 2026-11-10.
 
 - Se renombró la propiedad JSON `phone.e164` a `phone.number`.
 - No se añadió compatibilidad con la clave anterior.
@@ -274,7 +277,7 @@ producción.
   de WhatsApp, los enlaces y el comportamiento ante configuración inválida.
 - Verificación focalizada: sintaxis JSON, formato E.164, coincidencia de dígitos, `php -l`,
   ausencia de referencias de código a `phone.e164` y diff revisado.
-- **Validación previa confirmada**: la persona responsable confirmó el funcionamiento de la
-  implementación anterior en WordPress el 2026-11-10. Esa confirmación corresponde al estado
-  previo y no se atribuye a este renombrado, que sigue pendiente de comprobación en
-  WordPress.
+- **Aceptación final confirmada**: la persona responsable confirmó el funcionamiento y dio
+  aceptación funcional y visual de la implementación final el 2026-11-10, incluido el
+  renombrado. La validación previa del estado anterior también quedó registrada; no se
+  atribuyen a este cierre verificaciones técnicas o de compatibilidad no ejecutadas.

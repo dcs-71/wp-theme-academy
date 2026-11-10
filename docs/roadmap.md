@@ -15,6 +15,7 @@ implica aceptación funcional ni verificación de compatibilidad.
 | Programación de fechas | Valores por defecto en `academy_schedule_defaults()`, shortcodes y filtro `academy_schedule` | `academy/README.md` §4; `academy/functions.php` |
 | Alumnos formados | Plantilla `page-alumnos.html`, datos por defecto y filtro `academy_alumni` | `academy/README.md` §4; `academy/functions.php` |
 | SEO del tema | Título, meta description, canonical de portada, Open Graph, Twitter Cards, iconos y JSON-LD; se aparta si hay plugin SEO | `academy/README.md` §8; `academy/functions.php` |
+| Teléfono de contacto configurable | `config/contact.json` como fuente única, helpers de validación, bindings/shortcodes y `telephone` del JSON-LD | `academy/README.md` §3; `academy/QA.md` §10; `specs/001-contact-phone-config/spec.md` |
 | Hero Slider | Bloque propio con slides basadas en Cover, accesibilidad y JS sin librerías externas | `academy/README.md` §5; `academy/blocks/hero-slider/` |
 | Sistema visual | Tokens, tipografía Poppins auto-alojada y estilos globales en `theme.json` | `academy/DESIGN_IMPLEMENTATION.md` §1 y §4 |
 | Accesibilidad y rendimiento | Foco visible, ARIA, teclado, `prefers-reduced-motion`, fuentes locales y carga diferida | `academy/DESIGN_IMPLEMENTATION.md` §6; `academy/QA.md` §7–§8 |
@@ -42,15 +43,17 @@ implica aceptación funcional ni verificación de compatibilidad.
 
 - **Implementación observada**: el tema y el plugin existen en el repositorio y su estructura
   coincide con la documentación revisada.
-- **Verificación técnica**: `academy/QA.md` conserva un registro histórico de validaciones
-  automáticas y una checklist manual. No hay logs ni CI en el repositorio que permitan
-  reproducir esas marcas; no se reejecutaron durante esta adaptación documental.
-- **Aceptación humana**: no está registrada en el repositorio. Corresponde a la persona
-  responsable confirmarla; este roadmap no la declara.
+- **Verificación técnica**: el cierre de US-001 incluyó comprobaciones focalizadas de sintaxis
+  PHP/JSON, referencias y diff. `academy/QA.md` conserva además un registro histórico de
+  validaciones automáticas y una checklist manual; no hay logs ni CI que permitan reproducir
+  esas marcas. No se ejecutaron suites E2E ni verificaciones de compatibilidad WordPress/PHP.
+- **Aceptación humana**: US-001 fue aceptada funcional y visualmente por la persona
+  responsable el 2026-11-10, incluido el ajuste `phone.e164` → `phone.number`. No se declaran
+  aceptaciones de otros incrementos.
 - **Aprobación de la adaptación**: documental, 2026-11-10; no sustituye la aceptación
-  funcional/visual ni la verificación técnica pendiente.
-- **Integración y publicación**: se realizan en el cierre aprobado; la aprobación documental no
-  certifica su resultado. Verificar el estado final en Git y en el remoto.
+  funcional/visual de US-001 ni las verificaciones técnicas no ejecutadas.
+- **Integración y publicación**: US-001 está integrada en `main` por fast-forward. El cierre se
+  publica con el tag anotado `contact-phone-config-v1.0.0`; no se publican otras ramas ni tags.
 
 ## Adaptación FALEXOM
 
@@ -61,19 +64,13 @@ implica aceptación funcional ni verificación de compatibilidad.
 | Instrucciones operativas | `AGENTS.md` creado y aprobado el 2026-11-10 |
 | Roadmap | Este documento |
 | Correcciones documentales | Aplicadas en README (raíz y tema), QA y DESIGN_IMPLEMENTATION |
-| SPEC e historias | `001-contact-phone-config` y `US-001` implementadas; pendiente de aceptación funcional/visual; SPEC no cerrada |
+| SPEC e historias | `001-contact-phone-config` y `US-001` cerradas; aceptación funcional/visual confirmada el 2026-11-10 |
 | Revisión final de la adaptación | Aprobada el 2026-11-10 |
 
 ## Próximo incremento funcional
 
-**Centralización del teléfono de contacto en JSON** — SPEC
-[`001-contact-phone-config`](../specs/001-contact-phone-config/spec.md) e historia
-[`US-001`](../specs/stories/US-001-centralize-contact-phone.md).
-
-Estado: **PENDIENTE_ACEPTACION**. La implementación está realizada en la rama
-`001-contact-phone-config`, sin commit. No se ha validado en WordPress, no se ha actualizado
-el contenido publicado y la SPEC no se declara cerrada. Las prioridades y fechas restantes del
-roadmap siguen sin definir.
+**Por definir.** US-001 está cerrada e integrada. No se asignan prioridades, fechas ni nuevas
+funcionalidades. El siguiente incremento se preparará con su propia SPEC e historia.
 
 ## Documentación canónica
 

@@ -4,7 +4,7 @@
 
 **Created**: 2026-11-10
 
-**Status**: Implemented — ajuste de esquema pendiente de comprobación final; SPEC no cerrada
+**Status**: Accepted — cerrada el 2026-11-10
 
 **Input**: User description: "Centralizar en un archivo JSON el número de teléfono utilizado en todo el tema WordPress, que actualmente está hardcodeado, y poder cambiarlo desde un único lugar."
 
@@ -16,6 +16,7 @@
 - Contrato aprobado el 2026-11-10: JSON único, fallo seguro, migración manual del contenido persistido, eliminación de `ACADEMY_WHATSAPP` y `display` obligatorio con validación de dígitos.
 - Compatibilidad verificada en el código fuente de WordPress 6.5: Block Bindings admite `core/button` con el atributo `url`; `core/navigation-link` no está entre los bloques compatibles de esa versión. Se usará un filtro de render focalizado para el enlace de navegación, sin elevar la versión mínima ni añadir dependencias.
 - Ajuste de esquema 2026-11-10: la propiedad JSON es `phone.number`; no se añade compatibilidad con `phone.e164`. Los helpers públicos conservan sus nombres porque describen el formato E.164, no la clave del archivo.
+- Aceptación funcional y visual confirmada por la persona responsable el 2026-11-10, incluido el ajuste de esquema. No se declaran verificaciones técnicas o de compatibilidad no ejecutadas.
 
 ## User Scenarios & Testing *(mandatory)*
 

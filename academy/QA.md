@@ -95,8 +95,9 @@ Lista de verificación para validar el tema en un WordPress real (6.5+). Marca c
 
 ## 10. Teléfono de contacto configurable
 
-> Estas comprobaciones quedan pendientes de la validación humana en WordPress 6.5+. No se
-> ejecutaron pruebas funcionales durante la implementación.
+> Aceptación funcional y visual de US-001 registrada en la historia el 2026-11-10. Las
+> casillas técnicas de esta sección no se marcan como ejecutadas en este cierre; no se
+> ejecutaron suites E2E ni verificaciones de compatibilidad WordPress/PHP adicionales.
 
 - [ ] `academy/config/contact.json` existe, `jq empty` pasa y `number` cumple el formato
       internacional E.164.
